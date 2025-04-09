@@ -1,0 +1,18 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TunerPanelPage : Adw.NavigationPage {
+    
+    Adw.NavigationView main_nav_view {
+        
+        Adw.NavigationPage {
+            title: bind template.title;
+            tag: "main-page";
+
+            Adw.ToolbarView main_toolbar_view {
+                [top]
+                Adw.HeaderBar {}
+            }
+        }
+    }
+}

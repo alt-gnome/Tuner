@@ -16,6 +16,7 @@ add_project_arguments (
     language: 'c'
 )
 
+pkg = import('pkgconfig')
 gnome = import('gnome')
 i18n = import('i18n')
 
@@ -27,7 +28,9 @@ output = name.to_lower()
 config = configuration_data()
 config.set('ID', id)
 config.set('GETTEXT_PACKAGE', meson.project_name())
-config.set('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
+config.set('LOCALEDIR', get_option('prefix') / get_option('localedir'))
+config.set('DATADIR', get_option('prefix') / get_option('datadir') / 'tuner')
+config.set('LIBDIR', get_option('prefix') / get_option('libdir'))
 
 subdir('data')
 subdir('src')

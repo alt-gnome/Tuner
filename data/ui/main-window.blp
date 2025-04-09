@@ -1,69 +1,64 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $MainWindow : Adw.ApplicationWindow {
+template $TunerMainWindow : Adw.ApplicationWindow {
     default-width: 800;
     default-height: 600;
     title: _("Tuner");
     
     Adw.Breakpoint {
-      condition ("max-width: 550sp")
+        condition ("max-width: 550sp")
 
-      setters {
-        main_navigation_split_view.collapsed: true;
-      }
+        setters {
+            split_view.collapsed: true;
+        }
     }
 
-  content: Adw.NavigationSplitView main_navigation_split_view {
-    sidebar: Adw.NavigationPage {
-      title: _("Tuner");
+    content: Adw.NavigationSplitView split_view {
+        sidebar: Adw.NavigationPage {
+            title: _("Tuner");
 
-      child: Adw.ToolbarView {
-        [top]
-        Adw.HeaderBar {
-          [end]
-          MenuButton {
-            primary: true;
-            icon-name: "open-menu-symbolic";
-            tooltip-text: _("Main Menu");
-            menu-model: primary_menu;
-          }
-        }
+            child: Adw.ToolbarView {
+                
+                [top]
+                Adw.HeaderBar {
+                    
+                    [end]
+                    MenuButton {
+                        primary: true;
+                        icon-name: "open-menu-symbolic";
+                        tooltip-text: _("Main Menu");
+                        menu-model: primary_menu;
+                    }
+                }
 
-        content: ListBox panels_list_box {
-          styles [
-            "navigation-sidebar",
-          ]
+                ListBox panels_list_box {
+                    styles [ "navigation-sidebar" ]
+
+                    row-activated => $set_page();
+                }
+            };
         };
-      };
     };
-
-    content: Adw.NavigationPage {
-      child: Adw.ToolbarView {
-        [top]
-        Adw.HeaderBar {}
-      };
-    };
-  };
 }
 
 menu primary_menu {
-  section {
-    item {
-      label: _("_Keyboard Shortcuts");
-      action: "win.show-help-overlay";
-    }
-    
-    item {
-      label: _("_Settings");
-      action: "app.settings";
-    }
+    section {
+        item {
+            label: _("_Keyboard Shortcuts");
+            action: "win.show-help-overlay";
+        }
 
-    item {
-      label: _("_About  Tuner");
-      action: "app.about";
+        item {
+            label: _("_Settings");
+            action: "app.settings";
+        }
+
+        item {
+            label: _("_About  Tuner");
+            action: "app.about";
+        }
     }
-  }
 }
 
 
