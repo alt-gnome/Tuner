@@ -1,0 +1,20 @@
+using Gtk 4.0;
+
+template $TunerValueComboRow : $TunerComboRow {
+    
+    [suffix]
+    Revealer revealer {
+        transition-type: crossfade;
+
+        Box {
+            Separator {
+                margin-start: 6;
+            }
+        }
+    }
+
+    [suffix]
+    $TunerResetButton reset_button {
+        clicked => $on_reset();
+    }
+}

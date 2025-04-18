@@ -1,0 +1,32 @@
+using Gtk 4.0;
+
+template $TunerFontRow : $TunerActionRow {
+    activatable: true;
+    title-lines: 1;
+    subtitle-lines: 1;
+
+    styles [ "property" ]
+
+    activated => $row_activated();
+
+    [suffix]
+    $TunerResetButton reset_button {
+        clicked => $on_reset();
+    }
+
+    [suffix]
+    Revealer revealer {
+        transition-type: crossfade;
+
+        Box {
+            Separator {
+                margin-end: 6;
+            }
+        }
+    }
+
+    [suffix]
+    Image {
+        icon-name: "go-next-symbolic";
+    }
+}

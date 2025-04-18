@@ -1,0 +1,26 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-28 10:55+0300\n"
+"Language: ru\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: data/ui/main-window.blp:7 data/ui/main-window.blp:19
+msgid "Tuner"
+msgstr "Тюнер"
+
+#: data/ui/main-window.blp:30
+msgid "Main Menu"
+msgstr "Миню"
+
+#: data/ui/main-window.blp:48
+msgid "_Keyboard Shortcuts"
+msgstr "Шокаты"
+
+#: data/ui/main-window.blp:53
+msgid "_Settings"
+msgstr "Сетики"
+
+#: data/ui/main-window.blp:58
+msgid "_About  Tuner"
+msgstr "Абуть"

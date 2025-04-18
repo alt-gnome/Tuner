@@ -1,7 +1,7 @@
 namespace Tuner {
 
     [GtkTemplate (ui = "/org/altlinux/Tuner/main-window.ui")]
-    internal class MainWindow : Adw.ApplicationWindow {
+    public class MainWindow : Adw.ApplicationWindow {
         [GtkChild]
         private unowned Adw.NavigationSplitView split_view;
         [GtkChild]

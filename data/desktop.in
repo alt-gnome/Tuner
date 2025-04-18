@@ -6,4 +6,3 @@ Exec=tuner
 Icon=org.altlinux.Tuner
 Terminal=false
 X-GNOME-Gettext-Domain=tuner
-@EXTRA@

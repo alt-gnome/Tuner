@@ -15,12 +15,8 @@ install_data(
 )
 
 desktop_file = i18n.merge_file(
-    input: configure_file(
-        input: 'desktop.in',
-        output: '@BASENAME@.alt',
-        configuration: {}
-    ),
-    output: 'org.altlinux.Tuner.desktop',
+    input: 'desktop.in',
+    output: id + '.desktop',
     po_dir: meson.project_source_root() / 'po',
     type: 'desktop',
     install: true,

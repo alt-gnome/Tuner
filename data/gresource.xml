@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
     <gresource prefix="/org/altlinux/Tuner">
+        <file alias="style.css">stylesheet/style.css</file>
         <!-- Interface -->
         <file alias="main-window.ui" preprocess="xml-stripblanks">ui/main-window.ui</file>
-        <file alias="panel-row.ui" preprocess="xml-stripblanks">ui/widgets/panel-row.ui</file>
-        <file alias="panel-page.ui" preprocess="xml-stripblanks">ui/widgets/panel-page.ui</file>
+        <file alias="panel-row.ui" preprocess="xml-stripblanks">ui/panel-row.ui</file>
     </gresource>
 </gresources>

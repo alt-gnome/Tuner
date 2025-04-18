@@ -1,6 +1,6 @@
 project(
-    'tuner',
-    
+    'Tuner',
+
     ['c', 'vala'],
     version: '0.1',
     meson_version: '>= 1.0',
@@ -33,6 +33,7 @@ config.set('DATADIR', get_option('prefix') / get_option('datadir') / 'tuner')
 config.set('LIBDIR', get_option('prefix') / get_option('libdir'))
 
 subdir('data')
+subdir('lib')
 subdir('src')
 subdir('po')
 

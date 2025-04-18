@@ -1,7 +1,7 @@
 namespace Tuner {
 
     [GtkTemplate (ui = "/org/altlinux/Tuner/panel-row.ui")]
-    internal class PanelRow : Adw.PreferencesRow {
+    public class PanelRow : Adw.PreferencesRow {
         public PanelPage page { get; set; }
         public string icon_name { get; set; }
 

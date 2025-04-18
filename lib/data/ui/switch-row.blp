@@ -1,0 +1,27 @@
+using Gtk 4.0;
+
+template $TunerSwitchRow : $TunerActionRow {
+    activatable-widget: switch;
+    active: bind switch.active bidirectional;
+
+    [suffix]
+    $TunerResetButton reset_button {
+        clicked => $on_reset();
+    }
+
+    [suffix]
+    Revealer revealer {
+        transition-type: crossfade;
+
+        Box {
+            Separator {
+                margin-end: 6;
+            }
+        }
+    }
+
+    [suffix]
+    Switch switch {
+        valign: center;
+    }
+}

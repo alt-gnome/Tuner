@@ -1,7 +1,7 @@
-namespace Tuner.Build {
-    public const string ID = "@ID@";
-    public const string GETTEXT_PACKAGE = "@GETTEXT_PACKAGE@";
-    public const string LOCALEDIR = "@LOCALEDIR@";
-    public const string DATADIR = "@DATADIR@";
-    public const string LIBDIR = "@LIBDIR@";
+namespace Tuner {
+    private const string ID = "@ID@";
+    private const string GETTEXT_PACKAGE = "@GETTEXT_PACKAGE@";
+    private const string LOCALEDIR = "@LOCALEDIR@";
+    private const string DATADIR = "@DATADIR@";
+    private const string LIBDIR = "@LIBDIR@";
 }
