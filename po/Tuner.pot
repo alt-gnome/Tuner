@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tuner\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 12:44+0300\n"
+"POT-Creation-Date: 2025-04-18 14:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,13 +26,5 @@ msgid "Main Menu"
 msgstr ""
 
 #: data/ui/main-window.blp:48
-msgid "_Keyboard Shortcuts"
-msgstr ""
-
-#: data/ui/main-window.blp:53
-msgid "_Settings"
-msgstr ""
-
-#: data/ui/main-window.blp:58
-msgid "_About  Tuner"
+msgid "_About Tuner"
 msgstr ""

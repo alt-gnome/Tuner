@@ -22,7 +22,7 @@ namespace Tuner {
 
         private void setting_changed() {
             active = settings.get_string(key) == value;
-            is_default = settings.get_default_value(key).get_string() != settings.get_string(key);
+            is_default = settings.get_default_value(key).get_string() == settings.get_string(key);
         }
     }
 }
