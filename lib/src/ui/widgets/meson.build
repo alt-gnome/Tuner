@@ -8,5 +8,6 @@ lib_sources += files(
     'panel-page.vala',
     'reset-button.vala',
     'switch-row.vala',
-    'value-combo-row.vala'
+    'value-combo-row.vala',
+    'value-switch-row.vala'
 )
