@@ -1,5 +1,6 @@
 namespace Tuner {
     private const string ID = "@ID@";
+    private const string VERSION = "@VERSION@";
     private const string GETTEXT_PACKAGE = "@GETTEXT_PACKAGE@";
     private const string LOCALEDIR = "@LOCALEDIR@";
     private const string DATADIR = "@DATADIR@";

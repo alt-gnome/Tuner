@@ -27,6 +27,7 @@ output = name.to_lower()
 
 config = configuration_data()
 config.set('ID', id)
+config.set('VERSION', meson.project_version())
 config.set('GETTEXT_PACKAGE', meson.project_name())
 config.set('LOCALEDIR', get_option('prefix') / get_option('localedir'))
 config.set('DATADIR', get_option('prefix') / get_option('datadir') / 'tuner')

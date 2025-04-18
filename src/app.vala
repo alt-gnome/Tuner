@@ -3,6 +3,10 @@ using Gee;
 namespace Tuner {
 
     internal class App : Adw.Application {
+        private const ActionEntry[] APP_ENTRIES = {
+            { "about", about_activated },
+        };
+
         private Peas.ExtensionSet page_addins { get; set; }
         private MainWindow main_window;
 
@@ -38,6 +42,9 @@ namespace Tuner {
                 foreach (var page in addin.pages)
                     main_window.add_page(page);
             });
+
+            set_accels_for_action("app.quit", { "<Ctrl>Q" });
+            add_action_entries(APP_ENTRIES, this);
         }
 
         public override void activate() {
@@ -54,6 +61,24 @@ namespace Tuner {
             }
 
             main_window.present();
+        }
+        
+        private void about_activated() {
+            var dialog = new Adw.AboutDialog() {
+                application_name = _("Tuner"),
+                application_icon = "org.altlinux.Tuner",
+                version = VERSION,
+                copyright = "© 2025 ALT Linux Team",
+                website = "https://altlinux.space/alt-gnome/Tuner",
+                issue_url = "https://altlinux.space/alt-gnome/Tuner/issues",
+                developer_name = "ALT Linux Team",
+                developers = { "Alexander \"PaladinDev\" Davydzik <paladindev@altlinux.org>" },
+                designers = { "Viktoria \"gingercat\" Zubacheva" },
+                translator_credits = _("translator-credits"),
+                license_type = Gtk.License.GPL_3_0
+            };
+
+            dialog.present(active_window);
         }
     }
 
