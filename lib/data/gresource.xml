@@ -2,6 +2,7 @@
 <gresources>
     <gresource prefix="/org/altlinux/Tuner">
         <!-- Interface -->
+        <file alias="page.ui" preprocess="xml-stripblanks">ui/page.ui</file>
         <file alias="panel-page.ui" preprocess="xml-stripblanks">ui/panel-page.ui</file>
         <file alias="font-row.ui" preprocess="xml-stripblanks">ui/font-row.ui</file>
         <file alias="switch-row.ui" preprocess="xml-stripblanks">ui/switch-row.ui</file>

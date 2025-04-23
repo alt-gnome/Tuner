@@ -2,11 +2,12 @@ namespace Tuner {
 
     [GtkTemplate (ui = "/org/altlinux/Tuner/main-window.ui")]
     public class MainWindow : Adw.ApplicationWindow {
+        private ListStore panels_list;
+
         [GtkChild]
         private unowned Adw.NavigationSplitView split_view;
         [GtkChild]
         private unowned Gtk.ListBox panels_list_box;
-        private ListStore panels_list;
         
         public MainWindow(Gtk.Application app) {
             Object(application: app);
@@ -22,6 +23,32 @@ namespace Tuner {
 
             if (panels_list.n_items == 1)
                 split_view.content = page;
+        }
+
+        public void add_content(PanelPageContent content) {
+            uint pos;
+            if (panels_list.find_with_equal_func_full(null, item => {
+                var page = (PanelPage) item;
+                return page.tag == content.tag;
+            }, out pos)) {
+                var page = panels_list.get_item(pos) as PanelPage;
+
+                page.add_content(content);
+                return;
+            }
+            warning(@"PanelPage with tag \"$(content.tag)\" not found. Content skipped.");
+        }
+
+        public PanelPage? find_extensible_page(string tag) {
+            uint pos;
+            if (panels_list.find_with_equal_func_full(null, item => {
+                var page = (PanelPage) item;
+
+                return page.tag == tag;
+            }, out pos)) {
+                return panels_list.get_item(pos) as PanelPage;
+            }
+            return null;
         }
 
         private Gtk.Widget create_row(Object obj) {

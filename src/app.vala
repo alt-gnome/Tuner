@@ -2,12 +2,13 @@ using Gee;
 
 namespace Tuner {
 
-    internal class App : Adw.Application {
+    public class App : Adw.Application {
         private const ActionEntry[] APP_ENTRIES = {
             { "about", about_activated },
         };
 
         private Peas.ExtensionSet page_addins { get; set; }
+        private Peas.ExtensionSet content_addins { get; set; }
         private MainWindow main_window;
 
         private static App _instance;
@@ -37,11 +38,7 @@ namespace Tuner {
             engine.add_search_path(user_plugins, null);
 
             page_addins = new Peas.ExtensionSet.with_properties(engine, typeof(PageAddin), {}, {});
-            page_addins.extension_added.connect((info, extension) => {
-                var addin = (PageAddin) extension;
-                foreach (var page in addin.pages)
-                    main_window.add_page(page);
-            });
+            content_addins = new Peas.ExtensionSet.with_properties(engine, typeof(ContentAddin), {}, {});
 
             set_accels_for_action("app.quit", { "<Ctrl>Q" });
             add_action_entries(APP_ENTRIES, this);
@@ -55,10 +52,7 @@ namespace Tuner {
 
             main_window = new MainWindow(this);
 
-            var engine = Peas.Engine.get_default();
-            for (int i = 0; i < engine.get_n_items(); i++) {
-                engine.load_plugin(engine.get_item(i) as Peas.PluginInfo);
-            }
+            load_extensions();
 
             main_window.present();
         }
@@ -73,12 +67,33 @@ namespace Tuner {
                 issue_url = "https://altlinux.space/alt-gnome/Tuner/issues",
                 developer_name = "ALT Linux Team",
                 developers = { "Alexander \"PaladinDev\" Davydzik <paladindev@altlinux.org>" },
-                designers = { "Viktoria \"gingercat\" Zubacheva" },
+                artists = { "Viktoria \"gingercat\" Zubacheva" },
                 translator_credits = _("translator-credits"),
                 license_type = Gtk.License.GPL_3_0
             };
 
             dialog.present(active_window);
+        }
+
+        private void load_extensions() {
+            var engine = Peas.Engine.get_default();
+            for (int i = 0; i < engine.get_n_items(); i++) {
+                engine.load_plugin(engine.get_item(i) as Peas.PluginInfo);
+            }
+
+            // Load page extensions
+            for (int i = 0; i < page_addins.get_n_items(); i++) {
+                var addin = (PageAddin) page_addins.get_item(i);
+                foreach (var page in addin.pages)
+                    main_window.add_page(page);
+            }
+
+            // Load content extensions
+            for (int i = 0; i < content_addins.get_n_items(); i++) {
+                var addin = (ContentAddin) content_addins.get_item(i);
+                foreach (var content in addin.content_list)
+                    main_window.add_content(content);
+            }
         }
     }
 

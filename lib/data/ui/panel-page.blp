@@ -5,14 +5,9 @@ template $TunerPanelPage : Adw.NavigationPage {
     
     Adw.NavigationView main_nav_view {
         
-        Adw.NavigationPage {
+        $TunerPage main_page {
             title: bind template.title;
-            tag: "main-page";
-
-            Adw.ToolbarView main_toolbar_view {
-                [top]
-                Adw.HeaderBar {}
-            }
+            tag: "main";
         }
     }
 }

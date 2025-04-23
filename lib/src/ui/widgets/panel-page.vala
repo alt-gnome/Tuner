@@ -5,7 +5,7 @@ namespace Tuner {
         [GtkChild]
         private unowned Adw.NavigationView main_nav_view;
         [GtkChild]
-        private unowned Adw.ToolbarView main_toolbar_view;
+        private unowned Page main_page;
 
         public string icon_name { get; set; }
         public string category { get; set; }
@@ -17,14 +17,31 @@ namespace Tuner {
                 return;
             }
 
-            if (child is Gtk.Widget) {
-                var widget = (Gtk.Widget) child;
+            if (child is Adw.NavigationPage)
+                main_nav_view.add((Adw.NavigationPage) child);
+            else if (child is Adw.PreferencesGroup)
+                main_page.add((Adw.PreferencesGroup) child);
+        }
 
-                if (widget is Adw.NavigationPage)
-                    main_nav_view.add((Adw.NavigationPage) widget);
+        public void add_content(PanelPageContent content) {
+            foreach (var page in content.extra_pages)
+                add(page);
+
+            foreach (var page_content in content.pages) {
+                var page = find_page(page_content.tag) as Page;
+                if (page != null)
+                    page.add_content(page_content);
                 else
-                    main_toolbar_view.content = widget;
+                    warning(@"Page with tag \"$(page_content.tag)\" not found. Content skipped.");
             }
+        }
+
+        public void add(Adw.NavigationPage page) {
+            main_nav_view.add(page);
+        }
+
+        public unowned Adw.NavigationPage? find_page(string tag) {
+            return main_nav_view.find_page(tag);
         }
 
         public void push_by_tag(string tag) {
