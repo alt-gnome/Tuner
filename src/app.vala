@@ -42,6 +42,8 @@ namespace Tuner {
 
             set_accels_for_action("app.quit", { "<Ctrl>Q" });
             add_action_entries(APP_ENTRIES, this);
+
+            typeof(EmptyPage).ensure();
         }
 
         public override void activate() {
