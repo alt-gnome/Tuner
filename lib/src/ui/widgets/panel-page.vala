@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * A top-level page that represents a settings row in the application.
+     */
     [GtkTemplate (ui = "/org/altlinux/Tuner/panel-page.ui")]
     public class PanelPage : Adw.NavigationPage, Gtk.Buildable {
         [GtkChild]
@@ -7,10 +10,24 @@ namespace Tuner {
         [GtkChild]
         private unowned Page main_page;
 
+        /**
+         * The icon name displayed in the side panel for this page.
+         * Should be a symbolic icon from the current icon theme.
+         */
         public string icon_name { get; set; }
+        /**
+         * The category this panel page.
+         */
         public string category { get; set; }
+        /**
+         * Determines ordering of this page in the side panel.
+         * Lower values appear higher in the list.
+         */
         public int priority { get; set; }
 
+        /**
+         * {@inheritDoc}
+         */
         public void add_child(Gtk.Builder builder, GLib.Object child, string? type) {
             if (main_nav_view == null) {
                 base.add_child(builder, child, type);
@@ -23,6 +40,9 @@ namespace Tuner {
                 main_page.add((Adw.PreferencesGroup) child);
         }
 
+        /**
+         * Adds content from a {@link Tuner.PanelPageContent} builder.
+         */
         public void add_content(PanelPageContent content) {
             foreach (var page in content.extra_pages)
                 add(page);
@@ -36,18 +56,31 @@ namespace Tuner {
             }
         }
 
+        /**
+         * Permanently adds page to this.
+         */
         public void add(Adw.NavigationPage page) {
             main_nav_view.add(page);
         }
 
+        /**
+         * Finds a page in this by its tag.
+         * @see Adw.NavigationPage.tag
+         */
         public unowned Adw.NavigationPage? find_page(string tag) {
             return main_nav_view.find_page(tag);
         }
 
+        /**
+         * Pushes the page with the tag tag onto the navigation stack.
+         */
         public void push_by_tag(string tag) {
             main_nav_view.push_by_tag(tag);
         }
 
+        /**
+         * Pops the visible page from the navigation stack.
+         */
         public void pop() {
             main_nav_view.pop();
         }

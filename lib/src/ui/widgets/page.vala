@@ -1,10 +1,25 @@
 namespace Tuner {
 
+    /**
+     * A settings page that can contain groups of preferences widgets.
+     *
+     * This class represents an individual page within a {@link Tuner.PanelPage},
+     * typically loaded from the "/org/altlinux/Tuner/page.ui" template.
+     * It manages the layout and ordering of preference groups.
+     *
+     * The page consists of an {@link Adw.ToolbarView} with {@link Adw.HeaderBar}
+     * and an {@link Adw.PreferencesPage} container that holds the preference groups.
+     */
     [GtkTemplate (ui = "/org/altlinux/Tuner/page.ui")]
     public class Page : Adw.NavigationPage, Gtk.Buildable {
         [GtkChild]
         private unowned Adw.PreferencesPage content;
 
+        /**
+         * Adds content to this page from a {@link Tuner.PageContent} builder.
+         *
+         * @param page_content The content to add
+         */
         public void add_content(PageContent page_content) {
             foreach (var extra_group in page_content.extra_groups) {
                 content.add(extra_group);
@@ -24,10 +39,16 @@ namespace Tuner {
             }
         }
 
+        /**
+         * Adds a single {@link Adw.PreferencesGroup} to this page.
+         */
         public void add(Adw.PreferencesGroup group) {
             content.add(group);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public void add_child(Gtk.Builder builder, GLib.Object child, string? type) {
             if (content == null) {
                 base.add_child(builder, child, type);
@@ -38,6 +59,11 @@ namespace Tuner {
                 content.add(child as Adw.PreferencesGroup);
         }
 
+        /**
+         * Gets the container widget that holds all preference groups.
+         *
+         * @return The {@link Gtk.Box} containing the groups
+         */
         public Gtk.Box get_groups_container() {
             var child = content.get_first_child();
 
@@ -47,6 +73,11 @@ namespace Tuner {
             return child as Gtk.Box;
         }
 
+        /**
+         * Reorders a group based on its priority value.
+         *
+         * @param group The {@link Tuner.Group} to reorder
+         */
         public void reorder_group(Group group) {
             var container = get_groups_container();
 
@@ -72,6 +103,12 @@ namespace Tuner {
             }
         }
 
+        /**
+         * Finds a group by its ID.
+         *
+         * @param id The ID of the group to find
+         * @return The matching {@link Tuner.Group} or null if not found
+         */
         public Group? find_group(string id) {
             for (var child = get_groups_container().get_first_child(); child != null; child = child.get_next_sibling())
                 if (child is Group && child.get_id() == id)
