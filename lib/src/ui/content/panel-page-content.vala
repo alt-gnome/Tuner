@@ -6,25 +6,25 @@ namespace Tuner {
      * Used by plugins to extend panel pages with additional groups and pages. Typically
      * declared in UI templates.
      *
-     * === Example ===
+     * Example
      * {{{
-     *     // Add content to panel with tag "appearance"
-     *     Tuner.PanelPageContent {
-     *         tag: "appearance";
+     * // Add content to panel with tag "appearance"
+     * Tuner.PanelPageContent {
+     *     tag: "appearance";
      *
-     *         // Add a group at the beginning
-     *         Tuner.Group new_group_addin {
-     *             priority: -1;
-     *             title: _("First group title");
+     *     // Add a group at the beginning
+     *     Tuner.Group new_group_addin {
+     *         priority: -1;
+     *         title: _("First group title");
      *
-     *             Adw.ActionRow {}
-     *         }
-     *
-     *         // Add an extra navigation page
-     *         Adw.NavigationPage {
-     *             // ... page content ...
-     *         }
+     *         Adw.ActionRow {}
      *     }
+     *
+     *     // Add an extra navigation page
+     *     Adw.NavigationPage {
+     *         // ... page content ...
+     *     }
+     * }
      * }}}
      */
     public class PanelPageContent : Gtk.Widget, Gtk.Buildable {

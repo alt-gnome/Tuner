@@ -6,7 +6,7 @@ namespace Tuner {
      * Extend this class to create plugins that can contribute UI elements to panel pages.
      * The plugin must implement the `content_list` property to provide its content.
      *
-     * === Example ===
+     * Example
      * {{{
      * public class MyContentPlugin : Tuner.ContentAddin {
      *     public override unowned List<Tuner.PanelPageContent> content_list { get; set; }

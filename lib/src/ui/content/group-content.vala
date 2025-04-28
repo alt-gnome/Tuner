@@ -5,12 +5,12 @@ namespace Tuner {
      *
      * Used by plugins to extend groups with additional UI widgets.
      *
-     * === Example ===
+     * Example
      * {{{
-     *     // Add content to group with ID "target_group_id"
-     *     Tuner.GroupContent target_group_id {
-     *         Adw.ActionRow {}
-     *     }
+     * // Add content to group with ID "target_group_id"
+     * Tuner.GroupContent target_group_id {
+     *     Adw.ActionRow {}
+     * }
      * }}}
      */
     public class GroupContent : Gtk.Widget, Gtk.Buildable {

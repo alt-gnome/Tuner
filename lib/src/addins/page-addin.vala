@@ -6,7 +6,7 @@ namespace Tuner {
      * Extend this class to create plugins that can contribute complete panel pages.
      * The plugin must implement the `pages` property to provide its pages.
      *
-     * === Example ===
+     * Example
      * {{{
      * public class MyPagePlugin : Tuner.PageAddin {
      *     public override unowned List<Tuner.PanelPage> pages { get; set; }

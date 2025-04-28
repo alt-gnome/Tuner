@@ -5,22 +5,22 @@ namespace Tuner {
      *
      * Used by plugins to extend pages with additional groups and widgets.
      *
-     * === Example ===
+     * Example
      * {{{
-     *     // Add content to page with tag "target_page_id"
-     *     Tuner.PageContent {
-     *         tag: "target_page_id";
+     * // Add content to page with tag "target_page_id"
+     * Tuner.PageContent {
+     *     tag: "target_page_id";
      *
-     *         // Add to existing group "target_group_id"
-     *         Tuner.GroupContent target_group_id {
-     *             Adw.ActionRow {}
-     *         }
-     *
-     *         // Create new unnamed group
-     *         Tuner.Group extra {
-     *             Adw.ActionRow {}
-     *         }
+     *     // Add to existing group "target_group_id"
+     *     Tuner.GroupContent target_group_id {
+     *         Adw.ActionRow {}
      *     }
+     *
+     *     // Create new unnamed group
+     *     Tuner.Group extra {
+     *         Adw.ActionRow {}
+     *     }
+     * }
      * }}}
      */
     public class PageContent : Gtk.Widget {
