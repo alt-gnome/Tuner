@@ -7,8 +7,7 @@ namespace Tuner {
             { "about", about_activated },
         };
 
-        private Peas.ExtensionSet page_addins { get; set; }
-        private Peas.ExtensionSet content_addins { get; set; }
+        private Peas.ExtensionSet addins { get; set; }
         private MainWindow main_window;
 
         private static App _instance;
@@ -37,8 +36,7 @@ namespace Tuner {
             var user_plugins = Path.build_filename(Environment.get_user_data_dir(), "tuner", "plugins");
             engine.add_search_path(user_plugins, null);
 
-            page_addins = new Peas.ExtensionSet.with_properties(engine, typeof(PageAddin), {}, {});
-            content_addins = new Peas.ExtensionSet.with_properties(engine, typeof(ContentAddin), {}, {});
+            addins = new Peas.ExtensionSet.with_properties(engine, typeof(Addin), {}, {});
 
             set_accels_for_action("app.quit", { "<Ctrl>Q" });
             add_action_entries(APP_ENTRIES, this);
@@ -83,19 +81,20 @@ namespace Tuner {
                 engine.load_plugin(engine.get_item(i) as Peas.PluginInfo);
             }
 
-            // Load page extensions
-            for (int i = 0; i < page_addins.get_n_items(); i++) {
-                var addin = (PageAddin) page_addins.get_item(i);
-                foreach (var page in addin.pages)
-                    main_window.add_page(page);
+            var page_list = new ArrayList<PanelPage>();
+            var content_list = new ArrayList<PanelPageContent>();
+
+            for (int i = 0; i < addins.get_n_items(); i++) {
+                var addin = (Addin) addins.get_item(i);
+                page_list.add_all(addin.get_page_list());
+                content_list.add_all(addin.get_content_list());
             }
 
-            // Load content extensions
-            for (int i = 0; i < content_addins.get_n_items(); i++) {
-                var addin = (ContentAddin) content_addins.get_item(i);
-                foreach (var content in addin.content_list)
-                    main_window.add_content(content);
-            }
+            foreach (var page in page_list)
+                main_window.add_page(page);
+
+            foreach (var content in content_list)
+                main_window.add_content(content);
         }
     }
 
