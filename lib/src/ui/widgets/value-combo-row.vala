@@ -2,6 +2,9 @@ using Gee;
 
 namespace Tuner {
 
+    /**
+     * {@link ComboRow} that loads model from setting enum fields and capitalize it
+     */
     [GtkTemplate (ui = "/org/altlinux/Tuner/value-combo-row.ui")]
     public class ValueComboRow : ComboRow, Modifier {
         [GtkChild]

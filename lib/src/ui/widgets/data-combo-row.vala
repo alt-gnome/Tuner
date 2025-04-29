@@ -2,6 +2,9 @@ using Gee;
 
 namespace Tuner {
 
+    /**
+     * ComboRow that loads model from directory contents using {@link DataComboRow.content_filter}
+     */
     [GtkTemplate (ui = "/org/altlinux/Tuner/data-combo-row.ui")]
     public class DataComboRow : ComboRow, Modifier {
         private string _lookup_dir;

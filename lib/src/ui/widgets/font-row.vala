@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * {@link ActionRow} that sets font name to setting string
+     */
     [GtkTemplate (ui = "/org/altlinux/Tuner/font-row.ui")]
     public class FontRow : ActionRow, Modifier {
         [GtkChild]

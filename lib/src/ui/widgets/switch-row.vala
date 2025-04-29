@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * {@link ActionRow} with switch widget that bind with settings boolean value
+     */
     [GtkTemplate (ui = "/org/altlinux/Tuner/switch-row.ui")]
     public class SwitchRow : ActionRow, Modifier {
         [GtkChild]

@@ -42,7 +42,7 @@ namespace Tuner {
          * }
          *
          * Tuner.PanelPageContent {
-         *     tag: "appearance"; // Add content to page with appearance
+         *     tag: "appearance"; // Add content to page with tag appearance
          *
          *     ...
          * }

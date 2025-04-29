@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * Base interface that allows binding with settings
+     */
     public interface Modifier : Object {
         public abstract Settings? settings { get; set; }
         public abstract SettingsSchema? schema { get; set; }

@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * Button with icon-name: edit-undo-symbolic, flat as css class and valign is center
+     */
     public class ResetButton : Gtk.Button {
 
         construct {

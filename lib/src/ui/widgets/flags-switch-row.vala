@@ -2,6 +2,9 @@ using Gee;
 
 namespace Tuner {
 
+    /**
+     * {@link SwitchRow} that adds or removes {@link FlagsSwitchRow.value} from setting string array
+     */
     public class FlagsSwitchRow : SwitchRow, Modifier {
         public string value { get; set; }
 

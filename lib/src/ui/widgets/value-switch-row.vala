@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * {@link SwitchRow} that will set value to settings if active and reset setting value otherwise
+     */
     public class ValueSwitchRow : SwitchRow, Modifier {
         public string value { get; set; }
 

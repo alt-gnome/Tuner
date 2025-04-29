@@ -2,6 +2,9 @@ using Gee;
 
 namespace Tuner {
 
+    /**
+     * Combo row that sets setting string value
+     */
     public class ComboRow : Adw.ComboRow, Modifier {
         public ArrayList<string> original;
 
