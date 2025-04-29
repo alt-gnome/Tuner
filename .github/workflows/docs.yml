@@ -1,0 +1,74 @@
+name: Docs
+
+on:
+  push:
+    workflow_dispatch:
+    branches: [ main ]
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            valac \
+            valadoc \
+            libgee-0.8-dev \
+            libadwaita-1-dev \
+            libgirepository1.0-dev \
+            gettext \
+            git \
+            python3-pip \
+            blueprint-compiler \
+            desktop-file-utils \
+
+      - name: Install meson
+        run: |
+          sudo pip3 install --break-system-packages meson
+
+      - name: Install libpeas
+        run: |
+          git clone https://gitlab.gnome.org/GNOME/libpeas
+          cd libpeas
+          meson setup --prefix=/usr -Dvapi=true -Dgjs=false -Dlua51=false -Dpython3=false build
+          sudo ninja install -C build
+
+      - name: Configure build
+        run: |
+          meson setup _build -Ddocs=true --prefix=$PWD/_install
+
+      - name: Compile documentation
+        run: |
+          meson compile -C _build
+
+      - name: Install documentation
+        run: |
+          meson install -C _build
+
+      - name: Prepare artifacts
+        run: |
+          mkdir -p public/
+          cp -r _install/share/doc/*/valadoc/* public/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/
+
+  deploy:
+    needs: build-docs
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
