@@ -1,27 +1,26 @@
 valadoc = find_program('valadoc')
 
-doc_cmd_base = [
+valadoc_cmd = [
     valadoc,
-    
-    '--package-name=' + name,
-    '--package-version=' + meson.project_version(),
-    '--target-glib=2.58',
+
+    '--package-name=' + lib_output,
+    '--package-version=' + version,
     '--force',
     '--pkg=gee-0.8',
     '--pkg=libadwaita-1',
     '--pkg=libpeas-2',
+    '--doclet=html',
     '--directory=@OUTPUT@',
     '@INPUT@'
 ]
 
-valadoc_cmd = [doc_cmd_base, '--doclet=html']
-
 custom_target(
     'valadoc',
-    
+
     command: valadoc_cmd,
     input: lib_sources,
     output: 'valadoc',
     depends: lib,
     install: true,
-    install_dir: get_option('datadir') / 'doc' / name)
+    install_dir: get_option('datadir') / 'doc' / output
+)

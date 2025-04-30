@@ -32,7 +32,7 @@ pkg.generate(
     description: 'Tuner app plugin library',
 
     libraries: lib,
-    version: meson.project_version(),
+    version: version,
     subdirs: lib_output,
     filebase: lib_output,
     requires: deps
