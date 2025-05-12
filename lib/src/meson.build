@@ -22,6 +22,7 @@ lib = library(
     lib_resources,
     lib_sources,
     dependencies: deps,
+    soversion: soversion,
     vala_gir: gir_output + '.gir',
     install: true,
     install_dir: [ true, true, true, true ]

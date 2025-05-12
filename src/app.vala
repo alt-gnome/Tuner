@@ -90,6 +90,8 @@ namespace Tuner {
                 content_list.add_all(addin.get_content_list());
             }
 
+            page_list.sort((a, b) => a.priority - b.priority);
+
             foreach (var page in page_list)
                 main_window.add_page(page);
 

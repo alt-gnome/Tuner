@@ -2,7 +2,7 @@ project(
     'Tuner',
 
     ['c', 'vala'],
-    version: '0.1.0',
+    version: '0.1.1',
     meson_version: '>= 1.0',
 )
 
@@ -10,6 +10,7 @@ id = 'org.altlinux.Tuner'
 name = meson.project_name()
 version = meson.project_version()
 output = name.to_lower()
+soversion = 0
 
 add_global_arguments([
 	'-Wno-unused',
