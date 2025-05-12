@@ -77,6 +77,7 @@ namespace Tuner {
             var row = (PanelRow) obj;
 
             split_view.content = row.page;
+            split_view.show_content = true;
         }
     }
 }
