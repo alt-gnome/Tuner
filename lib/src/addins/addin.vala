@@ -49,6 +49,11 @@ namespace Tuner {
          * }}}
          */
         public void add_from_resource(string resource_path) {
+            if (!File.new_for_uri(@"resource://$resource_path").query_exists()) {
+                warning(@"Resource \"$resource_path\" not found, skipped.");
+                return;
+            }
+
             var builder = new Gtk.Builder.from_resource(resource_path);
 
             foreach (var obj in builder.get_objects()) {

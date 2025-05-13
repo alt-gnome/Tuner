@@ -86,7 +86,7 @@ namespace Tuner {
 
             for (int i = 0; i < addins.get_n_items(); i++) {
                 var addin = (Addin) addins.get_item(i);
-                page_list.add_all(addin.get_page_list());
+                check_and_merge(addin.get_type().name(), page_list, addin.get_page_list());
                 content_list.add_all(addin.get_content_list());
             }
 
@@ -97,6 +97,16 @@ namespace Tuner {
 
             foreach (var content in content_list)
                 main_window.add_content(content);
+        }
+
+        private void check_and_merge(string type_name, ArrayList<PanelPage> list1, ArrayList<PanelPage> list2) {
+            foreach (var page in list2) {
+                if (page.tag != null && list1.first_match(it => it.tag == page.tag) != null) {
+                    message(@"Page with tag \"$(page.tag)\" from $type_name already exists, skipped.");
+                    continue;
+                }
+                list1.add(page);
+            }
         }
     }
 
