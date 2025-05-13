@@ -2,6 +2,8 @@ namespace Tuner {
 
     /**
      * A top-level page that represents a settings row in the application.
+     *
+     * Tag must be specified in order to allow other plugins extend it contents.
      */
     [GtkTemplate (ui = "/org/altlinux/Tuner/panel-page.ui")]
     public class PanelPage : Adw.NavigationPage, Gtk.Buildable {
@@ -35,9 +37,9 @@ namespace Tuner {
             }
 
             if (child is Adw.NavigationPage)
-                main_nav_view.add((Adw.NavigationPage) child);
+                add((Adw.NavigationPage) child);
             else if (child is Adw.PreferencesGroup)
-                main_page.add((Adw.PreferencesGroup) child);
+                add_group((Adw.PreferencesGroup) child);
         }
 
         /**
@@ -57,6 +59,13 @@ namespace Tuner {
         }
 
         /**
+         * Permanently adds group to main page.
+         */
+        public void add_group(Adw.PreferencesGroup group) {
+            main_page.add(group);
+        }
+
+        /**
          * Permanently adds page to this.
          */
         public void add(Adw.NavigationPage page) {
@@ -72,6 +81,13 @@ namespace Tuner {
         }
 
         /**
+         * Pushes page onto the navigation stack.
+         */
+        public void push(Adw.NavigationPage page) {
+            main_nav_view.push(page);
+        }
+
+        /**
          * Pushes the page with the tag tag onto the navigation stack.
          */
         public void push_by_tag(string tag) {
@@ -83,6 +99,20 @@ namespace Tuner {
          */
         public void pop() {
             main_nav_view.pop();
+        }
+
+        /**
+         * Pops pages from the navigation stack until page is visible.
+         */
+        public void pop_to_page(Adw.NavigationPage page) {
+            main_nav_view.pop_to_page(page);
+        }
+
+        /**
+         * Pops pages from the navigation stack until page with the tag tag is visible.
+         */
+        public void pop_to_tag(string tag) {
+            main_nav_view.pop_to_tag(tag);
         }
     }
 }

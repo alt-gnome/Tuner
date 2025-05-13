@@ -13,8 +13,13 @@ namespace Tuner {
      * public class MyAddin : Tuner.Addin {
      *
      *     construct {
+     *         // Add pages and content from specified ui file
      *         add_from_resource("/org/example/MyAddin/page.ui");
+     *
+     *         // Add page using method
      *         add_page(new CustomPanelPage());
+     *
+     *         // Add content using method
      *         add_content(new AppearanceContent());
      *     }
      * }
@@ -26,6 +31,9 @@ namespace Tuner {
 
         /**
          * Adds pages and content from resource.
+         *
+         * If resource not found warning will be
+         * printed to terminal output.
          * 
          * Example
          * {{{

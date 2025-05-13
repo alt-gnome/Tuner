@@ -2,6 +2,9 @@ namespace Tuner {
 
     /**
      * Widget allows to use Content addins
+     *
+     * Content addins can be added using
+     * widget id if it was specified.
      */
     public class Group : Adw.PreferencesGroup {
         public int priority { get; set; }

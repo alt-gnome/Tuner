@@ -7,6 +7,8 @@ namespace Tuner {
      * typically loaded from the "/org/altlinux/Tuner/page.ui" template.
      * It manages the layout and ordering of preference groups.
      *
+     * To allow plugins to add content, you need to set the "tag" property.
+     *
      * The page consists of an {@link Adw.ToolbarView} with {@link Adw.HeaderBar}
      * and an {@link Adw.PreferencesPage} container that holds the preference groups.
      */
