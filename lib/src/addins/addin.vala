@@ -30,11 +30,63 @@ namespace Tuner {
         private ArrayList<PanelPageContent> content_list = new ArrayList<PanelPageContent>();
 
         /**
+         * Virtual method that can be overrided by
+         * python plugins instead of using __init__ method
+         * to access plugin_info for loading gresources.
+         */
+        public virtual void activate() {}
+
+        /**
          * Adds pages and content from resource.
          *
-         * If resource not found warning will be
-         * printed to terminal output.
-         * 
+         * At any error warning message will be printed.
+         *
+         * {@see Addin.add_from_builder}
+         */
+        public void add_from_resource(string resource_path) {
+            try {
+                new Gtk.Builder().add_from_resource(resource_path);
+                add_from_builder(new Gtk.Builder.from_resource(resource_path));
+            } catch (Error err) {
+                warning(@"$(get_type().name()): $(err.message)");
+            }
+        }
+
+        /**
+         * Adds pages and content from file.
+         *
+         * At any error warning message will be printed.
+         *
+         * {@see Addin.add_from_builder}
+         */
+        public void add_from_file(string filename) {
+            try {
+                new Gtk.Builder().add_from_file(filename);
+                add_from_builder(new Gtk.Builder.from_file(filename));
+            } catch (Error err) {
+                warning(@"$(get_type().name()): $(err.message)");
+            }
+        }
+
+        /**
+         * Adds pages and content from string.
+         *
+         * At any error warning message will be printed.
+         *
+         * {@see Addin.add_from_builder}
+         */
+        public void add_from_string(string str) {
+            try {
+                new Gtk.Builder().add_from_string(str, str.length);
+                add_from_builder(new Gtk.Builder.from_string(str, str.length));
+            } catch (Error err) {
+                warning(@"$(get_type().name()): $(err.message)");
+            }
+        }
+
+        /**
+         * Adds pages and content from {@link Gtk.Builder}
+         *
          * Example
          * {{{
          * using Gtk 4.0;
@@ -56,14 +108,7 @@ namespace Tuner {
          * }
          * }}}
          */
-        public void add_from_resource(string resource_path) {
-            if (!File.new_for_uri(@"resource://$resource_path").query_exists()) {
-                warning(@"Resource \"$resource_path\" not found, skipped.");
-                return;
-            }
-
-            var builder = new Gtk.Builder.from_resource(resource_path);
-
+        public void add_from_builder(Gtk.Builder builder) {
             foreach (var obj in builder.get_objects()) {
                 if (obj is PanelPage)
                     page_list.add((PanelPage) obj);

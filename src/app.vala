@@ -29,6 +29,8 @@ namespace Tuner {
             base.startup();
 
             var engine = Peas.Engine.get_default();
+            engine.enable_loader("python");
+
             engine.add_search_path(
                 Path.build_filename(LIBDIR, "tuner", "plugins"),
                 Path.build_filename(DATADIR, "plugins")
@@ -86,6 +88,7 @@ namespace Tuner {
 
             for (int i = 0; i < addins.get_n_items(); i++) {
                 var addin = (Addin) addins.get_item(i);
+                addin.activate();
                 check_and_merge(addin.get_type().name(), page_list, addin.get_page_list());
                 content_list.add_all(addin.get_content_list());
             }
