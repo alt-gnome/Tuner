@@ -74,6 +74,8 @@ namespace Tuner {
                 license_type = Gtk.License.GPL_3_0
             };
 
+            dialog.add_credit_section("Loaded plugins", get_loaded_plugins());
+
             dialog.present(active_window);
         }
 
@@ -100,6 +102,17 @@ namespace Tuner {
 
             foreach (var content in content_list)
                 main_window.add_content(content);
+        }
+
+        private string[] get_loaded_plugins() {
+            string[] result = {};
+            for (int i = 0; i < addins.get_n_items(); i++) {
+                var addin = (Addin) addins.get_item(i);
+                if (addin.plugin_info?.name != null)
+                    result += addin.plugin_info.name;
+            }
+
+            return result.copy();
         }
 
         private void check_and_merge(string type_name, ArrayList<PanelPage> list1, ArrayList<PanelPage> list2) {

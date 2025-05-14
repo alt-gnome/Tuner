@@ -41,7 +41,7 @@ namespace Tuner {
          *
          * At any error warning message will be printed.
          *
-         * {@see Addin.add_from_builder}
+         * @see Addin.add_from_builder
          */
         public void add_from_resource(string resource_path) {
             try {
@@ -57,7 +57,7 @@ namespace Tuner {
          *
          * At any error warning message will be printed.
          *
-         * {@see Addin.add_from_builder}
+         * @see Addin.add_from_builder
          */
         public void add_from_file(string filename) {
             try {
@@ -73,7 +73,7 @@ namespace Tuner {
          *
          * At any error warning message will be printed.
          *
-         * {@see Addin.add_from_builder}
+         * @see Addin.add_from_builder
          */
         public void add_from_string(string str) {
             try {
