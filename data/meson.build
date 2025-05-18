@@ -10,7 +10,7 @@ install_data(
 
 install_data(
     'icons' / 'app' / 'symbolic.svg',
-    rename: id + '.symbolic.svg',
+    rename: id + '-symbolic.svg',
     install_dir: symbolic_dir
 )
 
