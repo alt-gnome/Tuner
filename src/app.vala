@@ -5,6 +5,7 @@ namespace Tuner {
     public class App : Adw.Application {
         private const ActionEntry[] APP_ENTRIES = {
             { "about", about_activated },
+            { "quit", quit },
         };
 
         private Peas.ExtensionSet addins { get; set; }
