@@ -1,8 +1,15 @@
 [Desktop Entry]
-Type=Application
+# Translators: app name should be translated
 Name=Tuner
-Comment=
+Comment=Extensible control center
+# Translators: keep number of ';'
+Keywords=settings;tuner;tune;tweaks;
 Exec=tuner
 Icon=org.altlinux.Tuner
 Terminal=false
+Type=Application
+Categories=Utility;GNOME;GTK;
+StartupNotify=true
 X-GNOME-Gettext-Domain=tuner
+X-SingleMainWindow=true
+X-Purism-FormFactor=Workstation;Mobile;

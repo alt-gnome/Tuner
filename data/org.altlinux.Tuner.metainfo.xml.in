@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.altlinux.Tuner</id>
+  <icon type="stock">org.altlinux.Tuner</icon>
+  <name>Tuner</name>
+  <summary>Extensible control center</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <description>
+    <p>
+        Extensible control center
+    </p>
+  </description>
+  <translation type="gettext">tuner</translation>
+  <custom>
+    <value key="Purism::form_factor">mobile</value>
+  </custom>
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </recommends>
+  <branding>
+    <color type="primary" scheme_preference="light">#ffffff</color>
+    <color type="primary" scheme_preference="dark">#000000</color>
+  </branding>
+  <content_rating type="oars-1.1"></content_rating>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/6e79d5c5d875068471ab8f06d6f7ccb22fe58db7/data/screenshots/1-panelmoded-tweaks.png</image>
+      <caption>Panel and Tweaks plugins</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/6e79d5c5d875068471ab8f06d6f7ccb22fe58db7/data/screenshots/2-tweaks.png</image>
+      <caption>Tweaks plugin</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/6e79d5c5d875068471ab8f06d6f7ccb22fe58db7/data/screenshots/3-about.png</image>
+      <caption>About dialog</caption>
+    </screenshot>
+  </screenshots>
+  <launchable type="desktop-id">org.altlinux.Tuner.desktop</launchable>
+  <releases>
+    <release version="0.1.3" date="2025-05-14"/>
+    <release version="0.1.2" date="2025-05-13"/>
+    <release version="0.1.1" date="2025-05-12"/>
+    <release version="0.1.0" date="2025-04-30">
+      <description>
+        <p>Initial release</p>
+      </description>
+    </release>
+  </releases>
+  <url type="homepage">https://altlinux.space/alt-gnome/Tuner</url>
+  <url type="bugtracker">https://altlinux.space/alt-gnome/Tuner/issues</url>
+  <url type="vcs-browser">https://altlinux.space/alt-gnome/Tuner.git</url>
+  <developer id="org.altlinux">
+    <name>ALT Linux Team</name>
+  </developer>
+  <kudos>
+    <kudo>ModernToolkit</kudo>
+  </kudos>
+  <categories>
+    <category>Utility</category>
+    <category>GNOME</category>
+    <category>GTK</category>
+  </categories>
+  <provides>
+    <binary>tuner</binary>
+  </provides>
+</component>

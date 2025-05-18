@@ -6,6 +6,7 @@
         <file alias="main-window.ui" preprocess="xml-stripblanks">ui/main-window.ui</file>
         <file alias="no-plugins-window.ui" preprocess="xml-stripblanks">ui/no-plugins-window.ui</file>
         <file alias="panel-row.ui" preprocess="xml-stripblanks">ui/panel-row.ui</file>
+        <file>org.altlinux.Tuner.metainfo.xml</file>
     </gresource>
     <gresource prefix="/org/altlinux/Tuner/icons/scalable/actions/">
         <file alias="about-symbolic.svg">icons/about-symbolic.svg</file>

@@ -71,18 +71,12 @@ namespace Tuner {
         }
 
         private void about_activated() {
-            var dialog = new Adw.AboutDialog() {
-                application_name = _("Tuner"),
+            var dialog = new Adw.AboutDialog.from_appdata("org/altlinux/Tuner/org.altlinux.Tuner.metainfo.xml", VERSION) {
                 application_icon = "org.altlinux.Tuner",
-                version = VERSION,
                 copyright = "© 2025 ALT Linux Team",
-                website = "https://altlinux.space/alt-gnome/Tuner",
-                issue_url = "https://altlinux.space/alt-gnome/Tuner/issues",
-                developer_name = "ALT Linux Team",
                 developers = { "Alexander \"PaladinDev\" Davydzik <paladindev@altlinux.org>" },
                 artists = { "Viktoria \"gingercat\" Zubacheva" },
                 translator_credits = _("translator-credits"),
-                license_type = Gtk.License.GPL_3_0
             };
 
             dialog.add_credit_section("Loaded plugins", get_loaded_plugins());

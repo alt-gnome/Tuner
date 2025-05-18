@@ -28,6 +28,23 @@ if desktop_utils.found()
     test('Validate desktop file', desktop_utils, args: [desktop_file])
 endif
 
+appstream_file = i18n.merge_file(
+    input: id + '.metainfo.xml.in',
+    output: id + '.metainfo.xml',
+    po_dir: meson.project_source_root() / 'po',
+    install: true,
+    install_dir: get_option('datadir') / 'metainfo',
+)
+
+appstreamcli = find_program('appstreamcli', required: false)
+if appstreamcli.found()
+    test(
+        'Validate appstream file',
+        appstreamcli,
+        args: ['validate', appstream_file],
+    )
+endif
+
 subdir('ui')
 
 resources = gnome.compile_resources(
