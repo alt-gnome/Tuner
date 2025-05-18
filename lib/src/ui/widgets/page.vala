@@ -94,7 +94,7 @@ namespace Tuner {
                     }
                 }
             } else {
-                for (var child = container.get_last_child().get_prev_sibling(); child != null; child = child.get_prev_sibling()) {
+                for (var child = container.get_last_child().get_prev_sibling();child != null; child = child.get_prev_sibling()) {
                     var priority = (child is Group) ? ((Group) child).priority : 0;
 
                     if (priority > group.priority) {

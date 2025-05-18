@@ -8,7 +8,7 @@ namespace Tuner {
             get {
                 if (_instance == null)
                     _instance = new SettingsStore();
-                
+
                 return _instance;
             }
         }
@@ -18,7 +18,7 @@ namespace Tuner {
         construct {
             settings = new TreeMap<string, SettingsSource>();
             sources = new ArrayList<SettingsSchemaSource>();
-            
+
             foreach (var data_dir in Environment.get_system_data_dirs()) {
                 try {
                     var source = new SettingsSchemaSource.from_directory(

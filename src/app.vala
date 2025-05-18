@@ -15,7 +15,7 @@ namespace Tuner {
             get {
                 if (_instance == null)
                     _instance = new App();
-                
+
                 return _instance;
             }
         }
@@ -58,7 +58,7 @@ namespace Tuner {
 
             main_window.present();
         }
-        
+
         private void about_activated() {
             var dialog = new Adw.AboutDialog() {
                 application_name = _("Tuner"),

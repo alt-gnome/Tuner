@@ -18,7 +18,7 @@ namespace Tuner {
             string range_type;
             Variant arr;
             variant.get("(sv)", out range_type, out arr);
-            
+
             if (range_type != "enum") {
                 is_valid_setting = false;
 
@@ -30,12 +30,12 @@ namespace Tuner {
 
             update_model();
             selected = original.index_of(settings.get_string(key));
-            
+
             bind_property("is-default", reset_button, "sensitive", BindingFlags.SYNC_CREATE);
 
             update_is_default();
             notify["selected"].connect(on_selected);
-            
+
             setup_separator_revealer(revealer, reset_button);
         }
 
@@ -59,7 +59,7 @@ namespace Tuner {
             bool up_next = true;
             for (int i = 0; i < str.char_count(); i++) {
                 var ch = str.get_char(str.index_of_nth_char(i)).to_string();
-                
+
                 if (ch == "-") {
                     up_next = true;
                     ch = " ";

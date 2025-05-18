@@ -26,7 +26,7 @@ namespace Tuner {
 
             if (is_valid_setting) key_found();
         }
-        
+
         private bool validate_setting() {
             var store = SettingsStore.instance;
 

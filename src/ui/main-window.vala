@@ -8,7 +8,7 @@ namespace Tuner {
         private unowned Adw.NavigationSplitView split_view;
         [GtkChild]
         private unowned Gtk.ListBox panels_list_box;
-        
+
         public MainWindow(Gtk.Application app) {
             Object(application: app);
 
