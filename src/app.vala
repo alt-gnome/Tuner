@@ -5,11 +5,12 @@ namespace Tuner {
     public class App : Adw.Application {
         private const ActionEntry[] APP_ENTRIES = {
             { "about", about_activated },
+            { "open-app-page", open_app_page },
             { "quit", quit },
         };
 
         private Peas.ExtensionSet addins { get; set; }
-        private MainWindow main_window;
+        private Adw.ApplicationWindow window;
 
         private static App _instance;
         public static App instance {
@@ -21,14 +22,14 @@ namespace Tuner {
             }
         }
 
-        construct {
-            application_id = ID;
-            flags = ApplicationFlags.DEFAULT_FLAGS;
+        public App () {
+            Object (
+                application_id: ID,
+                flags: ApplicationFlags.DEFAULT_FLAGS
+            );
         }
 
-        public override void startup() {
-            base.startup();
-
+        construct {
             var engine = Peas.Engine.get_default();
             engine.enable_loader("python");
 
@@ -43,21 +44,30 @@ namespace Tuner {
 
             set_accels_for_action("app.quit", { "<Ctrl>Q" });
             add_action_entries(APP_ENTRIES, this);
-
-            typeof(EmptyPage).ensure();
         }
 
         public override void activate() {
-            if (main_window != null) {
-                main_window.present();
+            if (window != null) {
+                window.present();
                 return;
             }
 
-            main_window = new MainWindow(this);
+            var engine = Peas.Engine.get_default();
+            for (int i = 0; i < engine.get_n_items(); i++) {
+                engine.load_plugin(engine.get_item(i) as Peas.PluginInfo);
+            }
 
-            load_extensions();
+            if (addins.get_n_items() == 0) {
+                window = new NoPluginsWindow(this);
+            } else {
+                window = new MainWindow(this);
+            }
 
-            main_window.present();
+            if (addins.get_n_items() != 0) {
+                load_extensions();
+            }
+
+            window.present();
         }
 
         private void about_activated() {
@@ -80,12 +90,11 @@ namespace Tuner {
             dialog.present(active_window);
         }
 
-        private void load_extensions() {
-            var engine = Peas.Engine.get_default();
-            for (int i = 0; i < engine.get_n_items(); i++) {
-                engine.load_plugin(engine.get_item(i) as Peas.PluginInfo);
-            }
+        private void open_app_page() {
+            new Gtk.UriLauncher("appstream://org.altlinux.Tuner").launch.begin(null, null);
+        }
 
+        private void load_extensions() {
             var page_list = new ArrayList<PanelPage>();
             var content_list = new ArrayList<PanelPageContent>();
 
@@ -97,6 +106,12 @@ namespace Tuner {
             }
 
             page_list.sort((a, b) => a.priority - b.priority);
+
+            var main_window = window as MainWindow;
+
+            if (main_window == null) {
+                return;
+            }
 
             foreach (var page in page_list)
                 main_window.add_page(page);

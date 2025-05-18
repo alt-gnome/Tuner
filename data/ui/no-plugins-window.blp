@@ -1,0 +1,43 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TunerNoPluginsWindow : Adw.ApplicationWindow {
+    default-width: 800;
+    default-height: 600;
+
+    content: Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
+            title-widget: Adw.WindowTitle {
+                title: _("Tuner");
+            };
+
+            [end]
+            Button {
+                styles [
+                    "flat"
+                ]
+
+                icon-name: "about-symbolic";
+                action-name: "app.about";
+            }
+        }
+
+        content: Adw.StatusPage {
+            title: _("No plugins found");
+            description: _("You can open the app page in the software store. There should be a list of available plugins");
+            icon-name: "org.altlinux.Tuner-symbolic";
+
+            Button {
+                styles [
+                    "suggested-action",
+                    "pill",
+                ]
+
+                halign: center;
+                label: _("Open app page");
+                action-name: "app.open-app-page";
+            }
+        };
+    };
+}

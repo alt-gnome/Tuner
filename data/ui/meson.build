@@ -1,5 +1,5 @@
 blueprints = files(
-    'empty-page.blp',
     'main-window.blp',
-    'panel-row.blp'
+    'no-plugins-window.blp',
+    'panel-row.blp',
 )

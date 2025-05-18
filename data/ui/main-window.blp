@@ -39,18 +39,18 @@ template $TunerMainWindow : Adw.ApplicationWindow {
                 }
             };
         };
-
-        content: $TunerEmptyPage {};
     };
 }
 
 menu primary_menu {
     section {
         item {
-            label: _("_About Tuner");
+            label: _("_Install plugins");
+            action: "app.open-app-page";
+        }
+        item {
+            label: _("_About");
             action: "app.about";
         }
     }
 }
-
-
