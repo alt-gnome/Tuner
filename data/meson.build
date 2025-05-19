@@ -29,11 +29,11 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-    input: id + '.metainfo.xml.in',
+    input: 'id.metainfo.xml.in',
     output: id + '.metainfo.xml',
     po_dir: meson.project_source_root() / 'po',
     install: true,
-    install_dir: get_option('datadir') / 'metainfo',
+    install_dir: get_option('datadir') / 'metainfo'
 )
 
 appstreamcli = find_program('appstreamcli', required: false)
@@ -41,7 +41,7 @@ if appstreamcli.found()
     test(
         'Validate appstream file',
         appstreamcli,
-        args: ['validate', appstream_file],
+        args: ['validate', appstream_file]
     )
 endif
 
@@ -55,6 +55,6 @@ resources = gnome.compile_resources(
         'blueprints',
         input: blueprints,
         output: '.',
-        command: [ find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@' ],
+        command: [ find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@' ]
     )
 )

@@ -7,7 +7,11 @@ namespace Tuner {
         [GtkChild]
         private unowned Adw.NavigationSplitView split_view;
         [GtkChild]
+        private unowned Adw.ToastOverlay toast_overlay;
+        [GtkChild]
         private unowned Gtk.ListBox panels_list_box;
+        [GtkChild]
+        private unowned Gtk.Stack stack;
 
         public MainWindow(Gtk.Application app) {
             Object(application: app);
@@ -18,28 +22,32 @@ namespace Tuner {
             panels_list_box.set_header_func(update_header);
         }
 
-        public void add_page(PanelPage page) {
-            panels_list.append(page);
+        public bool add_page(PanelPage page) {
+            if (page.tag != null && find_page(page.tag) != null) {
+                return false;
+            }
 
-            if (panels_list.n_items == 1)
+            panels_list.insert_sorted(page, (a, b) => ((PanelPage) a).priority - ((PanelPage) b).priority);
+
+            if (panels_list.n_items == 1) {
+                stack.visible_child_name = "content";
                 split_view.content = page;
+            }
+
+            return true;
         }
 
         public void add_content(PanelPageContent content) {
-            uint pos;
-            if (panels_list.find_with_equal_func_full(null, item => {
-                var page = (PanelPage) item;
-                return page.tag == content.tag;
-            }, out pos)) {
-                var page = panels_list.get_item(pos) as PanelPage;
+            var page = find_page(content.tag);
 
+            if (page != null) {
                 page.add_content(content);
                 return;
             }
             warning(@"PanelPage with tag \"$(content.tag)\" not found. Content skipped.");
         }
 
-        public PanelPage? find_extensible_page(string tag) {
+        public PanelPage? find_page(string tag) {
             uint pos;
             if (panels_list.find_with_equal_func_full(null, item => {
                 var page = (PanelPage) item;
@@ -49,6 +57,12 @@ namespace Tuner {
                 return panels_list.get_item(pos) as PanelPage;
             }
             return null;
+        }
+
+        public void toast(string title) {
+            toast_overlay.add_toast(new Adw.Toast(title) {
+                timeout = 3
+            });
         }
 
         private Gtk.Widget create_row(Object obj) {

@@ -14,36 +14,94 @@ template $TunerMainWindow : Adw.ApplicationWindow {
         }
     }
 
-    content: Adw.NavigationSplitView split_view {
-        sidebar: Adw.NavigationPage {
-            title: _("Tuner");
+    Adw.ToastOverlay toast_overlay {
 
-            child: Adw.ToolbarView {
-                
-                [top]
-                Adw.HeaderBar {
-                    
-                    [end]
-                    MenuButton {
-                        primary: true;
-                        icon-name: "open-menu-symbolic";
-                        tooltip-text: _("Main Menu");
-                        menu-model: primary_menu;
+        Stack stack {
+            StackPage {
+                name: "empty";
+
+                child: Adw.ToolbarView {
+                    [top]
+                    Adw.HeaderBar {
+                        [end]
+                        Button {
+                            styles [ "flat" ]
+
+                            icon-name: "about-symbolic";
+                            action-name: "app.about";
+                        }
                     }
-                }
 
-                ListBox panels_list_box {
-                    styles [ "navigation-sidebar" ]
+                    content: Adw.StatusPage {
+                        title: _("No plugins found");
+                        description: _("You can open the app page in the software store. There should be a list of available plugins");
+                        icon-name: "org.altlinux.Tuner-symbolic";
 
-                    row-activated => $set_page();
-                }
-            };
-        };
-    };
+                        Box {
+                            orientation: horizontal;
+                            halign: center;
+
+                            styles [ "linked" ]
+
+                            Button {
+                                styles [ "suggested-action", "pill" ]
+
+                                label: _("Open app page");
+                                action-name: "app.open-app-page";
+                            }
+
+                            Button {
+                                styles [ "pill" ]
+
+                                icon-name: "system-restart-symbolic";
+                                tooltip-text: _("Load new plugins");
+                                action-name: "app.reload-extensions";
+                            }
+                        }
+                    };
+                };
+            }
+
+            StackPage {
+                name: "content";
+
+                child: Adw.NavigationSplitView split_view {
+                    sidebar: Adw.NavigationPage {
+                        title: _("Tuner");
+
+                        child: Adw.ToolbarView {
+                            
+                            [top]
+                            Adw.HeaderBar {
+                                
+                                [end]
+                                MenuButton {
+                                    primary: true;
+                                    icon-name: "open-menu-symbolic";
+                                    tooltip-text: _("Main Menu");
+                                    menu-model: primary_menu;
+                                }
+                            }
+
+                            ListBox panels_list_box {
+                                styles [ "navigation-sidebar" ]
+
+                                row-activated => $set_page();
+                            }
+                        };
+                    };
+                };
+            }
+        }
+    }
 }
 
 menu primary_menu {
     section {
+        item {
+            label: _("_Update plugins list");
+            action: "app.reload-extensions";
+        }
         item {
             label: _("_Install plugins");
             action: "app.open-app-page";
