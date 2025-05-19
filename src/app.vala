@@ -74,7 +74,10 @@ namespace Tuner {
             var dialog = new Adw.AboutDialog.from_appdata("org/altlinux/Tuner/org.altlinux.Tuner.metainfo.xml", VERSION) {
                 application_icon = "org.altlinux.Tuner",
                 copyright = "© 2025 ALT Linux Team",
-                developers = { "Alexander \"PaladinDev\" Davydzik <paladindev@altlinux.org>" },
+                developers = {
+                    "Alexander \"PaladinDev\" Davydzik <paladindev@altlinux.org>",
+                    "Vladimir Vaskov <rirusha@altlinux.org>"
+                },
                 artists = { "Viktoria \"gingercat\" Zubacheva" },
                 translator_credits = _("translator-credits"),
             };
