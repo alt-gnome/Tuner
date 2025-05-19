@@ -5,11 +5,17 @@
 <h4 align="center">Extensible control center</h4>
 
 # Building
+
 ### Dependencies
-* `libadwaita-1`
-* `libpeas-2`
-* `gee-0.8`
-* `valac`
+
+- `libadwaita-1`
+- `libpeas-2`
+- `gee-0.8`
+- `valac`
+
 ### Meson
-`meson setup --prefix=/usr build`  
-`meson install -C build`
+
+```sh
+meson setup --prefix=/usr build
+meson install -C build
+```
