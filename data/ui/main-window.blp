@@ -11,6 +11,7 @@ template $TunerMainWindow : Adw.ApplicationWindow {
 
         setters {
             split_view.collapsed: true;
+            button_box.orientation: vertical;
         }
     }
 
@@ -37,11 +38,10 @@ template $TunerMainWindow : Adw.ApplicationWindow {
                         description: _("You can open the app page in the software store. There should be a list of available plugins");
                         icon-name: "org.altlinux.Tuner-symbolic";
 
-                        Box {
+                        Box button_box {
                             orientation: horizontal;
                             halign: center;
-
-                            styles [ "linked" ]
+                            spacing: 12;
 
                             Button {
                                 styles [ "suggested-action", "pill" ]
@@ -53,8 +53,7 @@ template $TunerMainWindow : Adw.ApplicationWindow {
                             Button {
                                 styles [ "pill" ]
 
-                                icon-name: "view-refresh-symbolic";
-                                tooltip-text: _("Load new plugins");
+                                label: _("Reload plugins");
                                 action-name: "app.reload-extensions";
                             }
                         }
