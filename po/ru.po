@@ -1,18 +1,95 @@
+#
+# David Sultaniiazov <x1z53@alt-gnome.ru>, 2025.
+#
 msgid ""
 msgstr ""
+"Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-18 14:25+0300\n"
+"POT-Creation-Date: 2025-05-19 16:02+0300\n"
+"PO-Revision-Date: 2025-05-19 16:02+0300\n"
+"Last-Translator: David Sultaniiazov <x1z53@alt-gnome.ru>\n"
+"Language-Team: Russian\n"
 "Language: ru\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 48.0\n"
 
-#: data/ui/main-window.blp:7 data/ui/main-window.blp:19
+#: data/id.metainfo.xml.in:5 data/ui/main-window.blp:7
+#: data/ui/main-window.blp:70
 msgid "Tuner"
 msgstr "Тюнер"
 
-#: data/ui/main-window.blp:30
+#: data/id.metainfo.xml.in:6 data/id.metainfo.xml.in:10
+msgid "Extensible control center"
+msgstr "Расширяемый центр управления"
+
+#: data/id.metainfo.xml.in:34
+msgid "Panel and Tweaks plugins"
+msgstr "Плагины панельного режима и расширенных настроек"
+
+#: data/id.metainfo.xml.in:38
+msgid "Tweaks plugin"
+msgstr "Плагин расширенных настроек"
+
+#: data/id.metainfo.xml.in:42
+msgid "About dialog"
+msgstr "Диалог «О приложении»"
+
+#: data/id.metainfo.xml.in:52
+msgid "Initial release"
+msgstr "Первоначальный выпуск"
+
+#: data/id.metainfo.xml.in:60
+msgid "ALT Linux Team"
+msgstr "ALT Linux Team"
+
+#: data/ui/main-window.blp:36
+msgid "No plugins found"
+msgstr "Плагины не найдены"
+
+#: data/ui/main-window.blp:37
+msgid ""
+"You can open the app page in the software store. There should be a list of "
+"available plugins"
+msgstr ""
+"Вы можете открыть страницу приложения в магазине программного обеспечения. "
+"Там должен быть список доступных плагинов"
+
+#: data/ui/main-window.blp:49
+msgid "Open app page"
+msgstr "Открыть страницу приложения"
+
+#: data/ui/main-window.blp:57
+msgid "Load new plugins"
+msgstr "Загрузить новые плагины"
+
+#: data/ui/main-window.blp:81
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: data/ui/main-window.blp:48
+#: data/ui/main-window.blp:102
+msgid "_Update plugins list"
+msgstr "_Обновить список плагинов"
+
+#: data/ui/main-window.blp:106
+msgid "_Install plugins"
+msgstr "_Установить плагины"
+
+#: data/ui/main-window.blp:110
 msgid "_About Tuner"
-msgstr "О приложении"
+msgstr "_О приложении"
+
+#: src/app.vala:72
+msgid "translator-credits"
+msgstr "David Sultaniiazov <x1z53@alt-gnome.ru>"
+
+#: src/app.vala:75
+msgid "Loaded plugins"
+msgstr "Плагины загружены"
+
+#: src/app.vala:105
+msgid "No new plugins found!"
+msgstr "Новых плагинов не найдено!"

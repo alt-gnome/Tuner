@@ -1,1 +1,5 @@
+data/desktop.in
+data/id.metainfo.xml.in
 data/ui/main-window.blp
+data/ui/panel-row.blp
+src/app.vala
