@@ -31,6 +31,9 @@ namespace Tuner {
         }
 
         public void on_selected() {
+            if (selected == Gtk.INVALID_LIST_POSITION)
+                return;
+
             var row_string = original[(int) selected];
 
             settings.set_string(key, row_string);

@@ -40,6 +40,7 @@ namespace Tuner {
             );
             var user_plugins = Path.build_filename(Environment.get_user_data_dir(), "tuner", "plugins");
             engine.add_search_path(user_plugins, null);
+            engine.add_search_path("/app/extensions/lib/tuner/plugins", "/app/extensions/lib/tuner/plugins");
 
             addins = new Peas.ExtensionSet.with_properties(engine, typeof(Addin), {}, {});
             addins.extension_added.connect((info, obj) => load_extension(info, obj as Addin));
