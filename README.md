@@ -4,6 +4,14 @@
 <h1 align="center">Tuner</h1>
 <h4 align="center">Extensible control center</h4>
 
+Tuner is the home for your additional system settings, components, applications, and whatever else you want!
+
+- Extended control over the interface and functions using plugins.
+- The interface is adapted to different device sizes.
+- Easy installation from the repository.
+- You can create your own plugins without affecting the main program code.
+- Easy creation of plugins working with dconf and unlimited plugin functionality thanks to libpeas.
+
 # Building
 
 ### Dependencies

@@ -8,8 +8,22 @@
   <project_license>GPL-3.0-or-later</project_license>
   <description>
     <p>
-        Extensible control center
+      Tuner is the home for your additional system settings, components,
+      applications, and whatever else you want!
     </p>
+    <ul>
+      <li>Extended control over the interface and functions using plugins.</li>
+      <li>The interface is adapted to different device sizes.</li>
+      <li>Easy installation from the repository.</li>
+      <li>
+        You can create your own plugins without affecting the main program
+        code.
+      </li>
+      <li>
+        Easy creation of plugins working with dconf and unlimited plugin
+        functionality thanks to libpeas.
+      </li>
+    </ul>
   </description>
   <translation type="gettext">tuner</translation>
   <custom>
