@@ -2,7 +2,7 @@ project(
     'Tuner',
 
     ['c', 'vala'],
-    version: '0.1.4',
+    version: '0.1.5',
     meson_version: '>= 1.0',
 )
 
@@ -20,6 +20,11 @@ add_global_arguments([
 add_project_arguments(
     '-DGETTEXT_PACKAGE="@0@"'.format(output),
     language: 'c'
+)
+
+add_project_arguments(
+    [ '--vapidir', meson.current_source_dir() / 'vapi' ],
+    language: 'vala'
 )
 
 pkg = import('pkgconfig')
