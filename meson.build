@@ -34,16 +34,19 @@ config.set('LOCALEDIR', get_option('prefix') / get_option('localedir'))
 config.set('DATADIR', get_option('prefix') / get_option('datadir') / 'tuner')
 config.set('LIBDIR', get_option('prefix') / get_option('libdir'))
 
-subdir('data')
 subdir('lib')
-subdir('src')
-subdir('po')
+
+if get_option('app')
+    subdir('data')
+    subdir('src')
+    subdir('po')
+
+    gnome.post_install(
+        gtk_update_icon_cache: true,
+        update_desktop_database: true
+    )
+endif
 
 if get_option('docs')
     subdir('doc')
 endif
-
-gnome.post_install(
-    gtk_update_icon_cache: true,
-    update_desktop_database: true
-)
