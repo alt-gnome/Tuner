@@ -2,7 +2,7 @@ project(
     'Tuner',
 
     ['c', 'vala'],
-    version: '0.1.4',
+    version: '0.1.5',
     meson_version: '>= 1.0',
 )
 
@@ -22,6 +22,11 @@ add_project_arguments(
     language: 'c'
 )
 
+add_project_arguments(
+    [ '--vapidir', meson.current_source_dir() / 'vapi' ],
+    language: 'vala'
+)
+
 pkg = import('pkgconfig')
 gnome = import('gnome')
 i18n = import('i18n')
@@ -34,16 +39,19 @@ config.set('LOCALEDIR', get_option('prefix') / get_option('localedir'))
 config.set('DATADIR', get_option('prefix') / get_option('datadir') / 'tuner')
 config.set('LIBDIR', get_option('prefix') / get_option('libdir'))
 
-subdir('data')
 subdir('lib')
-subdir('src')
-subdir('po')
+
+if get_option('app')
+    subdir('data')
+    subdir('src')
+    subdir('po')
+
+    gnome.post_install(
+        gtk_update_icon_cache: true,
+        update_desktop_database: true
+    )
+endif
 
 if get_option('docs')
     subdir('doc')
 endif
-
-gnome.post_install(
-    gtk_update_icon_cache: true,
-    update_desktop_database: true
-)

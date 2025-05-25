@@ -3,6 +3,17 @@
 </p>
 <h1 align="center">Tuner</h1>
 <h4 align="center">Extensible control center</h4>
+<div align="center">
+  <img width="922" src="data/screenshots/1-panelmoded-tweaks.png">
+</div>
+
+Tuner is the home for your additional system settings, components, applications, and whatever else you want!
+
+- Extended control over the interface and functions using plugins.
+- The interface is adapted to different device sizes.
+- Easy installation from the repository.
+- You can create your own plugins without affecting the main program code.
+- Easy creation of plugins working with dconf and unlimited plugin functionality thanks to libpeas.
 
 # Building
 
@@ -19,3 +30,9 @@
 meson setup --prefix=/usr build
 meson install -C build
 ```
+
+# Credit
+
+[Refine](https://gitlab.gnome.org/TheEvilSkeleton/Refine) - For the idea of the logic of creating widgets interacting with gsettings directly in .blp files.
+
+[Victoria Zubacheva](https://altlinux.space/vvv.dostt) - For creating an icon for Tuner.
