@@ -11,6 +11,7 @@ namespace Tuner {
         };
 
         private Peas.ExtensionSet addins { get; set; }
+        private TreeMap<Peas.PluginInfo, Addin> loaded_plugins { get; set; }
         private MainWindow main_window;
 
         private static App _instance;
@@ -41,8 +42,8 @@ namespace Tuner {
             var user_plugins = Path.build_filename(Environment.get_user_data_dir(), "tuner", "plugins");
             engine.add_search_path(user_plugins, null);
 
+            loaded_plugins = new TreeMap<Peas.PluginInfo, Addin>();
             addins = new Peas.ExtensionSet.with_properties(engine, typeof(Addin), {}, {});
-            addins.extension_added.connect((info, obj) => load_extension(info, obj as Addin));
 
             set_accels_for_action("app.quit", { "<Ctrl>Q" });
             add_action_entries(APP_ENTRIES, this);
@@ -72,9 +73,32 @@ namespace Tuner {
                 translator_credits = _("translator-credits")
             };
 
-            dialog.add_credit_section(_("Loaded plugins"), get_loaded_plugins());
+            dialog.add_credit_section(_("Loaded plugins"), get_loaded_plugins_info());
 
             dialog.present(active_window);
+        }
+
+        private string[] get_loaded_plugins_info() {
+            string[] result = {};
+
+            foreach (var entry in loaded_plugins) {
+                var info = entry.key.name;
+
+                if (entry.key.authors.length > 0) {
+                    var authors = entry.key.authors;
+                    info += @" by $(authors[0])";
+
+                    for (int i = 1; i < authors.length; i++)
+                        info += @", $(authors[i])";
+                }
+
+                if (entry.key.website != null)
+                    info += @" $(entry.key.website)";
+
+                result += info;
+            }
+
+            return result;
         }
 
         private void open_app_page() {
@@ -85,6 +109,8 @@ namespace Tuner {
             var engine = Peas.Engine.get_default();
             for (int i = 0; i < engine.get_n_items(); i++)
                 engine.load_plugin(engine.get_item(i) as Peas.PluginInfo);
+
+            load_extensions_content();
         }
 
         private void reload_extensions() {
@@ -103,29 +129,32 @@ namespace Tuner {
 
             if (!loaded)
                 main_window.toast(_("No new plugins found!"));
+            else
+                load_extensions_content();
         }
 
-        private void load_extension(Peas.PluginInfo info, Addin addin) {
-            addin.activate();
+        private void load_extensions_content() {
+            var page_list = new ArrayList<PanelPage>();
+            var content_list = new ArrayList<PanelPageContent>();
 
-            foreach (var page in addin.get_page_list()) {
-                if (!main_window.add_page(page))
-                    warning(@"Page with tag \"$(page.tag)\" from $(info.name) plugin already exists, skipped.");
-            }
+            addins.foreach((s, info, obj) => {
+                var addin = obj as Addin;
 
-            foreach (var content in addin.get_content_list())
+                if (!loaded_plugins.has_key(info)) {
+                    addin.activate();
+
+                    page_list.add_all(addin.get_page_list());
+                    content_list.add_all(addin.get_content_list());
+
+                    loaded_plugins[info] = addin;
+                }
+            });
+
+            foreach (var page in page_list)
+                main_window.add_page(page);
+
+            foreach (var content in content_list)
                 main_window.add_content(content);
-        }
-
-        private string[] get_loaded_plugins() {
-            string[] result = {};
-            for (int i = 0; i < addins.get_n_items(); i++) {
-                var addin = (Addin) addins.get_item(i);
-                if (addin.plugin_info?.name != null)
-                    result += addin.plugin_info.name;
-            }
-
-            return result.copy();
         }
     }
 
@@ -134,6 +163,11 @@ namespace Tuner {
         Intl.bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
         Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
         Intl.textdomain(GETTEXT_PACKAGE);
+
+        if (File.new_for_path("/.flatpak-info").query_exists()) {
+            Peas.Engine.get_default().add_search_path("/app/extensions/lib/tuner/plugins", "/app/extensions/lib/tuner/plugins");
+            Environment.set_variable("XDG_DATA_DIRS", Environment.get_variable("XDG_DATA_DIRS") + ":/run/host/usr/share", true);
+        }
 
         return App.instance.run(args);
     }

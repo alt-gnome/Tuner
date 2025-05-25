@@ -14,5 +14,5 @@ executable(
     sources,
     resources,
     dependencies: lib_dep,
-    install: true,
+    install: true
 )
