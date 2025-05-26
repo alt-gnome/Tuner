@@ -37,7 +37,7 @@ namespace Tuner {
             if (active)
                 flags.add(@value);
 
-            settings.set_strv(key, flags.to_array());
+            settings.set_strv(key, flags.to_array().copy());
         }
 
         public void settings_changed() {
