@@ -7,7 +7,7 @@ template $TunerMainWindow : Adw.ApplicationWindow {
     title: _("Tuner");
     
     Adw.Breakpoint {
-        condition ("max-width: 550sp")
+        condition ("max-width: 580px")
 
         setters {
             split_view.collapsed: true;
@@ -65,6 +65,8 @@ template $TunerMainWindow : Adw.ApplicationWindow {
                 name: "content";
 
                 child: Adw.NavigationSplitView split_view {
+                    min-sidebar-width: 220;
+
                     sidebar: Adw.NavigationPage {
                         title: _("Tuner");
 
