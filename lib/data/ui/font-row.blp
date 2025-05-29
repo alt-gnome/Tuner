@@ -1,6 +1,7 @@
 using Gtk 4.0;
+using Adw 1;
 
-template $TunerFontRow : $TunerActionRow {
+template $TunerFontRow : Adw.ActionRow {
     activatable: true;
     title-lines: 1;
     subtitle-lines: 1;
@@ -11,18 +12,10 @@ template $TunerFontRow : $TunerActionRow {
 
     [suffix]
     $TunerResetButton reset_button {
-        clicked => $on_reset();
-    }
+        visible: false;
+        revealer: end;
 
-    [suffix]
-    Revealer revealer {
-        transition-type: crossfade;
-
-        Box {
-            Separator {
-                margin-end: 6;
-            }
-        }
+        reset => $on_reset();
     }
 
     [suffix]

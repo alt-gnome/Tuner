@@ -5,6 +5,7 @@ deps = [
 ]
 
 subdir('addins')
+subdir('bindings')
 subdir('models')
 subdir('ui')
 subdir('utils')
