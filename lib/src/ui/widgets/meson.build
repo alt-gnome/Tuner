@@ -1,15 +1,14 @@
+subdir('combo')
+
 lib_sources += files(
-    'action-row.vala',
-    'combo-row.vala',
-    'data-combo-row.vala',
-    'flags-switch-row.vala',
     'font-row.vala',
+    'font.vala',
     'group.vala',
-    'modifier.vala',
     'page.vala',
     'panel-page.vala',
     'reset-button.vala',
+    'spin.vala',
     'switch-row.vala',
-    'value-combo-row.vala',
-    'value-switch-row.vala'
+    'switch.vala',
+    'widget.vala'
 )

@@ -1,0 +1,28 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TunerComboRow : Adw.ComboRow {
+    expression: expr item as <$TunerChoice>.title;
+
+    list-factory: BuilderListItemFactory {
+        template ListItem {
+            child: Box {
+                orientation: vertical;
+
+                Label {
+                    xalign: 0;
+                    hexpand: true;
+                    label: bind template.item as <$TunerChoice>.title;
+                }
+            };
+        }
+    };
+
+    [suffix]
+    $TunerResetButton reset_button {
+        visible: false;
+        revealer: start;
+
+        reset => $on_reset();
+    }
+}

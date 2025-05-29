@@ -1,30 +1,20 @@
 namespace Tuner {
 
-    /**
-     * {@link ActionRow} that sets font name to setting string
-     */
     [GtkTemplate (ui = "/org/altlinux/Tuner/font-row.ui")]
-    public class FontRow : ActionRow, Modifier {
-        [GtkChild]
-        private unowned Gtk.Revealer revealer;
+    internal class FontRow : Adw.ActionRow {
+        private unowned Binding binding;
+        private string _font;
+
         [GtkChild]
         private unowned ResetButton reset_button;
 
-        private void update_label() {
-            var font_string = settings.get_string(key);
-            var default_font_string = settings.get_default_value(key).get_string();
-
-            is_default = font_string != default_font_string;
-
-            var font_description = Pango.FontDescription.from_string(font_string);
-            subtitle = @"<span face='$(font_description.get_family())'>$font_string</span>";
-        }
-
-        public override void key_found() {
-            update_label();
-            bind_property("is-default", reset_button, "visible", BindingFlags.SYNC_CREATE);
-
-            setup_separator_revealer(revealer, reset_button);
+        public string font {
+            get { return _font; }
+            set {
+                _font = value;
+                var font_description = Pango.FontDescription.from_string(font);
+                subtitle = @"<span face='$(font_description.get_family())'>$font</span>";
+            }
         }
 
         [GtkCallback]
@@ -32,21 +22,26 @@ namespace Tuner {
             select_font.begin();
         }
 
+        public void setup(Binding binding) {
+            this.binding = binding;
+
+            if (binding.has_default)
+                binding.bind_property("is-default", reset_button, "visible", BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN);
+        }
+
         [GtkCallback]
         private void on_reset() {
-            settings.reset(key);
-            update_label();
+            binding.reset();
         }
 
         private async void select_font() {
-            var font_description = Pango.FontDescription.from_string(settings.get_string(key));
+            var font_description = Pango.FontDescription.from_string(font);
 
             var dialog = new Gtk.FontDialog();
 
             try {
                 var font = yield dialog.choose_font(get_root() as Gtk.Window, font_description, null);
-                settings.set_string(key, font.to_string());
-                update_label();
+                this.font = font.to_string();
             } catch (Error err) {}
         }
     }

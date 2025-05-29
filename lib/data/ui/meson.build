@@ -4,5 +4,7 @@ lib_blueprints = files(
     'page.blp',
     'panel-page.blp',
     'switch-row.blp',
-    'value-combo-row.blp'
+    'value-combo-row.blp',
+
+    'combo-row.blp'
 )
