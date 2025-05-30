@@ -19,20 +19,26 @@ jobs:
             valadoc \
             libgee-0.8-dev \
             libadwaita-1-dev \
-            libgirepository1.0-dev \
+            libgirepository-1.0-dev \
             gettext \
             git \
             python3-pip \
-            blueprint-compiler \
             desktop-file-utils \
 
       - name: Install meson
         run: |
           sudo pip3 install --break-system-packages meson
 
+      - name: Install blueprint compiler
+        run: |
+          git clone https://gitlab.gnome.org/GNOME/blueprint-compiler.git
+          cd blueprint-compiler
+          meson setup --prefix=/usr build
+          sudo ninja install -C build
+
       - name: Install libpeas
         run: |
-          git clone https://gitlab.gnome.org/GNOME/libpeas
+          git clone --depth 1 --branch 2.0.7 https://gitlab.gnome.org/GNOME/libpeas.git
           cd libpeas
           meson setup --prefix=/usr -Dvapi=true -Dgjs=false -Dlua51=false -Dpython3=false build
           sudo ninja install -C build
