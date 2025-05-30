@@ -35,4 +35,6 @@ meson install -C build
 
 [Refine](https://gitlab.gnome.org/TheEvilSkeleton/Refine) - For the idea of the logic of creating widgets interacting with gsettings directly in .blp files.
 
+[GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder) - For the idea of new widget & binding system
+
 [Victoria Zubacheva](https://altlinux.space/vvv.dostt) - For creating an icon for Tuner.

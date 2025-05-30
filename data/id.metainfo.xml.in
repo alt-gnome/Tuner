@@ -58,6 +58,12 @@
   </screenshots>
   <launchable type="desktop-id">org.altlinux.Tuner.desktop</launchable>
   <releases>
+    <release version="0.2.0" date="2025-05-30">
+            <description>
+                <p>New plugin API</p>
+            </description>
+    </release>
+    <release version="0.1.6" date="2025-05-26"/>
     <release version="0.1.5" date="2025-05-23">
             <description>
                 <p>Improved translations</p>

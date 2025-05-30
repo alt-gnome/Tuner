@@ -2,7 +2,7 @@ project(
     'Tuner',
 
     ['c', 'vala'],
-    version: '0.1.6',
+    version: '0.2.0',
     meson_version: '>= 1.0',
 )
 
