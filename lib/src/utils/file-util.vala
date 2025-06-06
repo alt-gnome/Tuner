@@ -2,12 +2,12 @@ namespace Tuner {
 
     internal class FileUtil {
 
-        public static bool is_directory(File file) {
+        public static bool is_directory(GLib.File file) {
             return file.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY;
         }
 
-        public static bool contains(File directory, string name) {
-            return is_directory(directory) && File.new_for_path(Path.build_filename(directory.get_path(), name)).query_exists();
+        public static bool contains(GLib.File directory, string name) {
+            return is_directory(directory) && GLib.File.new_for_path(Path.build_filename(directory.get_path(), name)).query_exists();
         }
 
         public static string[] get_resource_dirs(string resource) {
@@ -27,14 +27,14 @@ namespace Tuner {
 
             foreach (var dir in dirs) {
                 try {
-                    var file = File.new_for_path(dir);
+                    var file = GLib.File.new_for_path(dir);
 
                     if (file.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY) {
                         var directory = Dir.open(file.get_path(), 0);
 
                         string? name = null;
                         while ((name = directory.read_name()) != null) {
-                            var found = File.new_for_path(Path.build_filename(dir, name));
+                            var found = GLib.File.new_for_path(Path.build_filename(dir, name));
                             if (filter(found) && !(name in valid))
                                 valid += name;
                         }
@@ -47,6 +47,6 @@ namespace Tuner {
             return valid;
         }
 
-        public delegate bool FilterFunc(File file);
+        public delegate bool FilterFunc(GLib.File file);
     }
 }
