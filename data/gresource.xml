@@ -3,7 +3,8 @@
     <gresource prefix="/org/altlinux/Tuner">
         <!-- Interface -->
         <file alias="main-window.ui" preprocess="xml-stripblanks">ui/main-window.ui</file>
-        <file alias="panel-row.ui" preprocess="xml-stripblanks">ui/panel-row.ui</file>
+        <file alias="panel-list-row.ui" preprocess="xml-stripblanks">ui/panel-list-row.ui</file>
+        <file alias="panel-list.ui" preprocess="xml-stripblanks">ui/panel-list.ui</file>
         <file>org.altlinux.Tuner.metainfo.xml</file>
     </gresource>
     <gresource prefix="/org/altlinux/Tuner/icons/scalable/actions/">

@@ -12,6 +12,9 @@ namespace Tuner {
         [GtkChild]
         private unowned Page main_page;
 
+        public ListStore? model { get; set; }
+        public Adw.NavigationPage? custom_content { get; set; }
+        public LayoutType layout_type { get; set; default = LayoutType.INTERNAL; }
         /**
          * The icon name displayed in the side panel for this page.
          * Should be a symbolic icon from the current icon theme.
@@ -36,10 +39,19 @@ namespace Tuner {
                 return;
             }
 
-            if (child is Adw.NavigationPage)
+            if (child is PanelPage)
+                add_subpage((PanelPage) child);
+            else if (child is Adw.NavigationPage)
                 add((Adw.NavigationPage) child);
             else if (child is Adw.PreferencesGroup)
                 add_group((Adw.PreferencesGroup) child);
+        }
+
+        public void add_subpage(PanelPage page) {
+            if (model == null)
+                model = new ListStore(typeof(PanelPage));
+
+            model.insert_sorted(page, (a, b) => ((PanelPage) a).priority - ((PanelPage) b).priority);
         }
 
         /**

@@ -33,7 +33,7 @@ namespace Tuner {
             if (child is Gtk.Widget)
                 add(child as Gtk.Widget);
             else
-                message(@"Unknown child type found while building content for \"$(get_id())\" group: $(child.get_type().name())");
+                warning(@"Unknown child type found while building content for \"$(get_id())\" group: $(child.get_type().name())");
         }
 
         internal void merge(GroupContent other) {

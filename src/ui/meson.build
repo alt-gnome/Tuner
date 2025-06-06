@@ -1,4 +1,5 @@
 sources += files(
     'main-window.vala',
-    'panel-row.vala'
+    'panel-list-row.vala',
+    'panel-list.vala'
 )

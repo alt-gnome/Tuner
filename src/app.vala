@@ -164,7 +164,7 @@ namespace Tuner {
         Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
         Intl.textdomain(GETTEXT_PACKAGE);
 
-        if (File.new_for_path("/.flatpak-info").query_exists()) {
+        if (GLib.File.new_for_path("/.flatpak-info").query_exists()) {
             Peas.Engine.get_default().add_search_path("/app/extensions/lib/tuner/plugins", "/app/extensions/lib/tuner/plugins");
             Environment.set_variable("XDG_DATA_DIRS", Environment.get_variable("XDG_DATA_DIRS") + ":/run/host/usr/share", true);
         }

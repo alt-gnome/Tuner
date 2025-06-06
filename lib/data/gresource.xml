@@ -4,6 +4,7 @@
         <file alias="style.css">stylesheet/style.css</file>
         <!-- Interface -->
         <file alias="page.ui" preprocess="xml-stripblanks">ui/page.ui</file>
+        <file alias="panel-content.ui" preprocess="xml-stripblanks">ui/panel-content.ui</file>
         <file alias="panel-page.ui" preprocess="xml-stripblanks">ui/panel-page.ui</file>
         <file alias="combo-row.ui" preprocess="xml-stripblanks">ui/combo-row.ui</file>
         <file alias="font-row.ui" preprocess="xml-stripblanks">ui/font-row.ui</file>

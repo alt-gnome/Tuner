@@ -10,6 +10,10 @@ subdir('models')
 subdir('ui')
 subdir('utils')
 
+lib_sources += files(
+    'main.vala'
+)
+
 install_data(
     'deps.in',
 

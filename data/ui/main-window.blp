@@ -68,13 +68,15 @@ template $TunerMainWindow : Adw.ApplicationWindow {
                     min-sidebar-width: 220;
 
                     sidebar: Adw.NavigationPage {
-                        title: _("Tuner");
 
-                        child: Adw.ToolbarView {
-                            
-                            [top]
-                            Adw.HeaderBar {
-                                
+                        Adw.NavigationView nav {
+
+                            $TunerPanelList {
+                                title: _("Tuner");
+                                model: bind template.model;
+
+                                row-activated => $row_activated();
+
                                 [end]
                                 MenuButton {
                                     primary: true;
@@ -83,13 +85,7 @@ template $TunerMainWindow : Adw.ApplicationWindow {
                                     menu-model: primary_menu;
                                 }
                             }
-
-                            ListBox panels_list_box {
-                                styles [ "navigation-sidebar" ]
-
-                                row-activated => $set_page();
-                            }
-                        };
+                        }
                     };
                 };
             }

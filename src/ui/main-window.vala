@@ -2,24 +2,32 @@ namespace Tuner {
 
     [GtkTemplate (ui = "/org/altlinux/Tuner/main-window.ui")]
     public class MainWindow : Adw.ApplicationWindow {
-        private ListStore panels_list;
-
         [GtkChild]
         private unowned Adw.NavigationSplitView split_view;
         [GtkChild]
+        private unowned Adw.NavigationView nav;
+        [GtkChild]
         private unowned Adw.ToastOverlay toast_overlay;
         [GtkChild]
-        private unowned Gtk.ListBox panels_list_box;
-        [GtkChild]
         private unowned Gtk.Stack stack;
+
+        public ListStore model {
+            get; set; default = new ListStore(typeof(PanelPage));
+        }
 
         public MainWindow(Gtk.Application app) {
             Object(application: app);
 
-            panels_list = new ListStore(typeof(PanelPage));
-            panels_list_box.bind_model(panels_list, create_row);
-
-            panels_list_box.set_header_func(update_header);
+            Tuner.init(
+                (page, show) => {
+                    set_page(page, show);
+                    return true;
+                },
+                (page) => {
+                    nav.push(page);
+                    return true;
+                }
+            );
         }
 
         public bool add_page(PanelPage page) {
@@ -27,9 +35,9 @@ namespace Tuner {
                 return false;
             }
 
-            panels_list.insert_sorted(page, (a, b) => ((PanelPage) a).priority - ((PanelPage) b).priority);
+            model.insert_sorted(page, (a, b) => ((PanelPage) a).priority - ((PanelPage) b).priority);
 
-            if (panels_list.n_items == 1) {
+            if (model.n_items == 1) {
                 stack.visible_child_name = "content";
                 split_view.content = page;
             }
@@ -49,12 +57,12 @@ namespace Tuner {
 
         public PanelPage? find_page(string tag) {
             uint pos;
-            if (panels_list.find_with_equal_func_full(null, item => {
+            if (model.find_with_equal_func_full(null, item => {
                 var page = (PanelPage) item;
 
                 return page.tag == tag;
             }, out pos)) {
-                return panels_list.get_item(pos) as PanelPage;
+                return model.get_item(pos) as PanelPage;
             }
             return null;
         }
@@ -65,33 +73,28 @@ namespace Tuner {
             });
         }
 
-        private Gtk.Widget create_row(Object obj) {
-            var page = (PanelPage) obj;
-            var row = new PanelRow(page);
+        private void set_page(Adw.NavigationPage? page, bool show = true) {
+            split_view.content = page;
 
-            return row;
-        }
-
-        private void update_header(Gtk.ListBoxRow row, Gtk.ListBoxRow? before) {
-            if (before != null) {
-                var panel_row = (PanelRow) row;
-                var panel_row_before = (PanelRow) before;
-
-                if (panel_row.page.category != panel_row_before.page.category) {
-                    row.set_header(new Gtk.Separator(Gtk.Orientation.HORIZONTAL));
-                    return;
-                }
-            }
-
-            row.set_header(null);
+            if (show)
+                split_view.show_content = true;
         }
 
         [GtkCallback]
-        private void set_page(Object obj) {
-            var row = (PanelRow) obj;
+        private void row_activated(PanelListRow row) {
+            if (row.page.layout_type == LayoutType.SUBPAGES) {
+                var list = new PanelList() {
+                    title = row.page.title,
+                    model = row.page.model
+                };
+                list.row_activated.connect(row_activated);
+                nav.push(list);
+                return;
+            } else if (row.page.layout_type == LayoutType.CUSTOM) {
+                nav.push(row.page.custom_content);
+            }
 
-            split_view.content = row.page;
-            split_view.show_content = true;
+            set_page(row.page);
         }
     }
 }

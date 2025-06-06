@@ -80,7 +80,7 @@ namespace Tuner {
             } else if (child is Adw.PreferencesGroup) {
                 add(child as Adw.PreferencesGroup);
             } else {
-                message(@"Unknown child type found while building content for \"$tag\" page: $(child.get_type().name())");
+                warning(@"Unknown child type found while building content for \"$tag\" page: $(child.get_type().name())");
             }
         }
 

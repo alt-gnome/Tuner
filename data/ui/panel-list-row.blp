@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $TunerPanelRow : Adw.PreferencesRow {
+template $TunerPanelListRow : Adw.PreferencesRow {
 
     Box {
         spacing: 12;
@@ -16,7 +16,14 @@ template $TunerPanelRow : Adw.PreferencesRow {
 
         Label {
             label: bind template.title;
+            hexpand: true;
+            halign: start;
             wrap: true;
+        }
+
+        Image {
+            icon-name: "go-next-symbolic";
+            visible: bind template.show_next_icon;
         }
     }
 }
