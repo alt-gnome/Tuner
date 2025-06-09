@@ -39,6 +39,11 @@ namespace Tuner {
                 return;
             }
 
+            if (type == "custom-content") {
+                custom_content = child as Adw.NavigationPage;
+                return;
+            }
+
             if (child is PanelPage)
                 add_subpage((PanelPage) child);
             else if (child is Adw.NavigationPage)

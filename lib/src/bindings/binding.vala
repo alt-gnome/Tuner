@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * Abstract class for creating custom binding backend
+     */
     public abstract class Binding : Object {
         private Object? instance;
         private ParamSpec? pspec;

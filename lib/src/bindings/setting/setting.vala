@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * GSettings binding backend
+     */
     public class Setting : Tuner.Binding {
         private Type _expected_type = Type.INVALID;
         private Settings? settings;

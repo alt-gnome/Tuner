@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * Abstract class for creating custom transform
+     */
     public abstract class SettingTransform : Object {
         protected Settings settings;
         protected string schema_key;

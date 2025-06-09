@@ -1,5 +1,7 @@
 namespace Tuner {
 
+    // FIXME: memory leak
+    // also leaks just `new PanelList()` without anything done with it
     [GtkTemplate (ui = "/org/altlinux/Tuner/panel-list.ui")]
     public class PanelList : PanelContent {
         private unowned ListModel? _model;

@@ -1,5 +1,8 @@
 namespace Tuner {
 
+    /**
+     * Font row widget
+     */
     public class Font : Tuner.Widget {
         public string title { get; set; }
 

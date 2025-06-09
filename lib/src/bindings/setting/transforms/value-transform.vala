@@ -1,5 +1,10 @@
 namespace Tuner {
 
+    /**
+     * {@link SettingTransfrom} that will set or reset string
+     * depending on target's bool value
+     * {@link ValueTransform.value} will be set if target value is true
+     */
     public class ValueTransform : SettingTransform {
         public string value { get; set; }
 

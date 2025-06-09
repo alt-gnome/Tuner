@@ -1,5 +1,10 @@
 namespace Tuner {
 
+    /**
+     * {@link SettingTransfrom} that will add or remove string array
+     * member depending on target's bool value
+     * {@link FlagsTransform.value} will be added or removed from array
+     */
     public class FlagsTransform : SettingTransform {
         public string value { get; set; }
 

@@ -1,7 +1,17 @@
 namespace Tuner {
 
+    /**
+     * {@link SettingTransform} that will transform path depending
+     * on values of {@link PathTransform.hide_uri_prefix} and {@link PathTransform.fold_home_path}
+     */
     public class PathTransform : SettingTransform {
+        /**
+         * If true hides file uri prefix from target value
+         */
         public bool hide_uri_prefix { get; set; }
+        /**
+         * If true folds home path to '~' in target value
+         */
         public bool fold_home_path { get; set; }
 
         public override bool is_default() {
@@ -15,7 +25,7 @@ namespace Tuner {
                 if (fold_home_path)
                     result = result.replace("~", Environment.get_home_dir());
 
-                if (hide_uri_prefix)
+                if (hide_uri_prefix && !result.has_prefix("file://"))
                     result = @"file://$result";
 
                 settings.set_string(schema_key, result);
