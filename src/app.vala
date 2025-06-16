@@ -4,8 +4,9 @@ namespace Tuner {
 
     public class App : Adw.Application {
         private const ActionEntry[] APP_ENTRIES = {
-            { "reload-extensions", reload_extensions },
             { "open-app-page", open_app_page },
+            { "plugin-list", open_plugin_list },
+            { "restart", restart_app },
             { "about", about_activated },
             { "quit", quit }
         };
@@ -13,6 +14,7 @@ namespace Tuner {
         private Peas.ExtensionSet addins { get; set; }
         private TreeMap<Peas.PluginInfo, Addin> loaded_plugins { get; set; }
         private MainWindow main_window;
+        private Settings settings;
 
         private static App _instance;
         public static App instance {
@@ -31,6 +33,8 @@ namespace Tuner {
 
         public override void startup() {
             base.startup();
+
+            settings = new Settings("org.altlinux.Tuner");
 
             var engine = Peas.Engine.get_default();
             engine.enable_loader("python");
@@ -62,6 +66,10 @@ namespace Tuner {
             main_window.present();
         }
 
+        private void open_plugin_list() {
+            new PluginsDialog().present(main_window);
+        }
+
         private void about_activated() {
             var dialog = new Adw.AboutDialog.from_appdata("org/altlinux/Tuner/org.altlinux.Tuner.metainfo.xml", VERSION) {
                 copyright = "© 2025 ALT Linux Team",
@@ -73,32 +81,7 @@ namespace Tuner {
                 translator_credits = _("translator-credits")
             };
 
-            dialog.add_credit_section(_("Loaded plugins"), get_loaded_plugins_info());
-
-            dialog.present(active_window);
-        }
-
-        private string[] get_loaded_plugins_info() {
-            string[] result = {};
-
-            foreach (var entry in loaded_plugins) {
-                var info = entry.key.name;
-
-                if (entry.key.authors.length > 0) {
-                    var authors = entry.key.authors;
-                    info += @" by $(authors[0])";
-
-                    for (int i = 1; i < authors.length; i++)
-                        info += @", $(authors[i])";
-                }
-
-                if (entry.key.website != null)
-                    info += @" $(entry.key.website)";
-
-                result += info;
-            }
-
-            return result;
+            dialog.present(main_window);
         }
 
         private void open_app_page() {
@@ -113,34 +96,15 @@ namespace Tuner {
             load_extensions_content();
         }
 
-        private void reload_extensions() {
-            var loaded = false;
-            var engine = Peas.Engine.get_default();
-            engine.rescan_plugins();
-
-            for (int i = 0; i < engine.get_n_items(); i++) {
-                var info = engine.get_item(i) as Peas.PluginInfo;
-                if (!info.loaded) {
-                    loaded = true;
-
-                    engine.load_plugin(info);
-                }
-            }
-
-            if (!loaded)
-                main_window.toast(_("No new plugins found!"));
-            else
-                load_extensions_content();
-        }
-
         private void load_extensions_content() {
+            var disabled_plugins = settings.get_strv("disabled-plugins");
             var page_list = new ArrayList<PanelPage>();
             var content_list = new ArrayList<PanelPageContent>();
 
             addins.foreach((s, info, obj) => {
                 var addin = obj as Addin;
 
-                if (!loaded_plugins.has_key(info)) {
+                if (!(info.module_name in disabled_plugins)) {
                     addin.activate();
 
                     page_list.add_all(addin.get_page_list());
@@ -155,6 +119,29 @@ namespace Tuner {
 
             foreach (var content in content_list)
                 main_window.add_content(content);
+        }
+
+        private void restart_app() {
+            string[] env = Environ.get();
+
+            string[] argv = { get_executable_path() };
+
+            try {
+                Process.spawn_async(null, argv, env, SpawnFlags.SEARCH_PATH, null, null);
+            } catch (Error e) {
+                warning(@"Restart failed: $(e.message)");
+                return;
+            }
+
+            quit();
+        }
+
+        private string get_executable_path() {
+            try {
+                return FileUtils.read_link("/proc/self/exe");
+            } catch (FileError e) {}
+
+            return Environment.get_variable("_") ?? Environment.get_prgname();
         }
     }
 

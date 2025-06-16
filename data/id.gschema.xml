@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist gettext-domain="org.altlinux.Hashsum">
+    <schema id="org.altlinux.Tuner" path="/org/altlinux/Tuner/">
+        <key name="disabled-plugins" type="as">
+            <default>[]</default>
+            <summary>Disabled plugins</summary>
+        </key>
+    </schema>
+</schemalist>

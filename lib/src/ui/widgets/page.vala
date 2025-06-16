@@ -16,6 +16,8 @@ namespace Tuner {
     public class Page : Adw.NavigationPage, Gtk.Buildable {
         [GtkChild]
         private unowned Adw.PreferencesPage content;
+        [GtkChild]
+        private unowned Adw.HeaderBar header_bar;
 
         /**
          * Adds content to this page from a {@link Tuner.PageContent} builder.
@@ -57,8 +59,26 @@ namespace Tuner {
                 return;
             }
 
+            if (!(child is Gtk.Widget)) return;
+
+            if (type == "start") {
+                pack_start(child as Gtk.Widget);
+                return;
+            } else if (type == "end") {
+                pack_end(child as Gtk.Widget);
+                return;
+            }
+
             if (child is Adw.PreferencesGroup)
                 content.add(child as Adw.PreferencesGroup);
+        }
+
+        public void pack_start(Gtk.Widget child) {
+            header_bar.pack_start(child);
+        }
+
+        public void pack_end(Gtk.Widget child) {
+            header_bar.pack_end(child);
         }
 
         /**

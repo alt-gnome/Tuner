@@ -53,8 +53,8 @@ template $TunerMainWindow : Adw.ApplicationWindow {
                             Button {
                                 styles [ "pill" ]
 
-                                label: _("Reload plugins");
-                                action-name: "app.reload-extensions";
+                                label: _("Restart app");
+                                action-name: "app.restart";
                             }
                         }
                     };
@@ -96,12 +96,12 @@ template $TunerMainWindow : Adw.ApplicationWindow {
 menu primary_menu {
     section {
         item {
-            label: _("_Update plugins list");
-            action: "app.reload-extensions";
-        }
-        item {
             label: _("_Install plugins");
             action: "app.open-app-page";
+        }
+        item {
+            label: _("_Plugin list");
+            action: "app.plugin-list";
         }
         item {
             label: _("_About Tuner");

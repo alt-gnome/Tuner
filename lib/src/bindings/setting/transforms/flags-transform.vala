@@ -6,6 +6,7 @@ namespace Tuner {
      * {@link FlagsTransform.value} will be added or removed from array
      */
     public class FlagsTransform : SettingTransform {
+        public bool inverse { get; set; }
         public string value { get; set; }
 
         public override bool is_default() {
@@ -21,7 +22,7 @@ namespace Tuner {
 
                 if (this.value in flags) flags.remove(this.value);
 
-                if (value.get_boolean())
+                if (inverse ? !value.get_boolean() : value.get_boolean())
                     flags.add(this.value);
 
                 settings.set_strv(schema_key, flags.to_array().copy());
@@ -33,7 +34,8 @@ namespace Tuner {
 
         public override bool try_get(ref Value value, GLib.Variant variant) {
             if (variant.is_of_type(VariantType.STRING_ARRAY) && value.holds(Type.BOOLEAN)) {
-                value.set_boolean(this.value in variant.get_strv());
+                var contains = this.value in variant.get_strv();
+                value.set_boolean(inverse ? !contains : contains);
                 return true;
             }
 

@@ -58,3 +58,18 @@ resources = gnome.compile_resources(
         command: [ find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@' ]
     )
 )
+
+install_data(
+    'id.gschema.xml',
+    rename: id + '.gschema.xml',
+    install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
+)
+
+compile_schemas = find_program('glib-compile-schemas', required: false)
+if compile_schemas.found()
+    test(
+        'Validate schema file',
+        compile_schemas,
+        args: ['--strict', '--dry-run', meson.current_source_dir()]
+    )
+endif
