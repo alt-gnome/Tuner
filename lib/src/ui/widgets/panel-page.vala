@@ -12,6 +12,7 @@ namespace Tuner {
         [GtkChild]
         private unowned Page main_page;
 
+        public bool is_toplevel = true;
         public ListStore? model { get; set; }
         public Adw.NavigationPage? custom_content { get; set; }
         public LayoutType layout_type { get; set; default = LayoutType.INTERNAL; }
@@ -44,12 +45,16 @@ namespace Tuner {
                 return;
             }
 
-            if (child is PanelPage)
-                add_subpage((PanelPage) child);
-            else if (child is Adw.NavigationPage)
+            if (child is PanelPage) {
+                var page = (PanelPage) child;
+
+                page.is_toplevel = false;
+                add_subpage(page);
+            } else if (child is Adw.NavigationPage) {
                 add((Adw.NavigationPage) child);
-            else if (child is Adw.PreferencesGroup)
+            } else if (child is Adw.PreferencesGroup) {
                 add_group((Adw.PreferencesGroup) child);
+            }
         }
 
         public void add_subpage(PanelPage page) {

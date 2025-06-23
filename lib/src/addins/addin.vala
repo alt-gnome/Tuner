@@ -110,7 +110,8 @@ namespace Tuner {
          */
         public void add_from_builder(Gtk.Builder builder) {
             foreach (var obj in builder.get_objects()) {
-                if (obj is PanelPage)
+                var page = obj as PanelPage;
+                if (page != null && page.is_toplevel)
                     page_list.add((PanelPage) obj);
 
                 if (obj is PanelPageContent)
