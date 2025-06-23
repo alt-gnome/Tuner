@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuner\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-22 00:22+0300\n"
+"POT-Creation-Date: 2025-06-23 13:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/id.metainfo.xml.in:5 data/ui/main-window.blp:7
-#: data/ui/main-window.blp:69
+#: data/ui/main-window.blp:75
 msgid "Tuner"
 msgstr ""
 
@@ -67,12 +67,28 @@ msgstr ""
 msgid "About dialog"
 msgstr ""
 
-#: data/id.metainfo.xml.in:66
-msgid "Initial release"
+#: data/id.metainfo.xml.in:63
+msgid "New plugin API"
 msgstr ""
 
-#: data/id.metainfo.xml.in:74
-msgid "ALT Linux Team"
+#: data/id.metainfo.xml.in:69
+msgid "Improved translations"
+msgstr ""
+
+#: data/id.metainfo.xml.in:70
+msgid "Changed app icon"
+msgstr ""
+
+#: data/id.metainfo.xml.in:71
+msgid "Fixed ValueSwitchRow reset button behaviour"
+msgstr ""
+
+#: data/id.metainfo.xml.in:72
+msgid "Added more info about loaded plugins"
+msgstr ""
+
+#: data/id.metainfo.xml.in:81
+msgid "Initial release"
 msgstr ""
 
 #: data/ui/main-window.blp:37
@@ -89,34 +105,46 @@ msgstr ""
 msgid "Open app page"
 msgstr ""
 
-#: data/ui/main-window.blp:56
-msgid "Reload plugins"
+#: data/ui/main-window.blp:56 src/ui/plugins-dialog.vala:8
+msgid "Restart app"
 msgstr ""
 
-#: data/ui/main-window.blp:80
+#: data/ui/main-window.blp:84
 msgid "Main Menu"
 msgstr ""
 
-#: data/ui/main-window.blp:101
-msgid "_Update plugins list"
-msgstr ""
-
-#: data/ui/main-window.blp:105
+#: data/ui/main-window.blp:99
 msgid "_Install plugins"
 msgstr ""
 
-#: data/ui/main-window.blp:109
+#: data/ui/main-window.blp:103
+msgid "_Plugin list"
+msgstr ""
+
+#: data/ui/main-window.blp:107
 msgid "_About Tuner"
 msgstr ""
 
-#: src/app.vala:73
+#: src/app.vala:81
 msgid "translator-credits"
 msgstr ""
 
-#: src/app.vala:76
-msgid "Loaded plugins"
+#: src/ui/plugins-dialog.vala:6
+msgid "Plugins list"
 msgstr ""
 
-#: src/app.vala:106
-msgid "No new plugins found!"
+#: src/ui/plugins-dialog.vala:96
+msgid "Authors"
+msgstr ""
+
+#: src/ui/plugins-dialog.vala:100
+msgid "Version"
+msgstr ""
+
+#: src/ui/plugins-dialog.vala:104
+msgid "Website"
+msgstr ""
+
+#: src/ui/plugins-dialog.vala:113
+msgid "Plugin information not found."
 msgstr ""

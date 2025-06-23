@@ -19,11 +19,15 @@ namespace Tuner {
             Object(application: app);
 
             Tuner.init(
+                text => {
+                    toast(text);
+                    return true;
+                },
                 (page, show) => {
                     set_page(page, show);
                     return true;
                 },
-                (page) => {
+                page => {
                     nav.push(page);
                     return true;
                 }
@@ -89,6 +93,7 @@ namespace Tuner {
                 };
                 list.row_activated.connect(row_activated);
                 nav.push(list);
+
                 for (int i = 0; i < row.page.model.n_items; i++) {
                     var page = (PanelPage) row.page.model.get_item(i);
                     if (page.layout_type == LayoutType.INTERNAL) {
