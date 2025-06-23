@@ -89,6 +89,13 @@ namespace Tuner {
                 };
                 list.row_activated.connect(row_activated);
                 nav.push(list);
+                for (int i = 0; i < row.page.model.n_items; i++) {
+                    var page = (PanelPage) row.page.model.get_item(i);
+                    if (page.layout_type == LayoutType.INTERNAL) {
+                        set_page(page, false);
+                        break;
+                    }
+                }
                 return;
             } else if (row.page.layout_type == LayoutType.CUSTOM) {
                 nav.push(row.page.custom_content);
