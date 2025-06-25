@@ -14,7 +14,8 @@ namespace Tuner {
         private Peas.ExtensionSet addins { get; set; }
         private TreeMap<Peas.PluginInfo, Addin> loaded_plugins { get; set; }
         private MainWindow main_window;
-        private Settings settings;
+
+        public static Settings settings;
 
         private static App _instance;
         public static App instance {
@@ -119,6 +120,8 @@ namespace Tuner {
 
             foreach (var content in content_list)
                 main_window.add_content(content);
+
+            main_window.open_last();
         }
 
         private void restart_app() {

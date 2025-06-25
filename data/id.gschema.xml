@@ -5,5 +5,9 @@
             <default>[]</default>
             <summary>Disabled plugins</summary>
         </key>
+        <key name="last-page" type="s">
+            <default>''</default>
+            <summary>Last opened page id</summary>
+        </key>
     </schema>
 </schemalist>

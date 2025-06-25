@@ -10,6 +10,8 @@ namespace Tuner {
         private unowned Adw.ToastOverlay toast_overlay;
         [GtkChild]
         private unowned Gtk.Stack stack;
+        [GtkChild]
+        private unowned PanelList panel_list;
 
         public ListStore model {
             get; set; default = new ListStore(typeof(PanelPage));
@@ -59,6 +61,19 @@ namespace Tuner {
             warning(@"PanelPage with tag \"$(content.tag)\" not found. Content skipped.");
         }
 
+        public void open_last() {
+            var tag = App.settings.get_string("last-page");
+            if (tag == "") return;
+
+            for (int i = 0; i < model.n_items; i++) {
+                var page = (PanelPage) model.get_item(i);
+                if (page.tag == tag) {
+                    panel_list.activate_index(i);
+                    break;
+                }
+            }
+        }
+
         public PanelPage? find_page(string tag) {
             uint pos;
             if (model.find_with_equal_func_full(null, item => {
@@ -79,6 +94,7 @@ namespace Tuner {
 
         private void set_page(Adw.NavigationPage? page, bool show = true) {
             split_view.content = page;
+            App.settings.set_string("last-page", page.tag ?? "");
 
             if (show)
                 split_view.show_content = true;

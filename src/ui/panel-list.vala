@@ -28,6 +28,12 @@ namespace Tuner {
             list_box.set_header_func(update_header);
         }
 
+        public void activate_index(int index) {
+            var row = list_box.get_row_at_index(index);
+            list_box.select_row(row);
+            list_box.row_activated(row);
+        }
+
         private Gtk.Widget create_row(Object obj) {
             var page = (PanelPage) obj;
             var row = new PanelListRow(page);
