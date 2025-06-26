@@ -50,7 +50,7 @@ template $TunerMainWindow : Adw.ApplicationWindow {
                                 action-name: "app.open-app-page";
                             }
 
-                            Button {
+                            Button action_button {
                                 styles [ "pill" ]
 
                                 label: _("Restart app");
@@ -100,7 +100,7 @@ menu primary_menu {
             action: "app.open-app-page";
         }
         item {
-            label: _("_Plugin list");
+            label: _("_Plugins list");
             action: "app.plugin-list";
         }
         item {

@@ -122,6 +122,9 @@ namespace Tuner {
                 main_window.add_content(content);
 
             main_window.open_last();
+
+            if (page_list.is_empty && addins.get_n_items() > 0)
+                main_window.show_all_disabled();
         }
 
         private void restart_app() {

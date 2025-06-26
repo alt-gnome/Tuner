@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuner\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-23 13:47+0300\n"
+"POT-Creation-Date: 2025-06-26 10:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,30 +67,6 @@ msgstr ""
 msgid "About dialog"
 msgstr ""
 
-#: data/id.metainfo.xml.in:63
-msgid "New plugin API"
-msgstr ""
-
-#: data/id.metainfo.xml.in:69
-msgid "Improved translations"
-msgstr ""
-
-#: data/id.metainfo.xml.in:70
-msgid "Changed app icon"
-msgstr ""
-
-#: data/id.metainfo.xml.in:71
-msgid "Fixed ValueSwitchRow reset button behaviour"
-msgstr ""
-
-#: data/id.metainfo.xml.in:72
-msgid "Added more info about loaded plugins"
-msgstr ""
-
-#: data/id.metainfo.xml.in:81
-msgid "Initial release"
-msgstr ""
-
 #: data/ui/main-window.blp:37
 msgid "No plugins found"
 msgstr ""
@@ -118,14 +94,14 @@ msgid "_Install plugins"
 msgstr ""
 
 #: data/ui/main-window.blp:103
-msgid "_Plugin list"
+msgid "_Plugins list"
 msgstr ""
 
 #: data/ui/main-window.blp:107
 msgid "_About Tuner"
 msgstr ""
 
-#: src/app.vala:81
+#: src/app.vala:82
 msgid "translator-credits"
 msgstr ""
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-23 13:47+0300\n"
+"POT-Creation-Date: 2025-06-26 10:24+0300\n"
 "PO-Revision-Date: 2025-05-22 00:22+0300\n"
 "Last-Translator: David Sultaniiazov <x1z53@alt-gnome.ru>\n"
 "Language-Team: Russian\n"
@@ -72,31 +72,6 @@ msgstr "Плагин расширенных настроек"
 msgid "About dialog"
 msgstr "Диалог «О приложении»"
 
-#: data/id.metainfo.xml.in:63
-#, fuzzy
-msgid "New plugin API"
-msgstr "Новых плагинов не найдено!"
-
-#: data/id.metainfo.xml.in:69
-msgid "Improved translations"
-msgstr ""
-
-#: data/id.metainfo.xml.in:70
-msgid "Changed app icon"
-msgstr ""
-
-#: data/id.metainfo.xml.in:71
-msgid "Fixed ValueSwitchRow reset button behaviour"
-msgstr ""
-
-#: data/id.metainfo.xml.in:72
-msgid "Added more info about loaded plugins"
-msgstr ""
-
-#: data/id.metainfo.xml.in:81
-msgid "Initial release"
-msgstr "Первоначальный выпуск"
-
 #: data/ui/main-window.blp:37
 msgid "No plugins found"
 msgstr "Плагины не найдены"
@@ -126,20 +101,18 @@ msgid "_Install plugins"
 msgstr "_Установить плагины"
 
 #: data/ui/main-window.blp:103
-#, fuzzy
-msgid "_Plugin list"
-msgstr "_Обновить список плагинов"
+msgid "_Plugins list"
+msgstr "_Список плагинов"
 
 #: data/ui/main-window.blp:107
 msgid "_About Tuner"
 msgstr "_О приложении"
 
-#: src/app.vala:81
+#: src/app.vala:82
 msgid "translator-credits"
 msgstr "David Sultaniiazov <x1z53@alt-gnome.ru>"
 
 #: src/ui/plugins-dialog.vala:6
-#, fuzzy
 msgid "Plugins list"
 msgstr "Список плагинов"
 

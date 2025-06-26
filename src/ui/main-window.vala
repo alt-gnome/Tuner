@@ -9,6 +9,8 @@ namespace Tuner {
         [GtkChild]
         private unowned Adw.ToastOverlay toast_overlay;
         [GtkChild]
+        private unowned Gtk.Button action_button;
+        [GtkChild]
         private unowned Gtk.Stack stack;
         [GtkChild]
         private unowned PanelList panel_list;
@@ -72,6 +74,11 @@ namespace Tuner {
                     break;
                 }
             }
+        }
+
+        public void show_all_disabled() {
+            action_button.label = _("Plugins list");
+            action_button.action_name = "app.plugin-list";
         }
 
         public PanelPage? find_page(string tag) {
