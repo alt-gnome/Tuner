@@ -10,6 +10,7 @@ lib_sources += files(
     'panel-content.vala',
     'panel-page.vala',
     'reset-button.vala',
+    'route.vala',
     'spin.vala',
     'switch-row.vala',
     'switch.vala',
