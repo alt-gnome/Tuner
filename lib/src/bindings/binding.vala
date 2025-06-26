@@ -9,7 +9,7 @@ namespace Tuner {
         private int inhibit_counter;
         private ulong? instance_notify_id;
 
-        public abstract bool has_default { get; }
+        public abstract bool has_default { get; set; }
         public abstract bool is_default { get; }
         public abstract Type expected_type { get; }
 

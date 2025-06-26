@@ -13,7 +13,7 @@ namespace Tuner {
                 return _expected_type;
             }
         }
-        public override bool has_default { get { return true; } }
+        public override bool has_default { get; set; default = true; }
         public override bool is_default {
             get {
                 init();
