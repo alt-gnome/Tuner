@@ -8,6 +8,8 @@ namespace Tuner {
 
         [GtkChild]
         private unowned Gtk.ListBox list_box;
+        [GtkChild]
+        protected unowned Gtk.Stack stack;
 
         public unowned ListModel? model {
             get { return _model; }

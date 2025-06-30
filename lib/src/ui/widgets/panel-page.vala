@@ -22,7 +22,7 @@ namespace Tuner {
          */
         public string icon_name { get; set; }
         /**
-         * The category this panel page.
+         * The category of this panel page.
          */
         public string category { get; set; }
         /**
@@ -30,6 +30,10 @@ namespace Tuner {
          * Lower values appear higher in the list.
          */
         public int priority { get; set; }
+        /**
+         * The description of this panel page.
+         */
+        public string description { get; set; }
 
         /**
          * {@inheritDoc}

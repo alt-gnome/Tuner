@@ -13,7 +13,7 @@ namespace Tuner {
         [GtkChild]
         private unowned Gtk.Stack stack;
         [GtkChild]
-        private unowned PanelList panel_list;
+        private unowned SearchablePanelList panel_list;
 
         public ListStore model {
             get; set; default = new ListStore(typeof(PanelPage));
@@ -105,6 +105,30 @@ namespace Tuner {
 
             if (show)
                 split_view.show_content = true;
+        }
+
+        [GtkCallback]
+        private void update_search(string? text) {
+            if (text != null) {
+                panel_list.clear();
+                for (int i = 0; i < model.n_items; i++) {
+                    var page = (PanelPage) model.get_item(i);
+                    if (page.title.down().contains(text.down())) {
+                        panel_list.search_model.append(page);
+                    }
+                }
+            }
+        }
+
+        [GtkCallback]
+        private void search_result_activated(PanelPage result) {
+            for (int i = 0; i < model.n_items; i++) {
+                var page = (PanelPage) model.get_item(i);
+                if (page == result) {
+                    panel_list.activate_index(i);
+                    break;
+                }
+            }
         }
 
         [GtkCallback]

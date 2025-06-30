@@ -2,9 +2,22 @@ using Gtk 4.0;
 
 template $TunerPanelList : $TunerPanelContent {
 
-    ListBox list_box {
-        styles [ "navigation-sidebar" ]
+    ScrolledWindow {
+        hscrollbar-policy: never;
+        vexpand: true;
 
-        row-activated => $activated();
+        Stack stack {
+            transition-type: crossfade;
+
+            StackPage {
+                name: "main";
+
+                child: ListBox list_box {
+                    styles [ "navigation-sidebar" ]
+
+                    row-activated => $activated();
+                };
+            }
+        }
     }
 }

@@ -14,11 +14,25 @@ template $TunerPanelListRow : Adw.PreferencesRow {
             icon-name: bind template.icon-name;
         }
 
-        Label {
-            label: bind template.title;
+        Box {
+            orientation: vertical;
             hexpand: true;
             halign: start;
-            wrap: true;
+
+            Label {
+                label: bind template.title;
+                halign: start;
+                wrap: true;
+            }
+
+            Label {
+                label: bind template.description;
+                visible: bind template.show_description;
+                halign: start;
+                wrap: true;
+
+                styles [ "dimmed" ]
+            }
         }
 
         Image {

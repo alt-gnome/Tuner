@@ -71,11 +71,13 @@ template $TunerMainWindow : Adw.ApplicationWindow {
 
                         Adw.NavigationView nav {
 
-                            $TunerPanelList panel_list {
+                            $TunerSearchablePanelList panel_list {
                                 title: _("Tuner");
                                 model: bind template.model;
 
                                 row-activated => $row_activated();
+                                update-search => $update_search();
+                                search-result-activated => $search_result_activated();
 
                                 [end]
                                 MenuButton {

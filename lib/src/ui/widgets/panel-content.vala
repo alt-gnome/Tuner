@@ -7,7 +7,7 @@ namespace Tuner {
         [GtkChild]
         private unowned Adw.HeaderBar header_bar;
 
-        public unowned Gtk.Widget content { get; set; }
+        public Gtk.Widget content { get; set; }
 
         /**
          * {@inheritDoc}
@@ -19,14 +19,42 @@ namespace Tuner {
             }
 
             if (type == "end") {
-                header_bar.pack_end(child as Gtk.Widget);
+                pack_end(child as Gtk.Widget);
                 return;
             } else if (type == "start") {
-                header_bar.pack_start(child as Gtk.Widget);
+                pack_start(child as Gtk.Widget);
+                return;
+            } else if (type == "top") {
+                add_top_bar(child as Gtk.Widget);
+                return;
+            } else if (type == "bottom") {
+                add_bottom_bar(child as Gtk.Widget);
                 return;
             }
 
             content = child as Gtk.Widget;
+        }
+
+        public void pack_start(Gtk.Widget child) {
+            header_bar.pack_start(child);
+        }
+
+        public void pack_end(Gtk.Widget child) {
+            header_bar.pack_end(child);
+        }
+
+        /**
+         * Adds a bottom bar to toolbar view
+         */
+        public void add_top_bar(Gtk.Widget widget) {
+            toolbar_view.add_top_bar(widget);
+        }
+
+        /**
+         * Adds a bottom bar to toolbar view
+         */
+        public void add_bottom_bar(Gtk.Widget widget) {
+            toolbar_view.add_bottom_bar(widget);
         }
     }
 }
