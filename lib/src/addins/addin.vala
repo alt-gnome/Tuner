@@ -45,8 +45,9 @@ namespace Tuner {
          */
         public void add_from_resource(string resource_path) {
             try {
-                new Gtk.Builder().add_from_resource(resource_path);
-                add_from_builder(new Gtk.Builder.from_resource(resource_path));
+                var builder = new Gtk.Builder();
+                builder.add_from_resource(resource_path);
+                add_from_builder(builder);
             } catch (Error err) {
                 warning(@"$(get_type().name()): $(err.message)");
             }
@@ -61,8 +62,9 @@ namespace Tuner {
          */
         public void add_from_file(string filename) {
             try {
-                new Gtk.Builder().add_from_file(filename);
-                add_from_builder(new Gtk.Builder.from_file(filename));
+                var builder = new Gtk.Builder();
+                builder.add_from_file(filename);
+                add_from_builder(builder);
             } catch (Error err) {
                 warning(@"$(get_type().name()): $(err.message)");
             }
@@ -77,8 +79,9 @@ namespace Tuner {
          */
         public void add_from_string(string str) {
             try {
-                new Gtk.Builder().add_from_string(str, str.length);
-                add_from_builder(new Gtk.Builder.from_string(str, str.length));
+                var builder = new Gtk.Builder();
+                builder.add_from_string(str, str.length);
+                add_from_builder(builder);
             } catch (Error err) {
                 warning(@"$(get_type().name()): $(err.message)");
             }
