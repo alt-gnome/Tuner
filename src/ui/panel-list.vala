@@ -31,9 +31,7 @@ namespace Tuner {
         }
 
         public void activate_index(int index) {
-            var row = list_box.get_row_at_index(index);
-            list_box.select_row(row);
-            list_box.row_activated(row);
+            list_box.get_row_at_index(index).activate();
         }
 
         private Gtk.Widget create_row(Object obj) {

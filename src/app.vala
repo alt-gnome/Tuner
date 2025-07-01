@@ -12,7 +12,6 @@ namespace Tuner {
         };
 
         private Peas.ExtensionSet addins { get; set; }
-        private TreeMap<Peas.PluginInfo, Addin> loaded_plugins { get; set; }
         private MainWindow main_window;
 
         public static Settings settings;
@@ -47,7 +46,6 @@ namespace Tuner {
             var user_plugins = Path.build_filename(Environment.get_user_data_dir(), "tuner", "plugins");
             engine.add_search_path(user_plugins, null);
 
-            loaded_plugins = new TreeMap<Peas.PluginInfo, Addin>();
             addins = new Peas.ExtensionSet.with_properties(engine, typeof(Addin), {}, {});
 
             set_accels_for_action("app.quit", { "<Ctrl>Q" });
@@ -91,10 +89,26 @@ namespace Tuner {
 
         private void load_extensions() {
             var engine = Peas.Engine.get_default();
+            var plugins = new ArrayList<Peas.PluginInfo>();
             for (int i = 0; i < engine.get_n_items(); i++)
-                engine.load_plugin(engine.get_item(i) as Peas.PluginInfo);
+                plugins.add((Peas.PluginInfo) engine.get_item(i));
+
+            plugins.sort((a, b) => get_priority(b) - get_priority(a));
+            foreach (var plugin in plugins)
+                engine.load_plugin(plugin);
 
             load_extensions_content();
+        }
+
+        private int get_priority(Peas.PluginInfo plugin) {
+            int priority = 0;
+
+            var priority_str = plugin.get_external_data("Priority");
+            if (priority_str != null && int.try_parse(priority_str, out priority)) {
+                return priority;
+            }
+
+            return 0;
         }
 
         private void load_extensions_content() {
@@ -110,8 +124,6 @@ namespace Tuner {
 
                     page_list.add_all(addin.get_page_list());
                     content_list.add_all(addin.get_content_list());
-
-                    loaded_plugins[info] = addin;
                 }
             });
 
