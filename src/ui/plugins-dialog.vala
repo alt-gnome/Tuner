@@ -3,21 +3,23 @@ namespace Tuner {
     public class PluginsDialog : Adw.Dialog {
 
         construct {
-            var page = new Page() { title = _("Plugins list") };
-            page.pack_start(new Gtk.Button.from_icon_name("system-reboot-symbolic") {
-                tooltip_text = _("Restart app"),
-                action_name = "app.restart"
-            });
             var group = new Group();
             var engine = Peas.Engine.get_default();
             for (int i = 0; i < engine.get_n_items(); i++) {
                 var info = engine.get_item(i) as Peas.PluginInfo;
                 group.add(new PluginRow(info));
             }
+            var page = new Page();
+            group.insert_after(page, null);
 
-            page.add(group);
-
-            child = page;
+            var content = new PanelPage.with_page(page) {
+                title = _("Plugins list")
+            };
+            content.pack_start(new Gtk.Button.from_icon_name("system-reboot-symbolic") {
+                tooltip_text = _("Restart app"),
+                action_name = "app.restart"
+            });
+            child = content;
             content_width = 640;
         }
     }

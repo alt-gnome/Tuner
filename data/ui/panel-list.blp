@@ -1,22 +1,29 @@
 using Gtk 4.0;
+using Adw 1;
 
-template $TunerPanelList : $TunerPanelContent {
+template $TunerPanelList : Adw.NavigationPage {
 
-    ScrolledWindow {
-        hscrollbar-policy: never;
-        vexpand: true;
+    Adw.ToolbarView toolbar_view {
 
-        Stack stack {
-            transition-type: crossfade;
+        [top]
+        Adw.HeaderBar header_bar {}
 
-            StackPage {
-                name: "main";
+        ScrolledWindow {
+            hscrollbar-policy: never;
+            vexpand: true;
 
-                child: ListBox list_box {
-                    styles [ "navigation-sidebar" ]
+            Stack stack {
+                transition-type: crossfade;
 
-                    row-activated => $activated();
-                };
+                StackPage {
+                    name: "main";
+
+                    child: ListBox list_box {
+                        styles [ "navigation-sidebar" ]
+
+                        row-activated => $activated();
+                    };
+                }
             }
         }
     }

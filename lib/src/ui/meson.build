@@ -1,2 +1,1 @@
-subdir('content')
 subdir('widgets')

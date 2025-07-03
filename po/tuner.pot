@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuner\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-26 10:24+0300\n"
+"POT-Creation-Date: 2025-07-03 10:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,46 +81,46 @@ msgstr ""
 msgid "Open app page"
 msgstr ""
 
-#: data/ui/main-window.blp:56 src/ui/plugins-dialog.vala:8
+#: data/ui/main-window.blp:56 src/ui/plugins-dialog.vala:19
 msgid "Restart app"
 msgstr ""
 
-#: data/ui/main-window.blp:84
+#: data/ui/main-window.blp:86
 msgid "Main Menu"
 msgstr ""
 
-#: data/ui/main-window.blp:99
+#: data/ui/main-window.blp:101
 msgid "_Install plugins"
 msgstr ""
 
-#: data/ui/main-window.blp:103
+#: data/ui/main-window.blp:105
 msgid "_Plugins list"
 msgstr ""
 
-#: data/ui/main-window.blp:107
+#: data/ui/main-window.blp:109
 msgid "_About Tuner"
 msgstr ""
 
-#: src/app.vala:82
+#: src/app.vala:80
 msgid "translator-credits"
 msgstr ""
 
-#: src/ui/plugins-dialog.vala:6
+#: src/ui/plugins-dialog.vala:16
 msgid "Plugins list"
 msgstr ""
 
-#: src/ui/plugins-dialog.vala:96
+#: src/ui/plugins-dialog.vala:98
 msgid "Authors"
 msgstr ""
 
-#: src/ui/plugins-dialog.vala:100
+#: src/ui/plugins-dialog.vala:102
 msgid "Version"
 msgstr ""
 
-#: src/ui/plugins-dialog.vala:104
+#: src/ui/plugins-dialog.vala:106
 msgid "Website"
 msgstr ""
 
-#: src/ui/plugins-dialog.vala:113
+#: src/ui/plugins-dialog.vala:115
 msgid "Plugin information not found."
 msgstr ""

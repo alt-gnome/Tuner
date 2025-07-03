@@ -1,6 +1,6 @@
 namespace Tuner {
 
-    public class Spin : Tuner.Widget {
+    public class Spin : Widget {
         public string title { get; set; }
         public string subtitle { get; set; }
         public uint digits { get; set; }

@@ -26,8 +26,7 @@ namespace Tuner {
      * }}}
      */
     public abstract class Addin : Peas.ExtensionBase {
-        private ArrayList<PanelPage> page_list = new ArrayList<PanelPage>();
-        private ArrayList<PanelPageContent> content_list = new ArrayList<PanelPageContent>();
+        private ArrayList<Page> page_list = new ArrayList<Page>();
 
         /**
          * Virtual method that can be overrided by
@@ -49,7 +48,7 @@ namespace Tuner {
                 builder.add_from_resource(resource_path);
                 add_from_builder(builder);
             } catch (Error err) {
-                warning(@"$(get_type().name()): $(err.message)");
+                warning(@"$(get_type().name()) ($(resource_path)): $(err.message)");
             }
         }
 
@@ -66,7 +65,7 @@ namespace Tuner {
                 builder.add_from_file(filename);
                 add_from_builder(builder);
             } catch (Error err) {
-                warning(@"$(get_type().name()): $(err.message)");
+                warning(@"$(get_type().name()) ($filename): $(err.message)");
             }
         }
 
@@ -83,7 +82,7 @@ namespace Tuner {
                 builder.add_from_string(str, str.length);
                 add_from_builder(builder);
             } catch (Error err) {
-                warning(@"$(get_type().name()): $(err.message)");
+                warning(@"$(get_type().name()) (from string): $(err.message)");
             }
         }
 
@@ -113,41 +112,25 @@ namespace Tuner {
          */
         public void add_from_builder(Gtk.Builder builder) {
             foreach (var obj in builder.get_objects()) {
-                var page = obj as PanelPage;
-                if (page != null && page.is_toplevel)
-                    page_list.add((PanelPage) obj);
-
-                if (obj is PanelPageContent)
-                    content_list.add((PanelPageContent) obj);
+                var page = obj as Page;
+                if (page != null && page.parent == null) {
+                    add_page((Page) obj);
+                }
             }
         }
 
         /**
          * Add page directly to this
          */
-        public void add_page(PanelPage page) {
+        public void add_page(Page page) {
             page_list.add(page);
-        }
-
-        /**
-         * Add content directly to this
-         */
-        public void add_content(PanelPageContent content) {
-            content_list.add(content);
         }
 
         /**
          * Return current pages in this
          */
-        public ArrayList<PanelPage> get_page_list() {
+        public ArrayList<Page> get_page_list() {
             return page_list;
-        }
-
-        /**
-         * Return current content in this
-         */
-        public ArrayList<PanelPageContent> get_content_list() {
-            return content_list;
         }
     }
 }

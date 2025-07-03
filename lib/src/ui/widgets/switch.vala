@@ -1,6 +1,6 @@
 namespace Tuner {
 
-    public class Switch : Tuner.Widget {
+    public class Switch : Widget {
         public string title { get; set; }
         public string subtitle { get; set; }
 
