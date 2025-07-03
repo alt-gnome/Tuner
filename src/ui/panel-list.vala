@@ -34,8 +34,15 @@ namespace Tuner {
             list_box.set_header_func(update_header);
         }
 
-        public void activate_index(int index) {
-            list_box.get_row_at_index(index).activate();
+        public bool activate_index(int index) {
+            var row = list_box.get_row_at_index(index);
+
+            if (row == null)
+                return false;
+
+            row.activate();
+
+            return true;
         }
 
         public void pack_start(Gtk.Widget child) {
