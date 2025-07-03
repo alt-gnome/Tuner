@@ -6,7 +6,7 @@ namespace Tuner {
      * Instead it will create widget inside {@link Widget.create}
      * method and bind it with {@link Widget.binding}.
      */
-    public abstract class Widget : Gtk.Widget {
+    public abstract class Widget : Item {
         public virtual Tuner.Binding? binding { get; set; }
 
         public abstract Gtk.Widget? create();

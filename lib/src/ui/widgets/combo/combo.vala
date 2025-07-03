@@ -1,6 +1,6 @@
 namespace Tuner {
 
-    public class Combo : Tuner.Widget, Gtk.Buildable {
+    public class Combo : Widget {
         public string title { get; set; }
         public string subtitle { get; set; }
         public ListStore model;
@@ -9,24 +9,14 @@ namespace Tuner {
             model = new ListStore(typeof(Choice));
         }
 
-        public void add_child(Gtk.Builder builder, Object child, string? type) {
-            if (child is Choice) {
-                add_choice(child as Choice);
-            } else if (child is ChoiceLoader) {
-                add_loader(child as ChoiceLoader);
-            }
-        }
-
-        public void add_choice(Choice choice) {
-            model.append(choice);
-        }
-
-        public void add_loader(ChoiceLoader loader) {
-            loader.load(model);
+        public override bool accepts(Item item, string? type) {
+            return item is Choice || item is ChoiceLoader;
         }
 
         public override Gtk.Widget? create() {
             if (binding != null) {
+                visit_children(visitor);
+
                 int selected = 0;
 
                 var type = binding.expected_type;
@@ -54,6 +44,17 @@ namespace Tuner {
             }
 
             return null;
+        }
+
+        private VisitResult visitor(Item item) {
+            if (item is Choice) {
+                model.append((Choice) item);
+            } else if (item is ChoiceLoader) {
+                var loader = (ChoiceLoader) item;
+                loader.load(model);
+            }
+
+            return VisitResult.CONTINUE;
         }
     }
 }

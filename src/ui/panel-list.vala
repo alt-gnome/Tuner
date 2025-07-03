@@ -3,9 +3,13 @@ namespace Tuner {
     // FIXME: memory leak
     // also leaks just `new PanelList()` without anything done with it
     [GtkTemplate (ui = "/org/altlinux/Tuner/panel-list.ui")]
-    public class PanelList : PanelContent {
+    public class PanelList : Adw.NavigationPage, Gtk.Buildable {
         private unowned ListModel? _model;
 
+        [GtkChild]
+        private unowned Adw.ToolbarView toolbar_view;
+        [GtkChild]
+        private unowned Adw.HeaderBar header_bar;
         [GtkChild]
         private unowned Gtk.ListBox list_box;
         [GtkChild]
@@ -19,7 +23,7 @@ namespace Tuner {
                     return;
                 }
 
-                if (value.get_item_type().is_a(typeof(PanelPage))) {
+                if (value.get_item_type().is_a(typeof(Page))) {
                     _model = value;
                     list_box.bind_model(_model, create_row);
                 }
@@ -34,8 +38,51 @@ namespace Tuner {
             list_box.get_row_at_index(index).activate();
         }
 
+        public void pack_start(Gtk.Widget child) {
+            header_bar.pack_start(child);
+        }
+
+        public void pack_end(Gtk.Widget child) {
+            header_bar.pack_end(child);
+        }
+
+        /**
+         * Adds a bottom bar to toolbar view
+         */
+        public void add_top_bar(Gtk.Widget widget) {
+            toolbar_view.add_top_bar(widget);
+        }
+
+        /**
+         * Adds a bottom bar to toolbar view
+         */
+        public void add_bottom_bar(Gtk.Widget widget) {
+            toolbar_view.add_bottom_bar(widget);
+        }
+
+        private void add_child(Gtk.Builder builder, GLib.Object child, string? type) {
+            if (toolbar_view == null) {
+                base.add_child(builder, child, type);
+                return;
+            }
+
+            if (type == "end") {
+                pack_end(child as Gtk.Widget);
+                return;
+            } else if (type == "start") {
+                pack_start(child as Gtk.Widget);
+                return;
+            } else if (type == "top") {
+                add_top_bar(child as Gtk.Widget);
+                return;
+            } else if (type == "bottom") {
+                add_bottom_bar(child as Gtk.Widget);
+                return;
+            }
+        }
+
         private Gtk.Widget create_row(Object obj) {
-            var page = (PanelPage) obj;
+            var page = (Page) obj;
             var row = new PanelListRow(page);
 
             return row;

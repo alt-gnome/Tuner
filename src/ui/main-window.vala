@@ -16,7 +16,7 @@ namespace Tuner {
         private unowned SearchablePanelList panel_list;
 
         public ListStore model {
-            get; set; default = new ListStore(typeof(PanelPage));
+            get; set; default = new ListStore(typeof(Page));
         }
 
         public MainWindow(Gtk.Application app) {
@@ -38,59 +38,33 @@ namespace Tuner {
             );
         }
 
-        public bool add_page(PanelPage page) {
-            if (page.tag != null && find_page(page.tag) != null) {
-                return false;
-            }
+        public bool add_page(Page page) {
+            model.insert_sorted(page, (a, b) => ((Page) a).priority - ((Page) b).priority);
 
-            model.insert_sorted(page, (a, b) => ((PanelPage) a).priority - ((PanelPage) b).priority);
-
-            if (model.n_items == 1) {
-                stack.visible_child_name = "content";
-                split_view.content = page;
-            }
+            stack.visible_child_name = "content";
 
             return true;
         }
 
-        public void add_content(PanelPageContent content) {
-            var page = find_page(content.tag);
-
-            if (page != null) {
-                page.add_content(content);
-                return;
-            }
-            warning(@"PanelPage with tag \"$(content.tag)\" not found. Content skipped.");
-        }
-
         public void open_last() {
             var tag = App.settings.get_string("last-page");
-            if (tag == "") return;
 
-            for (int i = 0; i < model.n_items; i++) {
-                var page = (PanelPage) model.get_item(i);
-                if (page.tag == tag) {
-                    panel_list.activate_index(i);
-                    break;
+            if (tag != "") {
+                for (int i = 0; i < model.n_items; i++) {
+                    var page = (Page) model.get_item(i);
+                    if (page.tag == tag) {
+                        panel_list.activate_index(i);
+                        return;
+                    }
                 }
             }
+
+            panel_list.activate_index(0);
         }
 
         public void show_all_disabled() {
             action_button.label = _("Plugins list");
             action_button.action_name = "app.plugin-list";
-        }
-
-        public PanelPage? find_page(string tag) {
-            uint pos;
-            if (model.find_with_equal_func_full(null, item => {
-                var page = (PanelPage) item;
-
-                return page.tag == tag;
-            }, out pos)) {
-                return model.get_item(pos) as PanelPage;
-            }
-            return null;
         }
 
         public void toast(string title) {
@@ -101,7 +75,6 @@ namespace Tuner {
 
         private void set_page(Adw.NavigationPage? page, bool show = true) {
             split_view.content = page;
-            App.settings.set_string("last-page", page.tag ?? "");
 
             if (show)
                 split_view.show_content = true;
@@ -112,7 +85,7 @@ namespace Tuner {
             if (text != null) {
                 panel_list.clear();
                 for (int i = 0; i < model.n_items; i++) {
-                    var page = (PanelPage) model.get_item(i);
+                    var page = (Page) model.get_item(i);
                     if (page.title.down().contains(text.down())) {
                         panel_list.search_model.append(page);
                     }
@@ -121,9 +94,9 @@ namespace Tuner {
         }
 
         [GtkCallback]
-        private void search_result_activated(PanelPage result) {
+        private void search_result_activated(Page result) {
             for (int i = 0; i < model.n_items; i++) {
-                var page = (PanelPage) model.get_item(i);
+                var page = (Page) model.get_item(i);
                 if (page == result) {
                     panel_list.activate_index(i);
                     break;
@@ -133,27 +106,28 @@ namespace Tuner {
 
         [GtkCallback]
         private void row_activated(PanelListRow row) {
-            if (row.page.layout_type == LayoutType.SUBPAGES) {
+            if (row.page.has_subpages) {
                 var list = new PanelList() {
                     title = row.page.title,
-                    model = row.page.model
+                    model = row.page.subpages_model
                 };
                 list.row_activated.connect(row_activated);
                 nav.push(list);
 
-                for (int i = 0; i < row.page.model.n_items; i++) {
-                    var page = (PanelPage) row.page.model.get_item(i);
-                    if (page.layout_type == LayoutType.INTERNAL) {
-                        set_page(page, false);
+                for (int i = 0; i < row.page.subpages_model.n_items; i++) {
+                    var page = (Page) row.page.subpages_model.get_item(i);
+                    if (!page.has_subpages && page.custom_content == null) {
+                        list.activate_index(i);
                         break;
                     }
                 }
                 return;
-            } else if (row.page.layout_type == LayoutType.CUSTOM) {
+            } else if (row.page.custom_content != null) {
                 nav.push(row.page.custom_content);
             }
 
-            set_page(row.page);
+            App.settings.set_string("last-page", row.page.tag ?? "");
+            set_page(row.panel);
         }
     }
 }

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-26 10:24+0300\n"
+"POT-Creation-Date: 2025-07-03 10:23+0300\n"
 "PO-Revision-Date: 2025-05-22 00:22+0300\n"
 "Last-Translator: David Sultaniiazov <x1z53@alt-gnome.ru>\n"
 "Language-Team: Russian\n"
@@ -88,46 +88,46 @@ msgstr ""
 msgid "Open app page"
 msgstr "Открыть страницу приложения"
 
-#: data/ui/main-window.blp:56 src/ui/plugins-dialog.vala:8
+#: data/ui/main-window.blp:56 src/ui/plugins-dialog.vala:19
 msgid "Restart app"
 msgstr "Перезапустить приложение"
 
-#: data/ui/main-window.blp:84
+#: data/ui/main-window.blp:86
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: data/ui/main-window.blp:99
+#: data/ui/main-window.blp:101
 msgid "_Install plugins"
 msgstr "_Установить плагины"
 
-#: data/ui/main-window.blp:103
+#: data/ui/main-window.blp:105
 msgid "_Plugins list"
 msgstr "_Список плагинов"
 
-#: data/ui/main-window.blp:107
+#: data/ui/main-window.blp:109
 msgid "_About Tuner"
 msgstr "_О приложении"
 
-#: src/app.vala:82
+#: src/app.vala:80
 msgid "translator-credits"
 msgstr "David Sultaniiazov <x1z53@alt-gnome.ru>"
 
-#: src/ui/plugins-dialog.vala:6
+#: src/ui/plugins-dialog.vala:16
 msgid "Plugins list"
 msgstr "Список плагинов"
 
-#: src/ui/plugins-dialog.vala:96
+#: src/ui/plugins-dialog.vala:98
 msgid "Authors"
 msgstr "Авторы"
 
-#: src/ui/plugins-dialog.vala:100
+#: src/ui/plugins-dialog.vala:102
 msgid "Version"
 msgstr "Версия"
 
-#: src/ui/plugins-dialog.vala:104
+#: src/ui/plugins-dialog.vala:106
 msgid "Website"
 msgstr "Вебсайт"
 
-#: src/ui/plugins-dialog.vala:113
+#: src/ui/plugins-dialog.vala:115
 msgid "Plugin information not found."
 msgstr "Информация о плагине не найдена."

@@ -2,38 +2,26 @@ using Gee;
 
 namespace Tuner {
 
-    /**
-     * Widget allows to use Content addins
-     *
-     * Content addins can be added using
-     * widget id if it was specified.
-     */
-    public class Group : Adw.PreferencesGroup, Gtk.Buildable {
-        private ArrayList<Widget> widgets = new ArrayList<Widget>();
+    public class Group : Item {
+        public string title { get; set; }
+        public string description { get; set; }
+        public Gtk.Widget? header_suffix { get; set; }
         public int priority { get; set; }
 
-        public void add_content(GroupContent content) {
-            foreach (var child in content.childs)
-                add(child);
+        public void add(Widget widget) {
+            widget.insert_after(this, null);
         }
 
-        /**
-         * {@inheritDoc}
-         */
-        public void add_child(Gtk.Builder builder, Object child, string? type) {
-            add(child);
+        public void merge(Group group) {
+            foreach (var child in group.childs)
+                child.insert_after(this, null);
+
+            if (header_suffix == null && group.header_suffix != null)
+                header_suffix = group.header_suffix;
         }
 
-        public new void add(Object child) {
-            if (child is Widget) {
-                widgets.add((Widget) child);
-
-                var widget = ((Widget) child).create();
-                if (widget != null)
-                    base.add(widget);
-            } else {
-                base.add(child as Gtk.Widget);
-            }
+        public override bool accepts(Item item, string? type) {
+            return item is Widget;
         }
     }
 }

@@ -113,8 +113,7 @@ namespace Tuner {
 
         private void load_extensions_content() {
             var disabled_plugins = settings.get_strv("disabled-plugins");
-            var page_list = new ArrayList<PanelPage>();
-            var content_list = new ArrayList<PanelPageContent>();
+            var page_list = new ArrayList<Page>();
 
             addins.foreach((s, info, obj) => {
                 var addin = obj as Addin;
@@ -122,16 +121,22 @@ namespace Tuner {
                 if (!(info.module_name in disabled_plugins)) {
                     addin.activate();
 
-                    page_list.add_all(addin.get_page_list());
-                    content_list.add_all(addin.get_content_list());
+                    // Merging should be done before creating UI
+                    foreach (var page in addin.get_page_list()) {
+                        if (page.tag != null && page.tag != "") {
+                            var matched_page = page_list.first_match(it => it.tag == page.tag);
+                            if (matched_page != null) {
+                                matched_page.merge(page);
+                                continue;
+                            }
+                        }
+                        page_list.add(page);
+                    }
                 }
             });
 
             foreach (var page in page_list)
                 main_window.add_page(page);
-
-            foreach (var content in content_list)
-                main_window.add_content(content);
 
             main_window.open_last();
 

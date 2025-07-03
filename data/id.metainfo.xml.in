@@ -58,6 +58,7 @@
   </screenshots>
   <launchable type="desktop-id">org.altlinux.Tuner.desktop</launchable>
   <releases>
+    <release version="0.4.0" date="2025-07-03"/>
     <release version="0.3.1" date="2025-06-26"/>
     <release version="0.3.0" date="2025-06-23"/>
     <release version="0.2.0" date="2025-05-30"/>

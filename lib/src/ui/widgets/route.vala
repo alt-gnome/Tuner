@@ -27,17 +27,7 @@ namespace Tuner {
 
         private void navigate(Object obj) {
             var row = (Adw.ActionRow) obj;
-
-            var parent = row.get_parent();
-
-            while (parent != null) {
-                var nav = parent as Adw.NavigationView;
-                if (nav != null) {
-                    nav.push_by_tag(tag);
-                    break;
-                }
-                parent = parent.get_parent();
-            }
+            row.activate_action("navigation.push", "s", "options");
         }
     }
 }
