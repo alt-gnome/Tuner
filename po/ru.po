@@ -40,7 +40,7 @@ msgstr "Расширенный контроль над интерфейсом и
 
 #: data/id.metainfo.xml.in:16
 msgid "The interface is adapted to different device sizes."
-msgstr "Интерфейс адаптирован под различные размеры устройства "
+msgstr "Интерфейс адаптирован под различные размеры устройства."
 
 #: data/id.metainfo.xml.in:17
 msgid "Easy installation from the repository."
@@ -57,7 +57,7 @@ msgid ""
 "Easy creation of plugins working with dconf and unlimited plugin "
 "functionality thanks to libpeas."
 msgstr ""
-"- Простое создание плагинов, работающих с dconf, и безграничный функционал "
+"Простое создание плагинов, работающих с dconf, и безграничный функционал "
 "плагинов благодаря libpeas."
 
 #: data/id.metainfo.xml.in:48
