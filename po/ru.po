@@ -50,7 +50,7 @@ msgstr "Простая установка из репозитория."
 msgid ""
 "You can create your own plugins without affecting the main program code."
 msgstr ""
-"Создавать собственные плагины можно не затрагивая основной код программы."
+"Возможность создания собственных плагинов, не затрагивая основной код программы."
 
 #: data/id.metainfo.xml.in:22
 msgid ""
