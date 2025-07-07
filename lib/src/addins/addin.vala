@@ -36,7 +36,7 @@ namespace Tuner {
         public virtual void activate() {}
 
         /**
-         * Adds pages and content from resource.
+         * Adds pages from resource.
          *
          * At any error warning message will be printed.
          *
@@ -53,7 +53,7 @@ namespace Tuner {
         }
 
         /**
-         * Adds pages and content from file.
+         * Adds pages from file.
          *
          * At any error warning message will be printed.
          *
@@ -70,7 +70,7 @@ namespace Tuner {
         }
 
         /**
-         * Adds pages and content from string.
+         * Adds pages from string.
          *
          * At any error warning message will be printed.
          *
@@ -87,7 +87,7 @@ namespace Tuner {
         }
 
         /**
-         * Adds pages and content from {@link Gtk.Builder}
+         * Adds pages from {@link Gtk.Builder}
          *
          * Example
          * {{{
@@ -96,15 +96,19 @@ namespace Tuner {
          *
          * translation-domain "my-translations";
          *
-         * Tuner.PanelPage {
+         * Tuner.Page {
          *     tag: "my-page-tag";
          *     title: _("Translatable title");
          *
          *     ...
          * }
          *
-         * Tuner.PanelPageContent {
-         *     tag: "appearance"; // Add content to page with tag appearance
+         * Tuner.Page {
+         *     // Add page with tag appearance
+         *     // If page with that tag already added
+         *     // Their content will be merged
+         *     tag: "appearance";
+         *     title: _("Appearance");
          *
          *     ...
          * }

@@ -1,5 +1,12 @@
 namespace Tuner {
 
+    /**
+     * Simple builder implementation for toplevel {@link Page}.
+     * Creates Adw.NavigationPage with Adw.NavigationView and
+     * stores internal subpages inside it.
+     *
+     * Note: Used by host app, do not use that class in your plugins!
+     */
     [GtkTemplate (ui = "/org/altlinux/Tuner/panel.ui")]
     public class Panel : Adw.NavigationPage {
         [GtkChild]

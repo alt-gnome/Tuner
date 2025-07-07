@@ -2,6 +2,9 @@ using Gee;
 
 namespace Tuner {
 
+    /**
+     * Base class for creating custom object tree.
+     */
     public class Item : Object, Gtk.Buildable {
         public ArrayList<Item> childs = new ArrayList<Item>();
         public Item? parent { get; set; }

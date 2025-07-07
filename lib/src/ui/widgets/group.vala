@@ -2,6 +2,9 @@ using Gee;
 
 namespace Tuner {
 
+    /**
+     * Group that can contain widgets.
+     */
     public class Group : Item {
         public string title { get; set; }
         public string description { get; set; }

@@ -1,9 +1,11 @@
 namespace Tuner {
 
     /**
-     * A top-level page that represents a settings row in the application.
+     * Simple builder implementation for {@link Page} class.
+     * Creates Adw.NavigationPage with Adw.HeaderBar on top.
+     * Sync 'tag' and 'title' with {@link Page}
      *
-     * Tag must be specified in order to allow other plugins extend it contents.
+     * Note: Used by host app, do not use that class in your plugins!
      */
     [GtkTemplate (ui = "/org/altlinux/Tuner/panel-page.ui")]
     public class PanelPage : Adw.NavigationPage {

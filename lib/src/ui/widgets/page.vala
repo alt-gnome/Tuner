@@ -1,5 +1,17 @@
 namespace Tuner {
 
+    /**
+     * Toplevel item for all content.
+     *
+     * Can contain {@link Page} and {@link Group}.
+     * {@link Page}s annotated with 'subpage' will be counted
+     * as subpages, added to subpages_model, and subpage property
+     * will be set in that pages.
+     *
+     * If this has parent adding internal Pages is not allowed
+     *
+     * Note: Can't be Template class!
+     */
     public class Page : Item, Gtk.Buildable {
         public string title { get; set; default = ""; }
         public string icon_name { get; set; }
