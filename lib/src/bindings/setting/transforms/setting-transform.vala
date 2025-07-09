@@ -4,9 +4,9 @@ namespace Tuner {
      * Abstract class for creating custom transform
      */
     public abstract class SettingTransform : Object {
-        protected Settings settings;
-        protected string schema_key;
-        protected Type expected_type;
+        public Settings settings { get; set; }
+        public string schema_key { get; set; }
+        public Type expected_type { get; set; }
 
         public virtual void init(Settings settings, string schema_key, Type expected_type) {
             this.settings = settings;
