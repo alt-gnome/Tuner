@@ -1,5 +1,6 @@
 lib_sources += files(
-    'binding.vala'
+    'binding.vala',
+    'property.vala'
 )
 
 subdir('setting')
