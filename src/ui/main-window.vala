@@ -107,17 +107,17 @@ namespace Tuner {
         [GtkCallback]
         private void row_activated(PanelListRow row) {
             if (row.page.has_subpages) {
-                var list = new PanelList() {
-                    title = row.page.title,
-                    model = row.page.subpages_model
-                };
-                list.row_activated.connect(row_activated);
-                nav.push(list);
+                if (row.cached_list == null) {
+                    var list = new PanelList(row.page);
+                    list.row_activated.connect(row_activated);
+                    row.cached_list = list;
+                }
+                nav.push(row.cached_list);
 
                 for (int i = 0; i < row.page.subpages_model.n_items; i++) {
                     var page = (Page) row.page.subpages_model.get_item(i);
                     if (!page.has_subpages && page.custom_content == null) {
-                        list.activate_index(i);
+                        row.cached_list.activate_index(i);
                         break;
                     }
                 }

@@ -10,6 +10,8 @@ namespace Tuner {
 
         public Panel panel { get; set; }
 
+        public PanelList? cached_list { get; set; }
+
         public PanelListRow(Page page, bool show_description = false) {
             this.page = page;
 
