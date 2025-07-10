@@ -147,7 +147,7 @@ namespace Tuner {
             return item is Group;
         }
 
-        private void add_child(Gtk.Builder builder, GLib.Object child, string? type) {
+        private void add_child(Gtk.Builder builder, Object child, string? type) {
             if (child is Gtk.Widget && type == "title") {
                 title_widget = (Gtk.Widget) child;
             } else if (child is Gtk.Widget && type == "start") {

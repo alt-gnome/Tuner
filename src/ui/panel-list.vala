@@ -93,7 +93,7 @@ namespace Tuner {
             toolbar_view.add_bottom_bar(widget);
         }
 
-        private void add_child(Gtk.Builder builder, GLib.Object child, string? type) {
+        private void add_child(Gtk.Builder builder, Object child, string? type) {
             if (toolbar_view == null) {
                 base.add_child(builder, child, type);
                 return;

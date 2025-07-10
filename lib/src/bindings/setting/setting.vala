@@ -7,7 +7,7 @@ namespace Tuner {
         private Type _expected_type = Type.INVALID;
         private Settings? settings;
 
-        public override GLib.Type expected_type {
+        public override Type expected_type {
             get {
                 init();
                 return _expected_type;

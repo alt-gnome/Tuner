@@ -1,3 +1,5 @@
+using Gee;
+
 namespace Tuner {
 
     /**
@@ -18,7 +20,7 @@ namespace Tuner {
 
         public override bool try_set(Value value) {
             if (expected_type.is_a(typeof(string[])) && value.holds(Type.BOOLEAN)) {
-                var flags = new Gee.ArrayList<string>.wrap(settings.get_strv(schema_key));
+                var flags = new ArrayList<string>.wrap(settings.get_strv(schema_key));
 
                 if (this.value in flags) flags.remove(this.value);
 
@@ -32,7 +34,7 @@ namespace Tuner {
             return false;
         }
 
-        public override bool try_get(ref Value value, GLib.Variant variant) {
+        public override bool try_get(ref Value value, Variant variant) {
             if (variant.is_of_type(VariantType.STRING_ARRAY) && value.holds(Type.BOOLEAN)) {
                 var contains = this.value in variant.get_strv();
                 value.set_boolean(inverse ? !contains : contains);

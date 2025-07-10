@@ -250,7 +250,7 @@ namespace Tuner {
     }
 
     public static bool convert_to_value(ref Value value, Variant variant) {
-        if (variant.is_of_type(GLib.VariantType.BOOLEAN)) {
+        if (variant.is_of_type(VariantType.BOOLEAN)) {
             if (!value.holds(Type.BOOLEAN))
                 return false;
 

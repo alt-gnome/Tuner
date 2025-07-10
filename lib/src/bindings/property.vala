@@ -18,7 +18,7 @@ namespace Tuner {
         public override bool is_default { get { return true; } }
         public override bool has_default { get { return false; } set {} }
 
-        public override bool get_value(ref GLib.Value value) {
+        public override bool get_value(ref Value value) {
             init();
 
             if (object != null)
@@ -26,7 +26,7 @@ namespace Tuner {
 
             return object != null;
         }
-        public override void set_value(GLib.Value value) {
+        public override void set_value(Value value) {
             init();
 
             if (object != null)

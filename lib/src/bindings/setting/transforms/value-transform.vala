@@ -15,7 +15,7 @@ namespace Tuner {
             return true;
         }
 
-        public override bool try_get(ref GLib.Value value, GLib.Variant variant) {
+        public override bool try_get(ref Value value, Variant variant) {
             if (variant.is_of_type(VariantType.STRING) && value.holds(Type.BOOLEAN)) {
                 value.set_boolean(variant.dup_string() == this.value);
                 return true;
@@ -23,7 +23,7 @@ namespace Tuner {
             return false;
         }
 
-        public override bool try_set(GLib.Value value) {
+        public override bool try_set(Value value) {
             if (expected_type.is_a(Type.STRING) && value.holds(Type.BOOLEAN)) {
                 if (value.get_boolean())
                     settings.set_string(schema_key, this.value);

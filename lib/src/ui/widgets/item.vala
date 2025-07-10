@@ -47,7 +47,7 @@ namespace Tuner {
             return null;
         }
 
-        private void add_child(Gtk.Builder builder, GLib.Object child, string? type) {
+        private void add_child(Gtk.Builder builder, Object child, string? type) {
             var item = child as Item;
             if (item == null) {
                 warning(@"Attempt to add $(child.get_type().name()) as child of $(get_type().name()), which is not an TunerItem");
@@ -74,17 +74,17 @@ namespace Tuner {
 
         // Incorrect gtk bindings
         // All methods are virtual but in bindings they are abstract :(
-        private void set_buildable_property(Gtk.Builder builder, string name, GLib.Value value) {
+        private void set_buildable_property(Gtk.Builder builder, string name, Value value) {
             set_property(name, value);
         }
         private void parser_finished(Gtk.Builder builder) {}
-        private bool custom_tag_start(Gtk.Builder builder, GLib.Object? child, string tagname, out Gtk.BuildableParser parser, out void* data) {
+        private bool custom_tag_start(Gtk.Builder builder, Object? child, string tagname, out Gtk.BuildableParser parser, out void* data) {
             parser = Gtk.BuildableParser();
             data = null;
             return false;
         }
-        private void custom_finished(Gtk.Builder builder, GLib.Object? child, string tagname, void* data) {}
-        private void custom_tag_end(Gtk.Builder builder, GLib.Object? child, string tagname, void* data) {}
+        private void custom_finished(Gtk.Builder builder, Object? child, string tagname, void* data) {}
+        private void custom_tag_end(Gtk.Builder builder, Object? child, string tagname, void* data) {}
     }
 
     public enum VisitResult {
