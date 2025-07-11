@@ -1,6 +1,7 @@
 subdir('combo')
 
 lib_sources += files(
+    'expander.vala',
     'file.vala',
     'font-row.vala',
     'font.vala',

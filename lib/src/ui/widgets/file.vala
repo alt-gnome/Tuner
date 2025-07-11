@@ -17,11 +17,11 @@ namespace Tuner {
                     css_classes = { "flat" },
                     valign = Gtk.Align.CENTER
                 };
-                file_button.clicked.connect(file_button_clicked);
+                file_button.clicked.connect(() => file_button_clicked.begin(row));
 
                 var reset_button = new ResetButton() {
                     visible = false,
-                    revealer = Gtk.Align.END,
+                    revealer = Gtk.Align.END
                 };
                 reset_button.reset.connect(binding.reset);
                 if (binding.has_default)
@@ -39,21 +39,18 @@ namespace Tuner {
             return null;
         }
 
-        private async void file_button_clicked(Object obj) {
+        private async void file_button_clicked(Adw.EntryRow row) {
             var dialog = new Gtk.FileDialog();
             try {
                 GLib.File? file;
 
                 if (select_folder)
-                    file = yield dialog.select_folder(get_window(obj as Gtk.Widget), null);
+                    file = yield dialog.select_folder(get_window(row), null);
                 else
-                    file = yield dialog.open(get_window(obj as Gtk.Widget), null);
+                    file = yield dialog.open(get_window(row), null);
 
-                if (file != null) {
-                    var val = Value(Type.STRING);
-                    val.set_string(@"file://$(file.get_path())");
-                    binding.set_value(val);
-                }
+                if (file != null)
+                    row.text = @"file://$(file.get_path())";
             } catch (Error _) {}
         }
 

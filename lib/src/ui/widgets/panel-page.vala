@@ -31,22 +31,22 @@ namespace Tuner {
             title = page.title;
             tag = page.tag;
 
-            if (page.title_widget != null)
+            if (page.title_widget != null && !page.has_subpages)
                 header_bar.title_widget = page.title_widget;
 
-            if (page.start_widgets != null)
+            if (page.start_widgets != null && !page.has_subpages)
                 foreach (var widget in page.start_widgets)
                     header_bar.pack_start(widget);
 
-            if (page.end_widgets != null)
+            if (page.end_widgets != null && !page.has_subpages)
                 foreach (var widget in page.end_widgets)
                     header_bar.pack_end(widget);
 
-            if (page.top_widgets != null)
+            if (page.top_widgets != null && !page.has_subpages)
                 foreach (var widget in page.top_widgets)
                     toolbar_view.add_top_bar(widget);
 
-            if (page.bottom_widgets != null)
+            if (page.bottom_widgets != null && !page.has_subpages)
                 foreach (var widget in page.bottom_widgets)
                     toolbar_view.add_bottom_bar(widget);
 
