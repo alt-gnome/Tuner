@@ -9,14 +9,12 @@ namespace Tuner {
      */
     [GtkTemplate (ui = "/org/altlinux/Tuner/panel-page.ui")]
     public class PanelPage : Adw.NavigationPage {
-        private Adw.PreferencesGroup current_group;
-
         [GtkChild]
         private unowned Adw.ToolbarView toolbar_view;
         [GtkChild]
         private unowned Adw.HeaderBar header_bar;
-        [GtkChild]
-        private unowned Adw.PreferencesPage content;
+        private PanelContent? content;
+        private Adw.ViewStack? stack;
 
         public unowned Page? page { get; set; }
 
@@ -52,14 +50,24 @@ namespace Tuner {
                 foreach (var widget in page.bottom_widgets)
                     toolbar_view.add_bottom_bar(widget);
 
-            page.visit_children(visitor);
+            if (page.has_stack_pages) {
+                foreach (var stack_page in page.stack_pages) {
+                    add_stack_page(stack_page);
+                }
+            } else {
+                toolbar_view.content = content = new PanelContent.with_page(page);
+            }
         }
 
-        public void add(Adw.PreferencesGroup group) {
-            content.add(group);
+        public void add_stack_page(Page stack_page) {
+            if (stack == null) {
+                toolbar_view.content = stack = new Adw.ViewStack() {
+                    enable_transitions = true
+                };
+                page.stack = stack;
+            }
 
-            if (group.get_data<int>("priority") != 0)
-                reorder_group(group);
+            stack.add_titled_with_icon(new PanelContent.with_page(stack_page), stack_page.tag, stack_page.title, stack_page.icon_name);
         }
 
         public void pack_start(Gtk.Widget child) {
@@ -82,83 +90,6 @@ namespace Tuner {
          */
         public void add_bottom_bar(Gtk.Widget widget) {
             toolbar_view.add_bottom_bar(widget);
-        }
-        /**
-         * Gets the container widget that holds all preference groups.
-         *
-         * @return The {@link Gtk.Box} containing the groups
-         */
-        public Gtk.Box get_groups_container() {
-            var child = content.get_first_child();
-
-            while (!(child is Gtk.Box))
-                child = child.get_first_child();
-
-            return child as Gtk.Box;
-        }
-
-        /**
-         * Reorders a group based on its priority value.
-         *
-         * @param group The {@link Tuner.Group} to reorder
-         */
-        public void reorder_group(Adw.PreferencesGroup group) {
-            var container = get_groups_container();
-
-            if (group.get_data<int>("priority") < 0) {
-                for (var child = container.get_first_child(); child != null; child = child.get_next_sibling()) {
-                    if (child == group) break;
-
-                    var priority = child.get_data<int>("priority");
-                    if (priority > group.get_data<int>("priority")) {
-                        group.insert_before(container, child);
-                        break;
-                    }
-                }
-            } else {
-                for (var child = container.get_last_child().get_prev_sibling();child != null; child = child.get_prev_sibling()) {
-                    var priority = child.get_data<int>("priority");
-
-                    if (priority > group.get_data<int>("priority")) {
-                        group.insert_before(container, child);
-                        break;
-                    }
-                }
-            }
-        }
-
-        private VisitResult visitor(Item item) {
-            if (item is Group) {
-                var group = (Group) item;
-                string title = null;
-                string description = null;
-
-                if (group.title != null)
-                    title = Markup.escape_text(group.title);
-
-                if (group.description != null)
-                    description = Markup.escape_text(group.description);
-
-                current_group = new Adw.PreferencesGroup() {
-                    title = title,
-                    description = description,
-                    header_suffix = group.header_suffix,
-                    visible = false
-                };
-                current_group.set_data<int>("priority", group.priority);
-                add(current_group);
-
-                return VisitResult.RECURSE;
-            } else if (item is Widget) {
-                var widget = (Widget) item;
-                var child = widget.create();
-
-                if (child != null) {
-                    current_group.add(child);
-                    current_group.visible = true;
-                }
-            }
-            return VisitResult.CONTINUE;
         }
     }
 }

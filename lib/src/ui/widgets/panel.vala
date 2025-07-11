@@ -32,8 +32,9 @@ namespace Tuner {
         }
 
         public VisitResult visitor(Item item) {
-            if (item is Page) {
-                main_nav_view.add(new PanelPage.with_page((Page) item));
+            var page = item as Page;
+            if (page != null && !page.in_stack) {
+                main_nav_view.add(new PanelPage.with_page(page));
             }
             return VisitResult.CONTINUE;
         }

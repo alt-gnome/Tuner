@@ -22,21 +22,36 @@ namespace Tuner {
         public int priority { get; set; }
         public string description { get; set; }
         public bool subpage { get; set; }
+        public bool in_stack { get; set; }
         public Adw.NavigationPage? custom_content { get; set; }
         public Gtk.Widget? title_widget { get; set; }
         public ArrayList<Gtk.Widget>? start_widgets { get; set; }
         public ArrayList<Gtk.Widget>? end_widgets { get; set; }
         public ArrayList<Gtk.Widget>? top_widgets { get; set; }
         public ArrayList<Gtk.Widget>? bottom_widgets { get; set; }
+        public ArrayList<Page>? stack_pages { get; set; }
+        public Adw.ViewStack? stack { get; set; }
         public ListStore? subpages_model { get; set; }
         public bool has_subpages {
             get {
                 return subpages_model != null;
             }
         }
+        public bool has_stack_pages {
+            get {
+                return stack_pages != null;
+            }
+        }
 
         public void add_subpage(Page page) {
             register_subpage(page);
+
+            if (!childs.contains(page))
+                page.insert_after(this, null);
+        }
+
+        public void add_stack_page(Page page) {
+            register_stack_page(page);
 
             if (!childs.contains(page))
                 page.insert_after(this, null);
@@ -133,7 +148,10 @@ namespace Tuner {
         public override bool accepts(Item item, string? type) {
             var page = item as Page;
             if (page != null) {
-                if (parent == null || subpage) {
+                if (type == "stack") {
+                    register_stack_page(page);
+                    return true;
+                } else if (parent == null || subpage) {
                     if (type == "subpage")
                         register_subpage(page);
 
@@ -163,6 +181,14 @@ namespace Tuner {
             } else {
                 base.add_child(builder, child, type);
             }
+        }
+
+        private void register_stack_page(Page page) {
+            if (stack_pages == null)
+                stack_pages = new ArrayList<Page>();
+
+            page.in_stack = true;
+            stack_pages.add(page);
         }
 
         private void register_subpage(Page page) {

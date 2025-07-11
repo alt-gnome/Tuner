@@ -7,6 +7,7 @@ lib_sources += files(
     'group.vala',
     'item.vala',
     'page.vala',
+    'panel-content.vala',
     'panel-page.vala',
     'panel.vala',
     'reset-button.vala',
