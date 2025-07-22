@@ -43,6 +43,10 @@ namespace Tuner {
             }
         }
 
+        public void add_group(Group group) {
+            group.insert_after(this, null);
+        }
+
         public void add_subpage(Page page) {
             register_subpage(page);
 
