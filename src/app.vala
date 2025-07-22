@@ -46,6 +46,8 @@ namespace Tuner {
             var user_plugins = Path.build_filename(Environment.get_user_data_dir(), "tuner", "plugins");
             engine.add_search_path(user_plugins, null);
 
+            load_search_path(engine);
+
             addins = new Peas.ExtensionSet.with_properties(engine, typeof(Addin), {}, {});
 
             set_accels_for_action("app.quit", { "<Ctrl>Q" });
@@ -63,6 +65,14 @@ namespace Tuner {
             load_extensions();
 
             main_window.present();
+        }
+
+        private void load_search_path(Peas.Engine engine) {
+            var env = Environment.get_variable("PLUGIN_SEARCH_PATH");
+
+            if (env != null) foreach (var path in env.split(":")) {
+                engine.add_search_path(path, null);
+            }
         }
 
         private void open_plugin_list() {
