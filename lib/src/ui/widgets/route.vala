@@ -27,7 +27,7 @@ namespace Tuner {
 
         private void navigate(Object obj) {
             var row = (Adw.ActionRow) obj;
-            row.activate_action("navigation.push", "s", "options");
+            row.activate_action("navigation.push", "s", tag);
         }
     }
 }
