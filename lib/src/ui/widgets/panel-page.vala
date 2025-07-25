@@ -31,8 +31,8 @@ namespace Tuner {
             title = page.title;
             tag = page.tag;
 
-            if (page.title_widget != null && !page.has_subpages)
-                header_bar.title_widget = page.title_widget;
+            if (!page.has_subpages)
+                page.bind_property("title-widget", header_bar, "title-widget", BindingFlags.SYNC_CREATE);
 
             if (page.start_widgets != null && !page.has_subpages)
                 foreach (var widget in page.start_widgets)

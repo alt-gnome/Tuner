@@ -29,6 +29,7 @@ namespace Tuner {
         public ArrayList<Gtk.Widget>? end_widgets { get; set; }
         public ArrayList<Gtk.Widget>? top_widgets { get; set; }
         public ArrayList<Gtk.Widget>? bottom_widgets { get; set; }
+        public ArrayList<Adw.Breakpoint>? breakpoints { get; set; }
         public ArrayList<Page>? stack_pages { get; set; }
         public Adw.ViewStack? stack { get; set; }
         public ListStore? subpages_model { get; set; }
@@ -40,6 +41,20 @@ namespace Tuner {
         public bool has_stack_pages {
             get {
                 return stack_pages != null;
+            }
+        }
+
+        public void add_page(Page page) {
+            if (parent == null || subpage)
+                page.insert_after(this, null);
+        }
+
+        public void add_breakpoint(Adw.Breakpoint breakpoint) {
+            if (parent == null) {
+                if (breakpoints == null)
+                    breakpoints = new ArrayList<Adw.Breakpoint>();
+
+                breakpoints.add(breakpoint);
             }
         }
 
@@ -90,6 +105,10 @@ namespace Tuner {
         }
 
         public void merge(Page page) {
+            if (page.breakpoints != null)
+                foreach (var breakpoint in page.breakpoints)
+                    add_breakpoint(breakpoint);
+
             if (title_widget == null)
                 title_widget = page.title_widget;
 
@@ -170,7 +189,9 @@ namespace Tuner {
         }
 
         private void add_child(Gtk.Builder builder, Object child, string? type) {
-            if (child is Gtk.Widget && type == "title") {
+            if (child is Adw.Breakpoint) {
+                add_breakpoint((Adw.Breakpoint) child);
+            }else if (child is Gtk.Widget && type == "title") {
                 title_widget = (Gtk.Widget) child;
             } else if (child is Gtk.Widget && type == "start") {
                 pack_start((Gtk.Widget) child);

@@ -5,7 +5,7 @@ template $TunerMainWindow : Adw.ApplicationWindow {
     default-width: 800;
     default-height: 600;
     title: _("Tuner");
-    
+
     Adw.Breakpoint {
         condition ("max-width: 580px")
 
@@ -15,81 +15,86 @@ template $TunerMainWindow : Adw.ApplicationWindow {
         }
     }
 
-    Adw.ToastOverlay toast_overlay {
+    Adw.BreakpointBin breakpoint_bin {
+        width-request: 1;
+        height-request: 1;
 
-        Stack stack {
-            StackPage {
-                name: "empty";
+        Adw.ToastOverlay toast_overlay {
 
-                child: Adw.ToolbarView {
-                    [top]
-                    Adw.HeaderBar {
-                        [end]
-                        Button {
-                            styles [ "flat" ]
+            Stack stack {
+                StackPage {
+                    name: "empty";
 
-                            icon-name: "about-symbolic";
-                            action-name: "app.about";
-                        }
-                    }
-
-                    content: Adw.StatusPage {
-                        title: _("No plugins found");
-                        description: _("You can open the app page in the software store. There should be a list of available plugins");
-                        icon-name: "org.altlinux.Tuner-symbolic";
-
-                        Box button_box {
-                            orientation: horizontal;
-                            halign: center;
-                            spacing: 12;
-
+                    child: Adw.ToolbarView {
+                        [top]
+                        Adw.HeaderBar {
+                            [end]
                             Button {
-                                styles [ "suggested-action", "pill" ]
+                                styles [ "flat" ]
 
-                                label: _("Open app page");
-                                action-name: "app.open-app-page";
-                            }
-
-                            Button action_button {
-                                styles [ "pill" ]
-
-                                label: _("Restart app");
-                                action-name: "app.restart";
+                                icon-name: "about-symbolic";
+                                action-name: "app.about";
                             }
                         }
-                    };
-                };
-            }
 
-            StackPage {
-                name: "content";
+                        content: Adw.StatusPage {
+                            title: _("No plugins found");
+                            description: _("You can open the app page in the software store. There should be a list of available plugins");
+                            icon-name: "org.altlinux.Tuner-symbolic";
 
-                child: Adw.NavigationSplitView split_view {
-                    min-sidebar-width: 220;
+                            Box button_box {
+                                orientation: horizontal;
+                                halign: center;
+                                spacing: 12;
 
-                    sidebar: Adw.NavigationPage {
+                                Button {
+                                    styles [ "suggested-action", "pill" ]
 
-                        Adw.NavigationView nav {
+                                    label: _("Open app page");
+                                    action-name: "app.open-app-page";
+                                }
 
-                            $TunerSearchablePanelList panel_list {
-                                title: _("Tuner");
-                                model: bind template.model;
+                                Button action_button {
+                                    styles [ "pill" ]
 
-                                row-activated => $row_activated();
-                                update-search => $update_search();
-                                search-result-activated => $search_result_activated();
-
-                                [end]
-                                MenuButton {
-                                    primary: true;
-                                    icon-name: "open-menu-symbolic";
-                                    tooltip-text: _("Main Menu");
-                                    menu-model: primary_menu;
+                                    label: _("Restart app");
+                                    action-name: "app.restart";
                                 }
                             }
-                        }
+                        };
                     };
-                };
+                }
+
+                StackPage {
+                    name: "content";
+
+                    child: Adw.NavigationSplitView split_view {
+                        min-sidebar-width: 220;
+
+                        sidebar: Adw.NavigationPage {
+
+                            Adw.NavigationView nav {
+
+                                $TunerSearchablePanelList panel_list {
+                                    title: _("Tuner");
+                                    model: bind template.model;
+
+                                    row-activated => $row_activated();
+                                    update-search => $update_search();
+                                    search-result-activated => $search_result_activated();
+
+                                    [end]
+                                    MenuButton {
+                                        primary: true;
+                                        icon-name: "open-menu-symbolic";
+                                        tooltip-text: _("Main Menu");
+                                        menu-model: primary_menu;
+                                    }
+                                }
+                            }
+                        };
+                    };
+                }
             }
         }
     }

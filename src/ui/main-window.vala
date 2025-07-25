@@ -14,6 +14,8 @@ namespace Tuner {
         private unowned Gtk.Stack stack;
         [GtkChild]
         private unowned SearchablePanelList panel_list;
+        [GtkChild]
+        private unowned Adw.BreakpointBin breakpoint_bin;
 
         public ListStore model {
             get; set; default = new ListStore(typeof(Page));
@@ -40,6 +42,10 @@ namespace Tuner {
 
         public bool add_page(Page page) {
             model.insert_sorted(page, (a, b) => ((Page) a).priority - ((Page) b).priority);
+
+            if (page.breakpoints != null)
+                foreach (var breakpoint in page.breakpoints)
+                    breakpoint_bin.add_breakpoint(breakpoint);
 
             stack.visible_child_name = "content";
 
