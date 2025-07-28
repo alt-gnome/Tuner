@@ -1,0 +1,13 @@
+name: Bug Report
+description: Report an issue with the application or library
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **⚠️ Plugin Issue? Stop Here!**  
+        If this involves a specific plugin, please:
+        - Check the plugin's documentation
+        - Search the plugin's issue tracker
+        - Create the report in the **plugin's repository** instead
