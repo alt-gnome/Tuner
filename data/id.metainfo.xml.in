@@ -38,8 +38,8 @@
     <control>touch</control>
   </recommends>
   <branding>
-    <color type="primary" scheme_preference="light">#cbccd7</color>
-    <color type="primary" scheme_preference="dark">#303040</color>
+    <color type="primary" scheme_preference="light">#ffc88b</color>
+    <color type="primary" scheme_preference="dark">#e47850</color>
   </branding>
   <content_rating type="oars-1.1"></content_rating>
   <screenshots>
