@@ -1,13 +1,14 @@
 #
 # David Sultaniiazov <x1z53@alt-gnome.ru>, 2025.
+# Semen Fomchenkov <armatik@altlinux.org>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-03 10:23+0300\n"
-"PO-Revision-Date: 2025-05-22 00:22+0300\n"
-"Last-Translator: David Sultaniiazov <x1z53@alt-gnome.ru>\n"
+"POT-Creation-Date: 2025-08-04 21:54+0300\n"
+"PO-Revision-Date: 2025-08-04 22:01+0300\n"
+"Last-Translator: Semen Fomchenkov <armatik@altlinux.org>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +19,7 @@ msgstr ""
 "X-Generator: Gtranslator 48.0\n"
 
 #: data/id.metainfo.xml.in:5 data/ui/main-window.blp:7
-#: data/ui/main-window.blp:75
+#: data/ui/main-window.blp:79
 msgid "Tuner"
 msgstr "Тюнер"
 
@@ -50,7 +51,8 @@ msgstr "Простая установка из репозитория."
 msgid ""
 "You can create your own plugins without affecting the main program code."
 msgstr ""
-"Возможность создания собственных плагинов, не затрагивая основной код программы."
+"Возможность создания собственных плагинов, не затрагивая основной код "
+"программы."
 
 #: data/id.metainfo.xml.in:22
 msgid ""
@@ -61,22 +63,34 @@ msgstr ""
 "плагинов благодаря libpeas."
 
 #: data/id.metainfo.xml.in:48
-msgid "Panel and Tweaks plugins"
-msgstr "Плагины панельного режима и расширенных настроек"
+msgid "Tuner first page with Tweaks plugin"
+msgstr "Первая страница Тюнер с плагином Tweaks"
 
 #: data/id.metainfo.xml.in:52
-msgid "Tweaks plugin"
-msgstr "Плагин расширенных настроек"
+msgid "Tweaks plugin shell and compositor page"
+msgstr "Страница оболочки и композитора в плагине Tweaks"
 
 #: data/id.metainfo.xml.in:56
+msgid "Plugin list"
+msgstr "Список плагинов"
+
+#: data/id.metainfo.xml.in:60
+msgid "Tuner with Tweaks and Panel plugins in one page"
+msgstr "Тюнер с плагинами Tweaks и Panel на одной странице"
+
+#: data/id.metainfo.xml.in:64
 msgid "About dialog"
 msgstr "Диалог «О приложении»"
 
-#: data/ui/main-window.blp:37
+#: data/id.metainfo.xml.in:85
+msgid "ALT Linux Team"
+msgstr "ALT Linux Team"
+
+#: data/ui/main-window.blp:41
 msgid "No plugins found"
 msgstr "Плагины не найдены"
 
-#: data/ui/main-window.blp:38
+#: data/ui/main-window.blp:42
 msgid ""
 "You can open the app page in the software store. There should be a list of "
 "available plugins"
@@ -84,31 +98,31 @@ msgstr ""
 "Вы можете открыть страницу приложения в магазине программного обеспечения. "
 "Там должен быть список доступных плагинов"
 
-#: data/ui/main-window.blp:49
+#: data/ui/main-window.blp:53
 msgid "Open app page"
 msgstr "Открыть страницу приложения"
 
-#: data/ui/main-window.blp:56 src/ui/plugins-dialog.vala:19
+#: data/ui/main-window.blp:60 src/ui/plugins-dialog.vala:19
 msgid "Restart app"
 msgstr "Перезапустить приложение"
 
-#: data/ui/main-window.blp:86
+#: data/ui/main-window.blp:90
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: data/ui/main-window.blp:101
+#: data/ui/main-window.blp:106
 msgid "_Install plugins"
 msgstr "_Установить плагины"
 
-#: data/ui/main-window.blp:105
+#: data/ui/main-window.blp:110
 msgid "_Plugins list"
 msgstr "_Список плагинов"
 
-#: data/ui/main-window.blp:109
+#: data/ui/main-window.blp:114
 msgid "_About Tuner"
 msgstr "_О приложении"
 
-#: src/app.vala:80
+#: src/app.vala:90
 msgid "translator-credits"
 msgstr "David Sultaniiazov <x1z53@alt-gnome.ru>"
 
@@ -131,3 +145,6 @@ msgstr "Вебсайт"
 #: src/ui/plugins-dialog.vala:115
 msgid "Plugin information not found."
 msgstr "Информация о плагине не найдена."
+
+#~ msgid "Tweaks plugin"
+#~ msgstr "Плагин расширенных настроек"
