@@ -44,15 +44,23 @@
   <content_rating type="oars-1.1"></content_rating>
   <screenshots>
     <screenshot type="default">
-      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/6e79d5c5d875068471ab8f06d6f7ccb22fe58db7/data/screenshots/1-panelmoded-tweaks.png</image>
-      <caption>Panel and Tweaks plugins</caption>
+      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/8fc53a83d7bb51f8043cb6bd18452db5cc8596ab/data/screenshots/1-tuner-tweaks.png</image>
+      <caption>Tuner first page with Tweaks plugin</caption>
     </screenshot>
     <screenshot>
-      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/6e79d5c5d875068471ab8f06d6f7ccb22fe58db7/data/screenshots/2-tweaks.png</image>
-      <caption>Tweaks plugin</caption>
+      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/8fc53a83d7bb51f8043cb6bd18452db5cc8596ab/data/screenshots/2-tweaks.png</image>
+      <caption>Tweaks plugin shell and compositor page</caption>
     </screenshot>
     <screenshot>
-      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/6e79d5c5d875068471ab8f06d6f7ccb22fe58db7/data/screenshots/3-about.png</image>
+      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/8fc53a83d7bb51f8043cb6bd18452db5cc8596ab/data/screenshots/3-plugin-list.png</image>
+      <caption>Plugin list</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/8fc53a83d7bb51f8043cb6bd18452db5cc8596ab/data/screenshots/4-panelmoded-tweaks.png</image>
+      <caption>Tuner with Tweaks and Panel plugins in one page</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://altlinux.space/alt-gnome/Tuner/raw/commit/8fc53a83d7bb51f8043cb6bd18452db5cc8596ab/data/screenshots/5-about.png</image>
       <caption>About dialog</caption>
     </screenshot>
   </screenshots>
