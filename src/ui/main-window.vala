@@ -1,7 +1,11 @@
+using Gee;
+
 namespace Tuner {
 
     [GtkTemplate (ui = "/org/altlinux/Tuner/main-window.ui")]
     public class MainWindow : Adw.ApplicationWindow {
+        private ArrayList<Adw.Breakpoint> applied_breakpoints;
+
         [GtkChild]
         private unowned Adw.NavigationSplitView split_view;
         [GtkChild]
@@ -19,6 +23,10 @@ namespace Tuner {
 
         public ListStore model {
             get; set; default = new ListStore(typeof(Page));
+        }
+
+        construct {
+            applied_breakpoints = new ArrayList<Adw.Breakpoint>();
         }
 
         public MainWindow(Gtk.Application app) {
@@ -42,10 +50,6 @@ namespace Tuner {
 
         public bool add_page(Page page) {
             model.insert_sorted(page, (a, b) => ((Page) a).priority - ((Page) b).priority);
-
-            if (page.breakpoints != null)
-                foreach (var breakpoint in page.breakpoints)
-                    breakpoint_bin.add_breakpoint(breakpoint);
 
             stack.visible_child_name = "content";
 
@@ -77,6 +81,15 @@ namespace Tuner {
             toast_overlay.add_toast(new Adw.Toast(title) {
                 timeout = 3
             });
+        }
+
+        private void apply_breakpoints(ArrayList<Adw.Breakpoint>? breakpoints) {
+            foreach (var breakpoint in applied_breakpoints)
+                breakpoint_bin.remove_breakpoint(breakpoint);
+
+            if (breakpoints != null)
+                foreach (var breakpoint in breakpoints)
+                    breakpoint_bin.add_breakpoint(breakpoint);
         }
 
         private void set_page(Adw.NavigationPage? page, bool show = true) {
@@ -133,6 +146,7 @@ namespace Tuner {
             }
 
             App.settings.set_string("last-page", row.page.tag ?? "");
+            apply_breakpoints(row.page.breakpoints);
             set_page(row.panel);
         }
     }
