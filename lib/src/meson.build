@@ -33,7 +33,7 @@ lib = library(
 )
 
 pkg.generate(
-    name: meson.project_name(),
+    name: name,
     description: 'Tuner app plugin library',
 
     libraries: lib,

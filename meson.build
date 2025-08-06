@@ -2,8 +2,8 @@ project(
     'Tuner',
 
     ['c', 'vala'],
-    version: '0.4.1',
-    meson_version: '>= 1.0',
+    version: '0.5.0',
+    meson_version: '>= 1.1',
 )
 
 id = 'org.altlinux.Tuner'
@@ -12,18 +12,13 @@ version = meson.project_version()
 output = name.to_lower()
 soversion = 0
 
-add_global_arguments([
-	'-Wno-unused',
-	'-Wno-discarded-qualifiers'
-], language: 'c')
-
 add_project_arguments(
-    '-DGETTEXT_PACKAGE="@0@"'.format(output),
+    '-w', '-DGETTEXT_PACKAGE="@0@"'.format(output),
     language: 'c'
 )
 
 add_project_arguments(
-    [ '--vapidir', meson.current_source_dir() / 'vapi' ],
+    '--vapidir', meson.current_source_dir() / 'vapi',
     language: 'vala'
 )
 
@@ -36,7 +31,7 @@ config.set('ID', id)
 config.set('VERSION', version)
 config.set('GETTEXT_PACKAGE', output)
 config.set('LOCALEDIR', get_option('prefix') / get_option('localedir'))
-config.set('DATADIR', get_option('prefix') / get_option('datadir') / 'tuner')
+config.set('DATADIR', get_option('prefix') / get_option('datadir') / output)
 config.set('LIBDIR', get_option('prefix') / get_option('libdir'))
 
 subdir('lib')
