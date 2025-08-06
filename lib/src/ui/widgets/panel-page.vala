@@ -13,9 +13,9 @@ namespace Tuner {
         private unowned Adw.ToolbarView toolbar_view;
         [GtkChild]
         private unowned Adw.HeaderBar header_bar;
-        private PanelContent? content;
         private Adw.ViewStack? stack;
 
+        public Gtk.Widget content { get; set; }
         public unowned Page? page { get; set; }
 
         public PanelPage() {}
@@ -55,19 +55,19 @@ namespace Tuner {
                     add_stack_page(stack_page);
                 }
             } else {
-                toolbar_view.content = content = new PanelContent.with_page(page);
+                content = build_content(page);
             }
         }
 
         public void add_stack_page(Page stack_page) {
             if (stack == null) {
-                toolbar_view.content = stack = new Adw.ViewStack() {
+                content = stack = new Adw.ViewStack() {
                     enable_transitions = true
                 };
                 page.stack = stack;
             }
 
-            stack.add_titled_with_icon(new PanelContent.with_page(stack_page), stack_page.tag, stack_page.title, stack_page.icon_name);
+            stack.add_titled_with_icon(build_content(stack_page), stack_page.tag, stack_page.title, stack_page.icon_name);
         }
 
         public void pack_start(Gtk.Widget child) {
@@ -90,6 +90,10 @@ namespace Tuner {
          */
         public void add_bottom_bar(Gtk.Widget widget) {
             toolbar_view.add_bottom_bar(widget);
+        }
+
+        private Gtk.Widget build_content(Page page) {
+            return page.content ?? new PanelContent.with_page(page);
         }
     }
 }

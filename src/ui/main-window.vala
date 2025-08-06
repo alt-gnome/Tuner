@@ -122,14 +122,14 @@ namespace Tuner {
 
                 for (int i = 0; i < row.page.subpages_model.n_items; i++) {
                     var page = (Page) row.page.subpages_model.get_item(i);
-                    if (!page.has_subpages && page.custom_content == null) {
+                    if (!page.has_subpages && page.list == null) {
                         row.cached_list.activate_index(i);
                         break;
                     }
                 }
                 return;
-            } else if (row.page.custom_content != null) {
-                nav.push(row.page.custom_content);
+            } else if (row.page.list != null) {
+                nav.push(row.page.list);
             }
 
             App.settings.set_string("last-page", row.page.tag ?? "");

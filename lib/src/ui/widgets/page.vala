@@ -23,7 +23,8 @@ namespace Tuner {
         public string description { get; set; }
         public bool subpage { get; set; }
         public bool in_stack { get; set; }
-        public Adw.NavigationPage? custom_content { get; set; }
+        public Gtk.Widget content { get; set; }
+        public Adw.NavigationPage? list { get; set; }
         public Gtk.Widget? title_widget { get; set; }
         public ArrayList<Gtk.Widget>? start_widgets { get; set; }
         public ArrayList<Gtk.Widget>? end_widgets { get; set; }
@@ -202,7 +203,7 @@ namespace Tuner {
             } else if (child is Gtk.Widget && type == "bottom") {
                 add_bottom_bar((Gtk.Widget) child);
             } else if (child is Adw.NavigationPage && type == "custom") {
-                custom_content = (Adw.NavigationPage) child;
+                list = (Adw.NavigationPage) child;
             } else {
                 base.add_child(builder, child, type);
             }

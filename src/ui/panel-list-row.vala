@@ -23,7 +23,7 @@ namespace Tuner {
                 page.bind_property("description", this, "description", BindingFlags.SYNC_CREATE);
             }
 
-            if (page.has_subpages || page.custom_content != null)
+            if (page.has_subpages || page.list != null)
                 show_next_icon = true;
 
             panel = new Panel.with_page(page);
