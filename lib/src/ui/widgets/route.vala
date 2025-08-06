@@ -5,6 +5,7 @@ namespace Tuner {
         public string subtitle { get; set; }
         public string? icon_name { get; set; }
         public string tag { get; set; }
+        public bool show_arrow { get; set; default = true; }
 
         public override Gtk.Widget? create() {
             var row = new Adw.ActionRow() {
@@ -13,9 +14,11 @@ namespace Tuner {
                 activatable = true
             };
             row.activated.connect(navigate);
-            row.add_suffix(new Gtk.Image() {
-                icon_name = "go-next-symbolic"
-            });
+
+            if (show_arrow)
+                row.add_suffix(new Gtk.Image() {
+                    icon_name = "go-next-symbolic"
+                });
 
             if (icon_name != null)
                 row.add_prefix(new Gtk.Image() {
