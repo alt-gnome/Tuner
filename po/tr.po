@@ -1,0 +1,148 @@
+# Turkish translation for org.altlinux.Tuner.
+# Copyright (C) 2025 org.altlinux.Tuner's COPYRIGHT HOLDER
+# This file is distributed under the same license as the org.altlinux.Tuner package.
+#
+# Sabri Ünal <yakushabb@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: org.altlinux.Tuner master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-04 21:54+0300\n"
+"PO-Revision-Date: 2025-10-08 13:29+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"Language-Team: Türkçe <takim@gnome.org.tr>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.7\n"
+
+#: data/id.metainfo.xml.in:5 data/ui/main-window.blp:7
+#: data/ui/main-window.blp:79
+msgid "Tuner"
+msgstr "İnce Ayar"
+
+#: data/id.metainfo.xml.in:6
+msgid "Extensible control center"
+msgstr "Genişletilebilir denetim merkezi"
+
+#: data/id.metainfo.xml.in:10
+msgid ""
+"Tuner is the home for your additional system settings, components, "
+"applications, and whatever else you want!"
+msgstr ""
+"İnce Ayar, ek sistem ayarlarınız, bileşenleriniz, uygulamalarınız ve "
+"istediğiniz diğer her şey için tek kaynaktır!"
+
+#: data/id.metainfo.xml.in:15
+msgid "Extended control over the interface and functions using plugins."
+msgstr ""
+"Eklentiler kullanarak arayüz ve işlevler üzerinde genişletilmiş denetim."
+
+#: data/id.metainfo.xml.in:16
+msgid "The interface is adapted to different device sizes."
+msgstr "Arayüz farklı aygıt boyutlarına uyarlanmıştır."
+
+#: data/id.metainfo.xml.in:17
+msgid "Easy installation from the repository."
+msgstr "Depodan kolay kurulum."
+
+#: data/id.metainfo.xml.in:18
+msgid ""
+"You can create your own plugins without affecting the main program code."
+msgstr ""
+"Ana program kodunu etkilemeden kendi eklentilerinizi oluşturabilirsiniz."
+
+#: data/id.metainfo.xml.in:22
+msgid ""
+"Easy creation of plugins working with dconf and unlimited plugin "
+"functionality thanks to libpeas."
+msgstr ""
+"Dconf ile çalışan eklentilerin kolay oluşturulması ve libpeas sayesinde "
+"sınırsız eklenti işlevselliği."
+
+#: data/id.metainfo.xml.in:48
+msgid "Tuner first page with Tweaks plugin"
+msgstr "Tweaks eklentisi ile İnce Ayar ilk sayfası"
+
+#: data/id.metainfo.xml.in:52
+msgid "Tweaks plugin shell and compositor page"
+msgstr "Tweaks eklenti kabuğu ve işleyici sayfası"
+
+#: data/id.metainfo.xml.in:56
+msgid "Plugin list"
+msgstr "Eklenti listesi"
+
+#: data/id.metainfo.xml.in:60
+msgid "Tuner with Tweaks and Panel plugins in one page"
+msgstr "Tek sayfada Tweaks ve Panel eklentileri ile İnce Ayar"
+
+#: data/id.metainfo.xml.in:64
+msgid "About dialog"
+msgstr "Hakkında iletişim kutusu"
+
+#: data/id.metainfo.xml.in:85
+msgid "ALT Linux Team"
+msgstr "ALT Linux Takımı"
+
+#: data/ui/main-window.blp:41
+msgid "No plugins found"
+msgstr "Eklenti bulunamadı"
+
+#: data/ui/main-window.blp:42
+msgid ""
+"You can open the app page in the software store. There should be a list of "
+"available plugins"
+msgstr ""
+"Yazılım mağazasında uygulama sayfasını açabilirsiniz. Var olan "
+"eklentilerin listesi olmalıdır"
+
+#: data/ui/main-window.blp:53
+msgid "Open app page"
+msgstr "Uygulama sayfasını aç"
+
+#: data/ui/main-window.blp:60 src/ui/plugins-dialog.vala:19
+msgid "Restart app"
+msgstr "Uygulamayı yeniden başlat"
+
+#: data/ui/main-window.blp:90
+msgid "Main Menu"
+msgstr "Ana Menü"
+
+#: data/ui/main-window.blp:106
+msgid "_Install plugins"
+msgstr "Eklenti kur"
+
+#: data/ui/main-window.blp:110
+msgid "_Plugins list"
+msgstr "_Eklenti listesi"
+
+#: data/ui/main-window.blp:114
+msgid "_About Tuner"
+msgstr "İnce Ayar _Hakkında"
+
+#: src/app.vala:90
+msgid "translator-credits"
+msgstr "Sabri Ünal <yakushabb@gmail.com>"
+
+#: src/ui/plugins-dialog.vala:16
+msgid "Plugins list"
+msgstr "Eklenti listesi"
+
+#: src/ui/plugins-dialog.vala:98
+msgid "Authors"
+msgstr "Yazanlar"
+
+#: src/ui/plugins-dialog.vala:102
+msgid "Version"
+msgstr "Sürüm"
+
+#: src/ui/plugins-dialog.vala:106
+msgid "Website"
+msgstr "Web sitesi"
+
+#: src/ui/plugins-dialog.vala:115
+msgid "Plugin information not found."
+msgstr "Eklenti bilgisi bulunamadı."
