@@ -51,9 +51,8 @@ namespace Tuner {
                     toolbar_view.add_bottom_bar(widget);
 
             if (page.has_stack_pages) {
-                foreach (var stack_page in page.stack_pages) {
+                foreach (var stack_page in page.stack_pages)
                     add_stack_page(stack_page);
-                }
             } else {
                 content = build_content(page);
             }

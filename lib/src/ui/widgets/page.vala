@@ -136,7 +136,10 @@ namespace Tuner {
                     if (group.id != null && group.id != "") {
                         var matched_group = (Group) childs.first_match(it => {
                             var pred_group = it as Group;
-                            return pred_group != null && pred_group.id == group.id;
+                            return pred_group != null
+                                && pred_group.tag != null
+                                && pred_group.tag != ""
+                                && pred_group.tag == group.tag;
                         });
 
                         if (matched_group != null) {
@@ -192,7 +195,7 @@ namespace Tuner {
         private void add_child(Gtk.Builder builder, Object child, string? type) {
             if (child is Adw.Breakpoint) {
                 add_breakpoint((Adw.Breakpoint) child);
-            }else if (child is Gtk.Widget && type == "title") {
+            } else if (child is Gtk.Widget && type == "title") {
                 title_widget = (Gtk.Widget) child;
             } else if (child is Gtk.Widget && type == "start") {
                 pack_start((Gtk.Widget) child);

@@ -53,7 +53,7 @@ namespace Tuner {
                 warning(@"Attempt to add $(child.get_type().name()) as child of $(get_type().name()), which is not an TunerItem");
                 return;
             }
-            
+
             if (!accepts(item, type)) {
                 warning(@"Attempt to add $(item.get_type().name()) as child of $(get_type().name()), but that is not allowed");
                 return;
