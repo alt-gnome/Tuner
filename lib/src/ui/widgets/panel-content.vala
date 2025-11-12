@@ -83,7 +83,7 @@ namespace Tuner {
                     title = title,
                     description = description,
                     header_suffix = group.header_suffix,
-                    visible = false
+                    visible = group.show_empty
                 };
                 current_group.set_data<int>("priority", group.priority);
                 add(current_group);
@@ -91,11 +91,12 @@ namespace Tuner {
                 return VisitResult.RECURSE;
             } else if (item is Widget) {
                 var widget = (Widget) item;
-                var child = widget.create();
+                var child = widget.native_widget;
 
                 if (child != null) {
                     current_group.add(child);
-                    current_group.visible = true;
+                    if (child.visible)
+                        current_group.visible = true;
                 }
             }
             return VisitResult.CONTINUE;

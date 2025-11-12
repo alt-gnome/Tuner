@@ -117,6 +117,12 @@ namespace Tuner {
             notify_property("is-default");
         }
 
+        public override bool is_valid() {
+            init();
+
+            return settings != null;
+        }
+
         private void init() {
             if (schema_id == null || schema_key == null || settings != null)
                 return;

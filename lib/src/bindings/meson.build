@@ -4,3 +4,4 @@ lib_sources += files(
 )
 
 subdir('setting')
+subdir('validators')

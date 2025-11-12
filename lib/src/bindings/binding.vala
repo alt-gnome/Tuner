@@ -10,6 +10,7 @@ namespace Tuner {
         private ulong? instance_notify_id;
 
         public abstract bool has_default { get; set; }
+        public virtual Validator? validator { get; set; }
         public abstract bool is_default { get; }
         public abstract Type expected_type { get; }
 
@@ -66,6 +67,10 @@ namespace Tuner {
         }
 
         public virtual void reset() {}
+
+        public virtual bool is_valid() {
+            return true;
+        }
 
         public abstract bool get_value(ref Value value);
         public abstract void set_value(Value value);

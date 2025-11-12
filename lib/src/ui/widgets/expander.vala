@@ -19,7 +19,7 @@ namespace Tuner {
                 var widget = child as Widget;
 
                 if (widget != null) {
-                    var widget_content = widget.create();
+                    var widget_content = widget.native_widget;
 
                     if (widget_content != null)
                         row.add_row(widget_content);

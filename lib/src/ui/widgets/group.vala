@@ -10,6 +10,7 @@ namespace Tuner {
         public string description { get; set; }
         public Gtk.Widget? header_suffix { get; set; }
         public int priority { get; set; }
+        public bool show_empty { get; set; }
 
         public void add(Widget widget) {
             widget.insert_after(this, null);
