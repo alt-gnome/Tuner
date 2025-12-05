@@ -1,5 +1,6 @@
 lib_sources += files(
     'binding.vala',
+    'file-content.vala',
     'property.vala'
 )
 

@@ -47,6 +47,51 @@ namespace Tuner {
             return valid;
         }
 
+        public static string? read_file(string path) {
+            try {
+                var file = GLib.File.new_for_path(path);
+
+                if (!file.query_exists()) {
+                    return null;
+                }
+
+                var dis = new DataInputStream(file.read());
+                string line;
+                size_t length;
+                string result = "";
+
+                while ((line = dis.read_line(out length)) != null)
+                    result += @"$line\n";
+
+                if (result.length > 0)
+                    result = result.substring(0, result.length - 1);
+
+                return result;
+            } catch (Error e) {
+                warning("Error: %s\n", e.message);
+                return null;
+            }
+        }
+
+        public static void write_file(string path, string content) {
+            try {
+                var file = GLib.File.new_for_path(path);
+                var parent = file.get_parent();
+
+                if (parent != null && !parent.query_exists()) {
+                    parent.make_directory_with_parents();
+                }
+
+                if (!file.query_exists())
+                    file.create(FileCreateFlags.REPLACE_DESTINATION);
+
+                var dos = new DataOutputStream(file.open_readwrite().output_stream);
+                dos.put_string(content);
+            } catch (Error e) {
+                warning("Error creating/writing file: %s", e.message);
+            }
+        }
+
         public delegate bool FilterFunc(GLib.File file);
     }
 }

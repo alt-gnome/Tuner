@@ -9,9 +9,9 @@ namespace Tuner {
         private int inhibit_counter;
         private ulong? instance_notify_id;
 
-        public abstract bool has_default { get; set; }
+        public virtual bool has_default { get; set; }
         public virtual Validator? validator { get; set; }
-        public abstract bool is_default { get; }
+        public virtual bool is_default { get { return true; } }
         public abstract Type expected_type { get; }
 
         public virtual void on_instance_notify() {
