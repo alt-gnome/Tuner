@@ -47,9 +47,16 @@ namespace Tuner {
             return valid;
         }
 
+        public static string expand_home(string path) {
+            if (path.has_prefix("~"))
+                return Environment.get_home_dir() + path.substring(1, path.length - 1);
+
+            return path;
+        }
+
         public static string? read_file(string path) {
             try {
-                var file = GLib.File.new_for_path(path);
+                var file = GLib.File.new_for_path(expand_home(path));
 
                 if (!file.query_exists()) {
                     return null;
@@ -75,7 +82,7 @@ namespace Tuner {
 
         public static void write_file(string path, string content) {
             try {
-                var file = GLib.File.new_for_path(path);
+                var file = GLib.File.new_for_path(expand_home(path));
                 var parent = file.get_parent();
 
                 if (parent != null && !parent.query_exists()) {

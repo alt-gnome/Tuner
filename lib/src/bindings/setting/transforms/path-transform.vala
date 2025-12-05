@@ -23,7 +23,7 @@ namespace Tuner {
                 var result = value.get_string();
 
                 if (fold_home_path)
-                    result = result.replace("~", Environment.get_home_dir());
+                    result = FileUtil.expand_home(result);
 
                 if (hide_uri_prefix && !result.has_prefix("file://"))
                     result = @"file://$result";
