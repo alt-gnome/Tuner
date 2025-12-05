@@ -2,6 +2,7 @@ subdir('combo')
 
 lib_sources += files(
     'dialog.vala',
+    'entry.vala',
     'expander.vala',
     'file.vala',
     'font-row.vala',
