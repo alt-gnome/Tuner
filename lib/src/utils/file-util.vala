@@ -1,6 +1,6 @@
 namespace Tuner {
 
-    internal class FileUtil {
+    public class FileUtil {
 
         public static bool is_directory(GLib.File file) {
             return file.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY;
@@ -52,51 +52,6 @@ namespace Tuner {
                 return Environment.get_home_dir() + path.substring(1, path.length - 1);
 
             return path;
-        }
-
-        public static string? read_file(string path) {
-            try {
-                var file = GLib.File.new_for_path(expand_home(path));
-
-                if (!file.query_exists()) {
-                    return null;
-                }
-
-                var dis = new DataInputStream(file.read());
-                string line;
-                size_t length;
-                string result = "";
-
-                while ((line = dis.read_line(out length)) != null)
-                    result += @"$line\n";
-
-                if (result.length > 0)
-                    result = result.substring(0, result.length - 1);
-
-                return result;
-            } catch (Error e) {
-                warning("Error: %s\n", e.message);
-                return null;
-            }
-        }
-
-        public static void write_file(string path, string content) {
-            try {
-                var file = GLib.File.new_for_path(expand_home(path));
-                var parent = file.get_parent();
-
-                if (parent != null && !parent.query_exists()) {
-                    parent.make_directory_with_parents();
-                }
-
-                if (!file.query_exists())
-                    file.create(FileCreateFlags.REPLACE_DESTINATION);
-
-                var dos = new DataOutputStream(file.open_readwrite().output_stream);
-                dos.put_string(content);
-            } catch (Error e) {
-                warning("Error creating/writing file: %s", e.message);
-            }
         }
 
         public delegate bool FilterFunc(GLib.File file);
