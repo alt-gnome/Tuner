@@ -62,14 +62,6 @@ namespace Tuner {
             item.insert_after(this, null);
         }
 
-        private void set_id(string id) {
-            this.id = id;
-        }
-
-        private unowned string get_id() {
-            return id;
-        }
-
         public delegate VisitResult VisitorFunc(Item item);
 
         // Incorrect gtk bindings

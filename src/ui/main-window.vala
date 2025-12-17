@@ -57,12 +57,12 @@ namespace Tuner {
         }
 
         public void open_last() {
-            var tag = App.settings.get_string("last-page");
+            var id = App.settings.get_string("last-page");
 
-            if (tag != "") {
+            if (id != "") {
                 for (int i = 0; i < model.n_items; i++) {
                     var page = (Page) model.get_item(i);
-                    if (page.tag == tag) {
+                    if (page.id == id) {
                         panel_list.activate_index(i);
                         return;
                     }
@@ -145,7 +145,7 @@ namespace Tuner {
                 nav.push(row.page.list);
             }
 
-            App.settings.set_string("last-page", row.page.tag ?? "");
+            App.settings.set_string("last-page", row.page.id ?? "");
             apply_breakpoints(row.page.breakpoints);
             set_page(row.panel);
         }

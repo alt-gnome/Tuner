@@ -133,8 +133,8 @@ namespace Tuner {
 
                     // Merging should be done before creating UI
                     foreach (var page in addin.get_page_list()) {
-                        if (page.tag != null && page.tag != "") {
-                            var matched_page = page_list.first_match(it => it.tag == page.tag);
+                        if (page.id != null && page.id != "") {
+                            var matched_page = page_list.first_match(it => it.id == page.id);
                             if (matched_page != null) {
                                 matched_page.merge(page);
                                 continue;

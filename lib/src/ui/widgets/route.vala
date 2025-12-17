@@ -4,7 +4,6 @@ namespace Tuner {
         public string title { get; set; }
         public string subtitle { get; set; }
         public string? icon_name { get; set; }
-        public string tag { get; set; }
         public bool show_arrow { get; set; default = true; }
 
         public override Gtk.Widget? create() {
@@ -30,7 +29,7 @@ namespace Tuner {
 
         private void navigate(Object obj) {
             var row = (Adw.ActionRow) obj;
-            row.activate_action("navigation.push", "s", tag);
+            row.activate_action("navigation.push", "s", id);
         }
     }
 }

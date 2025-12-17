@@ -18,7 +18,6 @@ namespace Tuner {
         public string title { get; set; default = ""; }
         public string icon_name { get; set; }
         public string category { get; set; }
-        public string tag { get; set; }
         public int priority { get; set; }
         public string description { get; set; }
         public bool subpage { get; set; }
@@ -137,9 +136,9 @@ namespace Tuner {
                         var matched_group = (Group) childs.first_match(it => {
                             var pred_group = it as Group;
                             return pred_group != null
-                                && pred_group.tag != null
-                                && pred_group.tag != ""
-                                && pred_group.tag == group.tag;
+                                && pred_group.id != null
+                                && pred_group.id != ""
+                                && pred_group.id == group.id;
                         });
 
                         if (matched_group != null) {
@@ -152,10 +151,10 @@ namespace Tuner {
                 } else if (page_child is Page) {
                     var subpage = (Page) page_child;
 
-                    if (subpage.tag != null && subpage.tag != "") {
+                    if (subpage.id != null && subpage.id != "") {
                         var matched_subpage = (Page) childs.first_match(it => {
                             var pred_subpage = it as Page;
-                            return pred_subpage != null && pred_subpage.tag == subpage.tag;
+                            return pred_subpage != null && pred_subpage.id == subpage.id;
                         });
 
                         if (matched_subpage != null) {

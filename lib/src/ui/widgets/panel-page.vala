@@ -29,7 +29,7 @@ namespace Tuner {
             if (page == null) return;
 
             title = page.title;
-            tag = page.tag;
+            tag = page.id;
 
             if (!page.has_subpages)
                 page.bind_property("title-widget", header_bar, "title-widget", BindingFlags.SYNC_CREATE);
@@ -66,7 +66,7 @@ namespace Tuner {
                 page.stack = stack;
             }
 
-            stack.add_titled_with_icon(build_content(stack_page), stack_page.tag, stack_page.title, stack_page.icon_name);
+            stack.add_titled_with_icon(build_content(stack_page), stack_page.id, stack_page.title, stack_page.icon_name);
         }
 
         public void pack_start(Gtk.Widget child) {
