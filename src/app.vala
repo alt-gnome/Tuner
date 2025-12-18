@@ -11,9 +11,10 @@ namespace Tuner {
             { "quit", quit }
         };
 
-        private Peas.ExtensionSet addins { get; set; }
+        private PageList pages;
         private MainWindow main_window;
 
+        public static Peas.ExtensionSet addins;
         public static Settings settings;
 
         private static App _instance;
@@ -63,6 +64,8 @@ namespace Tuner {
             main_window = new MainWindow(this);
 
             load_extensions();
+            if (addins.get_n_items() > 0)
+                main_window.load_pages(pages);
 
             main_window.present();
         }
@@ -107,7 +110,7 @@ namespace Tuner {
             foreach (var plugin in plugins)
                 engine.load_plugin(plugin);
 
-            load_extensions_content();
+            pages = new PageList();
         }
 
         private int get_priority(Peas.PluginInfo plugin) {
@@ -119,39 +122,6 @@ namespace Tuner {
             }
 
             return 0;
-        }
-
-        private void load_extensions_content() {
-            var disabled_plugins = settings.get_strv("disabled-plugins");
-            var page_list = new ArrayList<Page>();
-
-            addins.foreach((s, info, obj) => {
-                var addin = obj as Addin;
-
-                if (!(info.module_name in disabled_plugins)) {
-                    addin.activate();
-
-                    // Merging should be done before creating UI
-                    foreach (var page in addin.get_page_list()) {
-                        if (page.id != null && page.id != "") {
-                            var matched_page = page_list.first_match(it => it.id == page.id);
-                            if (matched_page != null) {
-                                matched_page.merge(page);
-                                continue;
-                            }
-                        }
-                        page_list.add(page);
-                    }
-                }
-            });
-
-            foreach (var page in page_list)
-                main_window.add_page(page);
-
-            main_window.open_last();
-
-            if (page_list.is_empty && addins.get_n_items() > 0)
-                main_window.show_all_disabled();
         }
 
         private void restart_app() {

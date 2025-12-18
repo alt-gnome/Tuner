@@ -48,6 +48,16 @@ namespace Tuner {
             );
         }
 
+        public void load_pages(ArrayList<Page> pages) {
+            foreach (var page in pages)
+                add_page(page);
+
+            open_last();
+
+            if (pages.is_empty)
+                show_all_disabled();
+        }
+
         public bool add_page(Page page) {
             model.insert_sorted(page, (a, b) => ((Page) a).priority - ((Page) b).priority);
 

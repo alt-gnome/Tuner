@@ -56,7 +56,7 @@ namespace Tuner {
                     }
                 }
             } else {
-                for (var child = container.get_last_child().get_prev_sibling();child != null; child = child.get_prev_sibling()) {
+                for (var child = container.get_last_child().get_prev_sibling(); child != null; child = child.get_prev_sibling()) {
                     var priority = child.get_data<int>("priority");
 
                     if (priority > group.get_data<int>("priority")) {

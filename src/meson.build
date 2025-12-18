@@ -6,6 +6,7 @@ sources = files(
     configuration: config
 )
 
+subdir('utils')
 subdir('ui')
 
 executable(
