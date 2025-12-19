@@ -78,6 +78,31 @@ namespace Tuner {
         return 0;
     }
 
+    public string? value_to_string(Value value) {
+        if (value.holds(Type.BOOLEAN))
+            return value.get_boolean().to_string();
+        else if (value.holds(Type.CHAR))
+            return value.get_schar().to_string();
+        else if (value.holds(Type.UCHAR))
+            return value.get_uchar().to_string();
+        else if (value.holds(Type.INT))
+            return value.get_int().to_string();
+        else if (value.holds(Type.INT64))
+            return value.get_int64().to_string();
+        else if (value.holds(Type.DOUBLE))
+            return value.get_double().to_string();
+        else if (value.holds(Type.FLOAT))
+            return value.get_float().to_string();
+        else if (value.holds(Type.UINT))
+            return value.get_uint().to_string();
+        else if (value.holds(Type.UINT64))
+            return value.get_uint64().to_string();
+        else if (value.holds(Type.STRING))
+            return value.get_string();
+
+        return null;
+    }
+
     public static Variant? convert_from_value(Value value, VariantType expected_type) {
         if (value.holds(Type.BOOLEAN) && expected_type.equal(VariantType.BOOLEAN))
             return new Variant.boolean(value.get_boolean());

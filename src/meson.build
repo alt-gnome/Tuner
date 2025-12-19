@@ -14,6 +14,9 @@ executable(
 
     sources,
     resources,
-    dependencies: lib_dep,
+    dependencies: [
+        dependency('json-glib-1.0'),
+        lib_dep
+    ],
     install: true
 )

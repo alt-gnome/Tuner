@@ -29,7 +29,7 @@ namespace Tuner {
 
         construct {
             application_id = ID;
-            flags = ApplicationFlags.DEFAULT_FLAGS;
+            flags = ApplicationFlags.HANDLES_COMMAND_LINE;
         }
 
         public override void startup() {
@@ -63,11 +63,23 @@ namespace Tuner {
 
             main_window = new MainWindow(this);
 
-            load_extensions();
             if (addins.get_n_items() > 0)
                 main_window.load_pages(pages);
 
             main_window.present();
+        }
+
+        public override int command_line(ApplicationCommandLine command_line) {
+            load_extensions();
+
+            var args = command_line.get_arguments();
+            if (args.length > 1) {
+                var positional_arg = args[1];
+
+                return CommandUtil.handle_command_line(pages, command_line, positional_arg);
+            }
+            activate();
+            return 0;
         }
 
         private void load_search_path(Peas.Engine engine) {
