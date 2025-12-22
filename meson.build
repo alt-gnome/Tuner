@@ -10,7 +10,7 @@ id = 'org.altlinux.Tuner'
 name = meson.project_name()
 version = meson.project_version()
 output = name.to_lower()
-soversion = 0
+soversion = 1
 
 add_project_arguments(
     '-w', '-DGETTEXT_PACKAGE="@0@"'.format(output),

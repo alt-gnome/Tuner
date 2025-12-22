@@ -3,7 +3,12 @@ using Gee;
 namespace Tuner.ConfigUtil {
 
     public bool import_config(PageList pages, Json.Node node) {
-        if (node.get_node_type() == Json.NodeType.OBJECT && node.get_object().has_member("values")) {
+        if (
+            node.get_node_type() == Json.NodeType.OBJECT
+            && node.get_object().has_member("values")
+            && node.get_object().has_member("format")
+            && node.get_object().get_string_member("format") == "v1"
+        ) {
             foreach (var element in node.get_object().get_array_member("values").get_elements()) {
                 var path = element.get_object().get_string_member("path");
                 var value_node = element.get_object().get_member("value");
@@ -30,6 +35,10 @@ namespace Tuner.ConfigUtil {
         var builder = new Json.Builder();
 
         builder.begin_object();
+        builder.set_member_name("version");
+        builder.add_string_value(VERSION);
+        builder.set_member_name("format");
+        builder.add_string_value("v1");
         builder.set_member_name("values");
         builder.begin_array();
 
