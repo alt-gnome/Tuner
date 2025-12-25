@@ -47,6 +47,16 @@ namespace Tuner {
             return null;
         }
 
+        // Broken binding, code from GtkBuildable
+        public void set_id(string id) {
+            set_data_full("gtk-builder-id", id.dup(), g_free);
+        }
+
+        // Broken as previous
+        public unowned string get_id() {
+            return get_data<string>("gtk-builder-id");
+        }
+
         private void add_child(Gtk.Builder builder, Object child, string? type) {
             var item = child as Item;
             if (item == null) {

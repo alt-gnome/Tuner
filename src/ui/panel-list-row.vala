@@ -26,7 +26,8 @@ namespace Tuner {
             if (page.has_subpages || page.list != null)
                 show_next_icon = true;
 
-            panel = new Panel.with_page(page);
+            if (!page.has_subpages)
+                panel = new Panel.with_page(page);
         }
     }
 }
