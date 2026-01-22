@@ -9,5 +9,6 @@
     </gresource>
     <gresource prefix="/org/altlinux/Tuner/icons/scalable/actions/">
         <file alias="wrench-wide-symbolic.svg">icons/wrench-wide-symbolic.svg</file>
+        <file alias="shield-half-symbolic.svg">icons/shield-half-symbolic.svg</file>
     </gresource>
 </gresources>
