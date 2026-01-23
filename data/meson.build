@@ -1,6 +1,6 @@
-icons_dir = join_paths(get_option('datadir'), 'icons', 'hicolor')
-scalable_dir = join_paths(icons_dir, 'scalable', 'apps')
-symbolic_dir = join_paths(icons_dir, 'symbolic', 'apps')
+icons_dir = get_option('datadir') / 'icons' / 'hicolor'
+scalable_dir = icons_dir / 'scalable' / 'apps'
+symbolic_dir = icons_dir / 'symbolic' / 'apps'
 
 install_data(
     'icons' / 'app' / 'color.svg',
