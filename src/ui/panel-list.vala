@@ -60,6 +60,10 @@ namespace Tuner {
             }
         }
 
+        public PanelListRow? get_row_at_index(int index) {
+            return list_box.get_row_at_index(index) as PanelListRow;
+        }
+
         public bool activate_index(int index) {
             var row = list_box.get_row_at_index(index);
 

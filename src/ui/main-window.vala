@@ -135,6 +135,11 @@ namespace Tuner {
 
         [GtkCallback]
         private void row_activated(PanelListRow row) {
+            activate_row(row);
+        }
+
+        private void activate_row(PanelListRow row, bool manual = true) {
+            message(row.title);
             if (row.page.has_subpages) {
                 if (row.cached_list == null) {
                     var list = new PanelList(row.page);
@@ -146,7 +151,11 @@ namespace Tuner {
                 for (int i = 0; i < row.page.subpages_model.n_items; i++) {
                     var page = (Page) row.page.subpages_model.get_item(i);
                     if (!page.has_subpages && page.list == null) {
-                        row.cached_list.activate_index(i);
+                        var list_row = row.cached_list.get_row_at_index(i);
+                        if (list_row != null) {
+                            list_row.grab_focus();
+                            activate_row(list_row, false);
+                        }
                         break;
                     }
                 }
@@ -157,7 +166,7 @@ namespace Tuner {
 
             App.settings.set_string("last-page", row.page.id ?? "");
             apply_breakpoints(row.page.breakpoints);
-            set_page(row.panel);
+            set_page(row.panel, row.page.list != null ? false : manual);
         }
     }
 }
