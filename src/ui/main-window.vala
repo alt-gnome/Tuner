@@ -139,7 +139,6 @@ namespace Tuner {
         }
 
         private void activate_row(PanelListRow row, bool manual = true) {
-            message(row.title);
             if (row.page.has_subpages) {
                 if (row.cached_list == null) {
                     var list = new PanelList(row.page);
