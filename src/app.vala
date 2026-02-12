@@ -5,6 +5,8 @@ namespace Tuner {
     public class App : Adw.Application {
         private const ActionEntry[] APP_ENTRIES = {
             { "open-app-page", open_app_page },
+            { "import", import },
+            { "export", export },
             { "plugin-list", open_plugin_list },
             { "restart", restart_app },
             { "about", about_activated },
@@ -88,6 +90,66 @@ namespace Tuner {
             if (env != null) foreach (var path in env.split(":")) {
                 engine.add_search_path(path, null);
             }
+        }
+
+        private void import() {
+            import_async.begin();
+        }
+
+        private void export() {
+            export_async.begin();
+        }
+
+        private async void import_async() {
+            var picker = new Gtk.FileDialog();
+
+            try {
+                var file = yield picker.open(main_window, null);
+
+                if (file != null) {
+                    if (file.query_exists()) {
+                        var parser = new Json.Parser();
+                        yield parser.load_from_stream_async(file.read());
+
+                        var node = parser.get_root();
+
+                        if (node != null) {
+                            ConfigUtil.import_config(pages, node);
+                            Tuner.toast("Configuration imported.");
+                            return;
+                        }
+                    }
+                }
+            } catch (Error err) {
+                if (err.code == Gtk.DialogError.DISMISSED) return;
+                warning(@"Failed to import: $(err.message)");
+            }
+
+            Tuner.toast("Failed to import configuration.");
+        }
+
+        private async void export_async() {
+            var picker = new Gtk.FileDialog();
+
+            try {
+                var file = yield picker.save(main_window, null);
+
+                if (file != null) {
+                    var stream = yield file.replace_async(null, false, FileCreateFlags.NONE, Priority.DEFAULT, null);
+                    var generator = new Json.Generator();
+
+                    generator.root = ConfigUtil.export_config(pages);
+                    generator.to_stream(stream, null);
+
+                    Tuner.toast("Configuration saved.");
+                    return;
+                }
+            } catch (Error err) {
+                if (err.code == Gtk.DialogError.DISMISSED) return;
+                warning(@"Failed to export: $(err.message)");
+            }
+
+            Tuner.toast("Failed to export configuration.");
         }
 
         private void open_plugin_list() {
