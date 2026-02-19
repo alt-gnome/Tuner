@@ -69,30 +69,36 @@ template $TunerMainWindow : Adw.ApplicationWindow {
                     name: "content";
 
                     child: Adw.NavigationSplitView split_view {
-                        min-sidebar-width: 250;
+                        min-sidebar-width: 240;
 
-                        sidebar: Adw.NavigationPage {
+                        [sidebar]
+                        Adw.NavigationPage {
+                            title: _("Sidebar");
 
-                            Adw.NavigationView nav {
+                            $TunerAnimationBin {
 
-                                $TunerSearchablePanelList panel_list {
-                                    title: _("Tuner");
-                                    model: bind template.model;
+                                Adw.NavigationView nav {
+                                    width-request: 240;
 
-                                    row-activated => $row_activated();
-                                    update-search => $update_search();
-                                    search-result-activated => $search_result_activated();
+                                    $TunerSearchablePanelList panel_list {
+                                        title: _("Tuner");
+                                        model: bind template.model;
 
-                                    [end]
-                                    MenuButton {
-                                        primary: true;
-                                        icon-name: "open-menu-symbolic";
-                                        tooltip-text: _("Main Menu");
-                                        menu-model: primary_menu;
+                                        row-activated => $row_activated();
+                                        update-search => $update_search();
+                                        search-result-activated => $search_result_activated();
+
+                                        [end]
+                                        MenuButton {
+                                            primary: true;
+                                            icon-name: "open-menu-symbolic";
+                                            tooltip-text: _("Main Menu");
+                                            menu-model: primary_menu;
+                                        }
                                     }
                                 }
                             }
-                        };
+                        }
                     };
                 }
             }

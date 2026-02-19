@@ -37,6 +37,8 @@ namespace Tuner {
         public override void startup() {
             base.startup();
 
+            typeof(AnimationBin).ensure();
+
             settings = new Settings("org.altlinux.Tuner");
 
             var engine = Peas.Engine.get_default();
