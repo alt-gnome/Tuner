@@ -5,8 +5,8 @@ namespace Tuner {
     public class App : Adw.Application {
         private const ActionEntry[] APP_ENTRIES = {
             { "open-app-page", open_app_page },
-            { "import", import },
-            { "export", export },
+            { "load", load },
+            { "save", save },
             { "plugin-list", open_plugin_list },
             { "restart", restart_app },
             { "about", about_activated },
@@ -94,11 +94,11 @@ namespace Tuner {
             }
         }
 
-        private void import() {
+        private void load() {
             import_async.begin();
         }
 
-        private void export() {
+        private void save() {
             export_async.begin();
         }
 
@@ -132,6 +132,7 @@ namespace Tuner {
 
         private async void export_async() {
             var picker = new Gtk.FileDialog();
+            picker.initial_name = "tuner-configuration.json";
 
             try {
                 var file = yield picker.save(main_window, null);

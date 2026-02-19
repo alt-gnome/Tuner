@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuner\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-04 21:54+0300\n"
+"POT-Creation-Date: 2026-02-19 12:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/id.metainfo.xml.in:5 data/ui/main-window.blp:7
-#: data/ui/main-window.blp:79
+#: data/ui/main-window.blp:84
 msgid "Tuner"
 msgstr ""
 
@@ -75,10 +75,6 @@ msgstr ""
 msgid "About dialog"
 msgstr ""
 
-#: data/id.metainfo.xml.in:85
-msgid "ALT Linux Team"
-msgstr ""
-
 #: data/ui/main-window.blp:41
 msgid "No plugins found"
 msgstr ""
@@ -97,23 +93,35 @@ msgstr ""
 msgid "Restart app"
 msgstr ""
 
-#: data/ui/main-window.blp:90
+#: data/ui/main-window.blp:76
+msgid "Sidebar"
+msgstr ""
+
+#: data/ui/main-window.blp:95
 msgid "Main Menu"
 msgstr ""
 
-#: data/ui/main-window.blp:106
+#: data/ui/main-window.blp:112
 msgid "_Install plugins"
 msgstr ""
 
-#: data/ui/main-window.blp:110
+#: data/ui/main-window.blp:116
+msgid "Save settings"
+msgstr ""
+
+#: data/ui/main-window.blp:120
+msgid "Load settings"
+msgstr ""
+
+#: data/ui/main-window.blp:124
 msgid "_Plugins list"
 msgstr ""
 
-#: data/ui/main-window.blp:114
+#: data/ui/main-window.blp:128
 msgid "_About Tuner"
 msgstr ""
 
-#: src/app.vala:90
+#: src/app.vala:170
 msgid "translator-credits"
 msgstr ""
 
