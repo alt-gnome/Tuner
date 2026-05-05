@@ -14,5 +14,6 @@
         <file alias="puzzle-piece-symbolic.svg">icons/puzzle-piece-symbolic.svg</file>
         <file alias="shield-half-symbolic.svg">icons/shield-half-symbolic.svg</file>
         <file alias="funnel-symbolic.svg">icons/funnel-symbolic.svg</file>
+        <file alias="test-symbolic.svg">icons/test-symbolic.svg</file>
     </gresource>
 </gresources>
