@@ -48,6 +48,8 @@ if get_option('app')
     )
 endif
 
+subdir('tests')
+
 if get_option('docs')
     subdir('doc')
 endif
