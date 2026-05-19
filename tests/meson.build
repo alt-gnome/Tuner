@@ -1,4 +1,5 @@
 unit_tests = [
+    'file-util',
     'type-util'
 ]
 
