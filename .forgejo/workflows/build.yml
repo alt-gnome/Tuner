@@ -16,13 +16,13 @@ jobs:
       - name: Install libs on container
         run: |
           apt-get update
-          apt-get install -y gettext-tools meson vala blueprint-compiler "pkgconfig(libadwaita-1)" "pkgconfig(gee-0.8)" "pkgconfig(libpeas-2)" "pkgconfig(json-glib-1.0)" "gir(Peas)=2" "gir(Gee)=0.8" "gir(Adw)=1" gobject-introspection-devel
+          apt-get install -y gettext-tools meson vala blueprint-compiler "pkgconfig(libadwaita-1)" "pkgconfig(gee-0.8)" "pkgconfig(libpeas-2)" "pkgconfig(json-glib-1.0)" "gir(Peas)=2" "gir(Gee)=0.8" "gir(Adw)=1" gobject-introspection-devel /usr/bin/valadoc
 
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup
-        run: meson setup build
+        run: meson setup build -Ddocs=true
 
       - name: Compile
         run: meson compile -C build
