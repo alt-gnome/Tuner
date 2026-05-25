@@ -31,6 +31,12 @@ meson setup --prefix=/usr build
 meson install -C build
 ```
 
+# Documentation
+
+- [The main knowledge base of the application with writing plugins guides](https://tuner.altlinux.org/)
+
+- [API references documentation](https://alt-gnome.altlinux.team/Tuner)
+
 # Credit
 
 [Refine](https://gitlab.gnome.org/TheEvilSkeleton/Refine) - For the idea of the logic of creating widgets interacting with gsettings directly in .blp files.

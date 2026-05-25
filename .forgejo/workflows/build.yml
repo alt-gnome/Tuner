@@ -10,7 +10,7 @@ on:
 jobs:
   test-build:
     name: Test Build
-    runs-on: alt-sisyphus
+    runs-on: als-tiny
 
     steps:
       - name: Install libs on container
@@ -29,3 +29,9 @@ jobs:
 
       - name: Test
         run: meson test -C build
+
+      - name: Deploy API references documentation
+        if: github.event_name != 'pull_request' && github.ref_name == 'main'
+        uses: actions/deploy-pages@v1
+        with:
+          directory: ./build/doc/valadoc
