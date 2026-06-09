@@ -29,6 +29,7 @@ lib = library(
     soversion: soversion,
     vala_gir: gir_output + '.gir',
     install: true,
+    vala_args: ['--vapi-comments'],
     install_dir: [ true, true, true, true ]
 )
 
