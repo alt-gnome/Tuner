@@ -1,0 +1,23 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TunerColorRow : Adw.ActionRow {
+    activatable: true;
+
+    activated => $row_activated();
+
+    [suffix]
+    $TunerResetButton reset_button {
+        visible: false;
+        revealer: end;
+
+        reset => $on_reset();
+    }
+
+    [suffix]
+    $TunerColorIndicator indicator {
+        width-request: 34;
+        height-request: 34;
+        valign: center;
+    }
+}

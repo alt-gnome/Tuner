@@ -1,6 +1,9 @@
 subdir('combo')
 
 lib_sources += files(
+    'color-indicator.vala',
+    'color-row.vala',
+    'color.vala',
     'dialog.vala',
     'entry.vala',
     'expander.vala',
