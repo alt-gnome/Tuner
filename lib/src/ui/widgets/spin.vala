@@ -4,14 +4,15 @@ namespace Tuner {
         public string title { get; set; }
         public string subtitle { get; set; }
         public uint digits { get; set; }
+        public Gtk.Adjustment? adjustment { get; set; }
 
         public override Gtk.Widget? create() {
             if (binding != null) {
                 var adjustment = binding.create_adjustment();
-                if (adjustment == null)
+                if (adjustment == null && this.adjustment == null)
                     return null;
 
-                var row = new Adw.SpinRow(adjustment, 0, digits) {
+                var row = new Adw.SpinRow(this.adjustment ?? adjustment, 0, digits) {
                     title = title,
                     subtitle = subtitle
                 };
