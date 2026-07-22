@@ -8,11 +8,11 @@ namespace Tuner {
 
         public override Gtk.Widget? create() {
             if (binding != null) {
-                var adjustment = binding.create_adjustment();
-                if (adjustment == null && this.adjustment == null)
+                var adjustment = this.adjustment ?? binding.create_adjustment();
+                if (adjustment == null)
                     return null;
 
-                var row = new Adw.SpinRow(this.adjustment ?? adjustment, 0, digits) {
+                var row = new Adw.SpinRow(adjustment, 0, digits) {
                     title = title,
                     subtitle = subtitle
                 };

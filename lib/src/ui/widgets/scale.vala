@@ -9,8 +9,8 @@ namespace Tuner {
 
         public override Gtk.Widget? create() {
             if (binding != null) {
-                var adjustment = binding.create_adjustment();
-                if (adjustment == null && this.adjustment == null)
+                var adjustment = this.adjustment ?? binding.create_adjustment();
+                if (adjustment == null)
                     return null;
 
                 var row = new Adw.ActionRow() {
@@ -21,7 +21,7 @@ namespace Tuner {
                 var scale = marked_scale;
 
                 if (scale == null) {
-                    scale = new Gtk.Scale(Gtk.Orientation.HORIZONTAL, this.adjustment ?? adjustment) {
+                    scale = new Gtk.Scale(Gtk.Orientation.HORIZONTAL, adjustment) {
                         draw_value = draw_value,
                         hexpand = true
                     };
