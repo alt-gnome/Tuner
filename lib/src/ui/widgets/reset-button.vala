@@ -3,14 +3,17 @@ namespace Tuner {
     /**
      * Button with icon-name: edit-undo-symbolic, flat as css class and valign is center
      */
-    public class ResetButton : Gtk.Box {
+    public class ResetButton : Adw.Bin {
+        private Gtk.Revealer main_revealer;
         private Gtk.Revealer? _revealer;
         private Gtk.Button button;
+        private Gtk.Box box;
 
+        public bool reveal { get; set; }
         public Gtk.Align revealer {
             set {
                 if (_revealer != null)
-                    remove(_revealer);
+                    box.remove(_revealer);
 
                 if (value != Gtk.Align.END && value != Gtk.Align.START)
                     return;
@@ -36,16 +39,21 @@ namespace Tuner {
                 });
 
                 if (value == Gtk.Align.END)
-                    append(_revealer);
+                    box.append(_revealer);
                 else
-                    prepend (_revealer);
+                    box.prepend(_revealer);
             }
         }
 
         construct {
-            orientation = Gtk.Orientation.HORIZONTAL;
+            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            child = main_revealer = new Gtk.Revealer() {
+                transition_type = Gtk.RevealerTransitionType.CROSSFADE,
+                child = box
+            };
+            bind_property("reveal", main_revealer, "reveal-child", GLib.BindingFlags.SYNC_CREATE);
 
-            append(button = new Gtk.Button() {
+            box.append(button = new Gtk.Button() {
                 tooltip_text = _("Reset"),
                 icon_name = "edit-undo-symbolic",
                 valign = Gtk.Align.CENTER

@@ -20,12 +20,11 @@ namespace Tuner {
                 file_button.clicked.connect(() => file_button_clicked.begin(row));
 
                 var reset_button = new ResetButton() {
-                    visible = false,
                     revealer = Gtk.Align.END
                 };
                 reset_button.reset.connect(binding.reset);
                 if (binding.has_default)
-                    binding.bind_property("is-default", reset_button, "visible", BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN);
+                    binding.bind_property("is-default", reset_button, "reveal", BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN);
 
                 var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
                 box.append(reset_button);

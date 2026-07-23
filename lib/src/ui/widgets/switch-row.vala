@@ -15,10 +15,8 @@ namespace Tuner {
         public void setup(Binding binding) {
             this.binding = binding;
 
-            if (binding.has_default) {
-                reset_button.visible = true;
-                binding.bind_property("is-default", reset_button, "visible", BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN);
-            }
+            if (binding.has_default)
+                binding.bind_property("is-default", reset_button, "reveal", BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN);
         }
 
         [GtkCallback]

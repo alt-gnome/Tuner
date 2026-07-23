@@ -26,7 +26,7 @@ namespace Tuner {
             this.binding = binding;
 
             if (binding.has_default)
-                binding.bind_property("is-default", reset_button, "visible", BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN);
+                binding.bind_property("is-default", reset_button, "reveal", BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN);
         }
 
         [GtkCallback]

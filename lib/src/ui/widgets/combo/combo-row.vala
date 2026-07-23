@@ -20,10 +20,8 @@ namespace Tuner {
 
             this.selected = selected;
 
-            if (binding.has_default) {
-                reset_button.visible = true;
+            if (binding.has_default)
                 binding.bind_property("is-default", reset_button, "sensitive", BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN);
-            }
         }
 
         [GtkCallback]
