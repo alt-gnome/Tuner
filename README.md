@@ -4,7 +4,7 @@
 <h1 align="center">Tuner</h1>
 <h4 align="center">Extensible control center</h4>
 <div align="center">
-  <img width="922" src="data/screenshots/4-panelmoded-tweaks.png">
+  <img width="922" src="data/screenshots/1-tuner-tweaks.png">
 </div>
 
 Tuner is the home for your additional system settings, components, applications, and whatever else you want!
@@ -35,7 +35,7 @@ meson install -C build
 
 - [The main knowledge base of the application with writing plugins guides](https://tuner.altlinux.org/)
 
-- [API references documentation](https://alt-gnome.altlinux.team/Tuner)
+- [API references documentation](https://alt-gnome.altlinux.team/Tuner/tuner-1/index.htm)
 
 # Credit
 
