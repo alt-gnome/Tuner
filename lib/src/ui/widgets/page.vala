@@ -31,6 +31,7 @@ namespace Tuner {
         public ArrayList<Gtk.Widget>? bottom_widgets { get; set; }
         public ArrayList<Adw.Breakpoint>? breakpoints { get; set; }
         public ArrayList<Page>? stack_pages { get; set; }
+        public PageValidator? validator { get; set; }
         public Adw.ViewStack? stack { get; set; }
         public ListStore? subpages_model { get; set; }
         public bool has_subpages {

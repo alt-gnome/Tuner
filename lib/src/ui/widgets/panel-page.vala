@@ -66,7 +66,10 @@ namespace Tuner {
                 page.stack = stack;
             }
 
-            stack.add_titled_with_icon(build_content(stack_page), stack_page.id, stack_page.title, stack_page.icon_name);
+            var adw_stack_page = stack.add_titled_with_icon(build_content(stack_page), stack_page.id, stack_page.title, stack_page.icon_name);
+
+            if (page.validator != null)
+                page.validator.bind(adw_stack_page, "visible");
         }
 
         public void pack_start(Gtk.Widget child) {
