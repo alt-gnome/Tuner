@@ -65,7 +65,7 @@ namespace Tuner {
         }
 
         public override Gtk.Adjustment? create_adjustment() {
-            if (schema_id == null || schema_key == null)
+            if (schema_id == null || schema_key == null || settings == null)
                 return null;
 
             var source = SettingsSchemaSource.get_default();
